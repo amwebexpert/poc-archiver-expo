@@ -10,7 +10,7 @@ export default function Home() {
       <Stack.Screen options={{ title: 'Home' }} />
       <Container>
         <FullCentered>
-          <Text>Home</Text>
+          <Text>Home...</Text>
         </FullCentered>
       </Container>
     </>
