@@ -2,6 +2,7 @@ import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
 import { useRef } from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
+import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
 import { Container } from '~/components/container';
 import { FullCentered } from '~/components/full-centered';
@@ -32,6 +33,9 @@ export default function DemoBottomSheet() {
 
         <BottomSheetModal
           ref={bottomSheetModalRef}
+          index={0}
+          enablePanDownToClose={true}
+          backdropComponent={DefaultBackdrop}
           enableDynamicSizing={false}
           onChange={handleSheetChanges}
           snapPoints={SNAP_POINTS}>
