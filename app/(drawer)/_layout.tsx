@@ -18,10 +18,10 @@ const DrawerLayout = () => (
     />
 
     <Drawer.Screen
-      name="info"
+      name="demo-bottom-sheet"
       options={{
-        headerTitle: 'Info',
-        drawerLabel: 'Info',
+        headerTitle: '@gorhom/bottom-sheet',
+        drawerLabel: 'Bottom sheet',
         drawerIcon: ({ size, color }) => <Ionicons name="information-circle" size={size} color={color} />,
       }}
     />
