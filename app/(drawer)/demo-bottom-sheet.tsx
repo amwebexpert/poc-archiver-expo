@@ -1,12 +1,12 @@
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
 import { useRef } from 'react';
-import { Button, StyleSheet, Text } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
+import { DEMO_TAKE_PICTURE_HTML } from '~/components/bottom-sheet/bottom-sheet.utils';
 import { Container } from '~/components/container';
-import { FullCentered } from '~/components/full-centered';
 
 const SNAP_POINTS = ['75%', '100%'];
 
@@ -40,9 +40,11 @@ export default function DemoBottomSheet() {
           snapPoints={SNAP_POINTS}>
           <BottomSheetView style={styles.contentContainer}>
             <WebView
-              source={{ uri: 'https://www.google.com' }}
+              // source={{ uri: 'https://anssiko.github.io/html-media-capture/' }}
+              source={{ html: DEMO_TAKE_PICTURE_HTML }}
               nestedScrollEnabled={true}
               javaScriptEnabled={true}
+              javaScriptCanOpenWindowsAutomatically={true}
             />
           </BottomSheetView>
         </BottomSheetModal>
