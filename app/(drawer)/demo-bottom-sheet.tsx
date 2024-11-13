@@ -6,7 +6,7 @@ import { Button, StyleSheet, Text } from 'react-native';
 import { Container } from '~/components/container';
 import { FullCentered } from '~/components/full-centered';
 
-const SNAP_POINTS = ['25%', '50%', '90%'];
+const SNAP_POINTS = ['25%', '50%', '75%', '100%'];
 
 export default function DemoBottomSheet() {
   // ref
@@ -32,9 +32,16 @@ export default function DemoBottomSheet() {
 
         <BottomSheetModal
           ref={bottomSheetModalRef}
+          enableDynamicSizing={false}
           onChange={handleSheetChanges}
           snapPoints={SNAP_POINTS}>
           <BottomSheetView style={styles.contentContainer}>
+            <Text>Awesome 🎉</Text>
+            <Text>Awesome 🎉</Text>
+            <Text>Awesome 🎉</Text>
+            <Text>Awesome 🎉</Text>
+            <Text>Awesome 🎉</Text>
+            <Text>Awesome 🎉</Text>
             <Text>Awesome 🎉</Text>
             <Text>Awesome 🎉</Text>
             <Text>Awesome 🎉</Text>
