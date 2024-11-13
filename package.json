@@ -19,6 +19,7 @@
     "@react-navigation/native": "^7.0.0",
     "expo": "~52.0.5",
     "expo-constants": "~17.0.2",
+    "expo-dev-client": "^5.0.1",
     "expo-linking": "~7.0.2",
     "expo-router": "~4.0.5",
     "expo-status-bar": "~2.0.0",
