@@ -1,4 +1,3 @@
-import { Stack } from 'expo-router';
 import { Text } from 'react-native';
 
 import { Container } from '~/components/container';
@@ -6,13 +5,10 @@ import { FullCentered } from '~/components/full-centered';
 
 export default function Profile() {
   return (
-    <>
-      <Stack.Screen options={{ title: 'Profile' }} />
-      <Container>
-        <FullCentered>
-          <Text>Profile</Text>
-        </FullCentered>
-      </Container>
-    </>
+    <Container>
+      <FullCentered>
+        <Text>Profile Screen</Text>
+      </FullCentered>
+    </Container>
   );
 }

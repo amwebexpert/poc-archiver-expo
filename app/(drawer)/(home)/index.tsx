@@ -1,4 +1,3 @@
-import { Stack } from 'expo-router';
 import { Text } from 'react-native';
 
 import { Container } from '~/components/container';
@@ -6,13 +5,10 @@ import { FullCentered } from '~/components/full-centered';
 
 export default function Home() {
   return (
-    <>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <FullCentered>
-          <Text>Home...</Text>
-        </FullCentered>
-      </Container>
-    </>
+    <Container>
+      <FullCentered>
+        <Text>Home Screen</Text>
+      </FullCentered>
+    </Container>
   );
 }
