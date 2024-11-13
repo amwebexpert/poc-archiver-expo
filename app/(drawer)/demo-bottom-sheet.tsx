@@ -2,12 +2,13 @@ import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
 import { useRef } from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
+import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
 import { Container } from '~/components/container';
 import { FullCentered } from '~/components/full-centered';
 
-const SNAP_POINTS = ['25%', '50%', '75%', '100%'];
+const SNAP_POINTS = ['75%', '100%'];
 
 export default function DemoBottomSheet() {
   // ref
@@ -26,10 +27,8 @@ export default function DemoBottomSheet() {
       <Stack.Screen options={{ headerTitle: 'Demo @gorhom/bottom-sheet' }} />
 
       <Container>
-        <FullCentered>
-          <Button onPress={handlePresentModalPress} title="Present Modal" color="black" />
-          <Button onPress={handleDismissModalPress} title="Dismiss Modal" color="black" />
-        </FullCentered>
+        <Button onPress={handlePresentModalPress} title="Present Modal" color="black" />
+        <Button onPress={handleDismissModalPress} title="Dismiss Modal" color="black" />
 
         <BottomSheetModal
           ref={bottomSheetModalRef}
@@ -40,15 +39,11 @@ export default function DemoBottomSheet() {
           onChange={handleSheetChanges}
           snapPoints={SNAP_POINTS}>
           <BottomSheetView style={styles.contentContainer}>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
-            <Text>Awesome 🎉</Text>
+            <WebView
+              source={{ uri: 'https://www.google.com' }}
+              nestedScrollEnabled={true}
+              javaScriptEnabled={true}
+            />
           </BottomSheetView>
         </BottomSheetModal>
       </Container>
@@ -65,6 +60,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    alignItems: 'center',
+    width: '100%',
   },
 });
