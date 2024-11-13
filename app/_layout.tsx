@@ -1,3 +1,4 @@
+import 'expo-dev-client';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';

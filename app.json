@@ -3,34 +3,42 @@
     "name": "poc-archiver-expo",
     "slug": "poc-archiver-expo",
     "version": "1.0.0",
-
     "scheme": "poc-archiver-expo",
     "newArchEnabled": true,
-    "plugins": ["expo-router"],
-
+    "plugins": [
+      "expo-router"
+    ],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
     },
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.amwebexpert.pocarchiverexpo"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "62af709a-d2e6-4cf9-9aaa-57126baef3bd"
       }
     }
   }
