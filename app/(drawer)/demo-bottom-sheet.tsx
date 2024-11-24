@@ -6,7 +6,7 @@ import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
 import { DEMO_TAKE_PICTURE_HTML } from '~/components/bottom-sheet/bottom-sheet.utils';
-import { Container } from '~/components/container';
+import { Container } from '~/components/safe-container';
 
 const SNAP_POINTS = ['75%', '100%'];
 
