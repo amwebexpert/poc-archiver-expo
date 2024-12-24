@@ -1,6 +1,6 @@
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { Button, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
@@ -23,7 +23,7 @@ export default function DemoBottomSheet() {
 
   // renders
   return (
-    <>
+    <Fragment>
       <Stack.Screen options={{ headerTitle: 'Demo @gorhom/bottom-sheet' }} />
 
       <Container>
@@ -49,7 +49,7 @@ export default function DemoBottomSheet() {
           </BottomSheetView>
         </BottomSheetModal>
       </Container>
-    </>
+    </Fragment>
   );
 }
 
