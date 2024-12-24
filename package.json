@@ -11,7 +11,9 @@
     "expo:run:ios": "npx expo run:ios",
     "eas:build:ios:simulator": "eas build --platform ios --profile development-simulator",
     "eas:build:android:development": "eas build --platform android --profile development",
-    "generate:version": "node scripts/generate-version"
+    "generate:version": "node scripts/generate-version",
+    "eas:run:ios": "eas build:run -p ios --latest",
+    "eas:run:android": "eas build:run -p android --latest"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",

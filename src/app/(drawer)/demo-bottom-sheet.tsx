@@ -27,8 +27,8 @@ export default function DemoBottomSheet() {
       <Stack.Screen options={{ headerTitle: 'Demo @gorhom/bottom-sheet' }} />
 
       <Container>
-        <Button onPress={handlePresentModalPress} title="Present Modal" color="black" />
-        <Button onPress={handleDismissModalPress} title="Dismiss Modal" color="black" />
+        <Button onPress={handlePresentModalPress} title="Show Modal" color="black" />
+        <Button onPress={handleDismissModalPress} title="Close Modal" color="black" />
 
         <BottomSheetModal
           ref={bottomSheetModalRef}

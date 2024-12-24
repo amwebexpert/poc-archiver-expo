@@ -1,8 +1,9 @@
 import * as Updates from 'expo-updates';
 import { useEffect } from 'react';
-import { Button, StatusBar, Text } from 'react-native';
+import { Button, Text } from 'react-native';
 
 import { Container } from '~/components/safe-container';
+import { LONG_VERSION_DATE } from '~/constants';
 
 export default function Home() {
   const { currentlyRunning, isUpdateAvailable, isUpdatePending } = Updates.useUpdates();
@@ -16,13 +17,12 @@ export default function Home() {
 
   // Show whether or not we are running embedded code or an update
   const runTypeMessage = currentlyRunning.isEmbeddedLaunch
-    ? 'This app is running from built-in code ✓'
-    : 'This app is running an update ✅';
+    ? 'app running from built-in code ✓'
+    : `app running an update ${LONG_VERSION_DATE}`;
 
   return (
     <Container>
-      <Text>Updates Infos</Text>
-      <Text>{runTypeMessage}</Text>
+      <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
 
       <Button onPress={Updates.checkForUpdateAsync} title="Check manually for updates" />
 
