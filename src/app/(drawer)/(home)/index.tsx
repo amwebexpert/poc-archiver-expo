@@ -23,6 +23,9 @@ export default function Home() {
   return (
     <Container>
       <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
+      <Text style={{ width: '100%' }}>
+        {JSON.stringify({ currentlyRunning, isUpdateAvailable, isUpdatePending }, null, 2)}
+      </Text>
 
       <Button onPress={Updates.checkForUpdateAsync} title="Check manually for updates" />
 
