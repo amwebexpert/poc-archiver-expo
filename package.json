@@ -10,7 +10,8 @@
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "expo:run:ios": "npx expo run:ios",
     "eas:build:ios:simulator": "eas build --platform ios --profile development-simulator",
-    "eas:build:android:development": "eas build --platform android --profile development"
+    "eas:build:android:development": "eas build --platform android --profile development",
+    "generate:version": "node scripts/generate-version"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",

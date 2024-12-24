@@ -16,8 +16,8 @@ export default function Home() {
 
   // Show whether or not we are running embedded code or an update
   const runTypeMessage = currentlyRunning.isEmbeddedLaunch
-    ? 'This app is running from built-in code'
-    : 'This app is running an update';
+    ? 'This app is running from built-in code ✓'
+    : 'This app is running an update ✅';
 
   return (
     <Container>
