@@ -1,6 +1,7 @@
 import * as Updates from 'expo-updates';
 import { useEffect } from 'react';
 import { Button, Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { Container } from '~/components/safe-container';
 import { LONG_VERSION_DATE } from '~/constants';
@@ -23,15 +24,17 @@ export default function Home() {
   return (
     <Container>
       <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
-      <Text style={{ width: '100%' }}>
-        {JSON.stringify({ currentlyRunning, isUpdateAvailable, isUpdatePending }, null, 2)}
-      </Text>
 
       <Button onPress={Updates.checkForUpdateAsync} title="Check manually for updates" />
-
       {isUpdateAvailable && (
         <Button onPress={Updates.fetchUpdateAsync} title="Download and run update" />
       )}
+
+      <ScrollView style={{ flex: 1 }}>
+        <Text style={{ width: '100%', fontFamily: 'monospace', fontSize: 9 }}>
+          {JSON.stringify({ isUpdateAvailable, isUpdatePending, currentlyRunning }, null, 2)}
+        </Text>
+      </ScrollView>
     </Container>
   );
 }
