@@ -9,3 +9,9 @@ Expo Proof of concepts collection
 ### OTA updates on Android devices
 
 `eas update --channel preview --platform android --message "OTA detail message here..."` 
+
+### ONNX Runtime for RN
+
+- https://github.com/hans00/react-native-transformers-example
+- https://github.com/huggingface/transformers.js/pull/118
+

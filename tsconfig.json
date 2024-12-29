@@ -4,6 +4,9 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "stream": ["stream-browserify"],
+      "buffer": ["@craftzdog/react-native-buffer"],
+      "zlib": ["browserify-zlib"],
       "~/*": ["src/*"]
     }
   },

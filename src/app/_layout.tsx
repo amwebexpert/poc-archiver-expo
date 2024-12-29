@@ -1,3 +1,4 @@
+import '~/utils/polyfills';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import 'expo-dev-client';
 import { Stack } from 'expo-router';

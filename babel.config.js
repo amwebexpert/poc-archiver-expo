@@ -1,12 +1,21 @@
 module.exports = function (api) {
   api.cache(true);
-  const plugins = [];
-
-  plugins.push('react-native-reanimated/plugin');
 
   return {
     presets: ['babel-preset-expo'],
 
-    plugins,
+    plugins: [
+      'react-native-reanimated/plugin',
+      '@babel/plugin-proposal-export-namespace-from',
+      'babel-plugin-transform-import-meta',
+      [
+        'module-resolver',
+        {
+          alias: {
+            buffer: '@craftzdog/react-native-buffer',
+          },
+        },
+      ],
+    ],
   };
 };
