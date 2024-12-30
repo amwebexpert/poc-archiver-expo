@@ -1,7 +1,7 @@
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
-import { Fragment, useRef, useState } from 'react';
-import { Button, StyleSheet, useWindowDimensions } from 'react-native';
+import { Fragment, useRef } from 'react';
+import { Button, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
