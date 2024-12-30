@@ -1,9 +1,10 @@
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
-import { Container } from '~/components/safe-container';
-import { aiSentimentAnalysys } from '../../../services/ai-sentiment-analysis.utils';
 import { FullCentered } from '~/components/full-centered';
+import { Container } from '~/components/safe-container';
+import { isProgressStatusReady } from '~/services/transformer.types';
+import { aiSentimentAnalysys } from '../../../services/ai-sentiment-analysis.utils';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',
@@ -14,13 +15,13 @@ const TEXTS_TO_ANALYSE = [
 
 export default function Profile() {
   const [isReady, setIsReady] = useState(false);
-  const [textClassification, setTextClassification] = useState<string[]>();
+  const [textClassification, setTextClassification] = useState<string[]>([]);
 
   useEffect(() => {
     aiSentimentAnalysys({
       texts: TEXTS_TO_ANALYSE,
       progressCallback: (progress) => {
-        setIsReady(progress.status === 'ready');
+        setIsReady(isProgressStatusReady(progress));
       },
     }).then(setTextClassification);
   }, []);
@@ -36,12 +37,17 @@ export default function Profile() {
   return (
     <Container>
       <View style={{ flex: 1, justifyContent: 'center', margin: 20 }}>
-        {TEXTS_TO_ANALYSE.map((text, index) => (
-          <View key={text} style={{ marginBottom: 10 }}>
-            <Text>{text}</Text>
-            <Text>{textClassification?.[index] ?? ''}</Text>
-          </View>
-        ))}
+        {TEXTS_TO_ANALYSE.map((text, index) => {
+          const score = textClassification[index] ?? '';
+          const result = score ? `→ ${score}` : '...';
+
+          return (
+            <View key={text} style={{ marginBottom: 20 }}>
+              <Text>{text}</Text>
+              <Text>{result}</Text>
+            </View>
+          );
+        })}
       </View>
     </Container>
   );
