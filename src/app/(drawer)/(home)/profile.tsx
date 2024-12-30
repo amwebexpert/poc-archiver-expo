@@ -1,25 +1,33 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
-import { FullCentered } from '~/components/full-centered';
 import { Container } from '~/components/safe-container';
-import { sentimentAnalysisAsString } from '~/services/text-classification';
+import { aiSentimentAnalysys } from './profile.utils';
+
+const TEXTS_TO_ANALYSE = [
+  'I love transformers!',
+  'I hate this food, not good at all!',
+  'Ce plat était délicieux et le service était excellent!',
+  'Ce plat était délicieux et le service excellent. Même si le prix est un peu élevé, ca en vallait la peine!',
+];
 
 export default function Profile() {
-  const [textClassification, setTextClassification] = useState('');
-  const textToAnalyse = 'I love transformers!';
-  const textToAnalyse2 = 'I hate this food, not good at all!';
+  const [textClassification, setTextClassification] = useState<string[]>();
 
   useEffect(() => {
-    sentimentAnalysisAsString(textToAnalyse2).then(setTextClassification);
+    aiSentimentAnalysys(TEXTS_TO_ANALYSE).then(setTextClassification);
   }, []);
 
   return (
     <Container>
-      <FullCentered>
-        <Text>Profile Screen</Text>
-        <Text>{textClassification}</Text>
-      </FullCentered>
+      <View style={{ flex: 1, justifyContent: 'center', margin: 20 }}>
+        {TEXTS_TO_ANALYSE.map((text, index) => (
+          <View key={text} style={{ marginBottom: 10 }}>
+            <Text>{text}</Text>
+            <Text>{textClassification?.[index] ?? ''}</Text>
+          </View>
+        ))}
+      </View>
     </Container>
   );
 }

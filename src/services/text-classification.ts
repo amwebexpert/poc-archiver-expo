@@ -2,16 +2,45 @@
 // import { pipeline } from '@xenova/transformers';
 import { pipeline, TextClassificationPipeline } from '@fugood/transformers';
 
-export const sentimentAnalysis = async (text: string) => {
-  const pipe: TextClassificationPipeline = await pipeline('sentiment-analysis', undefined, {
-    progress_callback: (progress: any) => console.info('progress', progress),
-  });
-  const out = await pipe(text);
+type ProgressCallback = (progress: any) => void;
 
-  // [{'label': 'POSITIVE', 'score': 0.999817686}]
-  console.info('===> sentiment-analysis', out);
-  return out;
-};
+interface ScoreLabel {
+  score: number;
+  label: string;
+}
 
-export const sentimentAnalysisAsString = async (text: string) =>
-  sentimentAnalysis(text).then((result) => JSON.stringify(result));
+export class SentimentAnalyser {
+  static instance: SentimentAnalyser | null = null;
+
+  private sentimentAnalysisPipeline?: TextClassificationPipeline;
+
+  private constructor() {}
+
+  get isReady(): boolean {
+    return !!this.sentimentAnalysisPipeline;
+  }
+
+  static async getInstance(progress_callback?: ProgressCallback) {
+    if (this.instance?.isReady) {
+      return this.instance;
+    }
+
+    this.instance = new SentimentAnalyser();
+    this.instance.sentimentAnalysisPipeline = await pipeline(
+      'sentiment-analysis',
+      'Xenova/bert-base-multilingual-uncased-sentiment',
+      { progress_callback }
+    );
+
+    return this.instance;
+  }
+
+  async analyse(texts: string[]): Promise<string[]> {
+    if (!this.sentimentAnalysisPipeline) {
+      throw new Error('Model is not loaded yet');
+    }
+
+    const result = (await this.sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
+    return result.map((r) => `${r.label} (${r.score})`);
+  }
+}
