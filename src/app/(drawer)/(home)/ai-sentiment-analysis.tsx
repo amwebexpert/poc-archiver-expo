@@ -1,8 +1,9 @@
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
 import { Container } from '~/components/safe-container';
-import { aiSentimentAnalysys } from '~/services/ai-sentiment-analysis.utils';
+import { aiSentimentAnalysys } from '../../../services/ai-sentiment-analysis.utils';
+import { FullCentered } from '~/components/full-centered';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',
@@ -12,11 +13,25 @@ const TEXTS_TO_ANALYSE = [
 ];
 
 export default function Profile() {
+  const [isReady, setIsReady] = useState(false);
   const [textClassification, setTextClassification] = useState<string[]>();
 
   useEffect(() => {
-    aiSentimentAnalysys(TEXTS_TO_ANALYSE).then(setTextClassification);
+    aiSentimentAnalysys({
+      texts: TEXTS_TO_ANALYSE,
+      progressCallback: (progress) => {
+        setIsReady(progress.status === 'ready');
+      },
+    }).then(setTextClassification);
   }, []);
+
+  if (!isReady) {
+    return (
+      <FullCentered>
+        <ActivityIndicator />
+      </FullCentered>
+    );
+  }
 
   return (
     <Container>
