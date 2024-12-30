@@ -41,6 +41,6 @@ export class SentimentAnalyser {
     }
 
     const result = (await this.sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
-    return result.map((r) => `${r.label} (${r.score})`);
+    return result.map((r) => `${r.label} (score: ${r.score.toFixed(2)})`);
   }
 }

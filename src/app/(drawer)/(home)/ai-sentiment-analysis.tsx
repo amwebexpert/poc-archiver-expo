@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
 import { Container } from '~/components/safe-container';
-import { aiSentimentAnalysys } from './profile.utils';
+import { aiSentimentAnalysys } from './ai-sentiment-analysis.utils';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',

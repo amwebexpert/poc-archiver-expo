@@ -17,10 +17,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="ai-sentiment-analysis"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          title: 'Sentiments',
+          tabBarIcon: ({ color }) => <TabBarIcon name="smile-o" color={color} />,
         }}
       />
     </Tabs>
