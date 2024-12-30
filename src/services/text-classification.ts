@@ -19,9 +19,9 @@ export class SentimentAnalyser {
     return !!this.sentimentAnalysisPipeline;
   }
 
-  static async getInstance(progress_callback?: ProgressCallback) {
+  static async getInstance(progressHandler?: ProgressCallback) {
     if (this.instance?.isReady) {
-      progress_callback?.(PROGRESS_STATUS_READY);
+      progressHandler?.(PROGRESS_STATUS_READY);
       return this.instance;
     }
 
@@ -29,7 +29,7 @@ export class SentimentAnalyser {
     this.instance.sentimentAnalysisPipeline = await pipeline(
       'sentiment-analysis',
       DEFAULT_MODEL_NAME,
-      { progress_callback }
+      { progress_callback: progressHandler }
     );
 
     return this.instance;

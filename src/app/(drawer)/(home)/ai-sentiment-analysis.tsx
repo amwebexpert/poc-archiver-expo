@@ -20,7 +20,7 @@ export default function Profile() {
   useEffect(() => {
     aiSentimentAnalysys({
       texts: TEXTS_TO_ANALYSE,
-      progressCallback: (progress) => {
+      progressHandler: (progress) => {
         setIsReady(isProgressStatusReady(progress));
       },
     }).then(setTextClassification);

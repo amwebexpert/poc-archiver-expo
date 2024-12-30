@@ -3,13 +3,13 @@ import { ProgressCallback } from './transformer.types';
 
 type AiSentimentAnalysysArgs = {
   texts: string[];
-  progressCallback?: ProgressCallback;
+  progressHandler?: ProgressCallback;
 };
 
 export const aiSentimentAnalysys = async ({
   texts,
-  progressCallback,
+  progressHandler,
 }: AiSentimentAnalysysArgs): Promise<string[]> => {
-  const analyser = await SentimentAnalyser.getInstance(progressCallback);
+  const analyser = await SentimentAnalyser.getInstance(progressHandler);
   return analyser.analyse(texts);
 };
