@@ -1,7 +1,7 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
 import { pipeline, TextClassificationPipeline } from '@fugood/transformers';
-import { ProgressCallback, ScoreLabel } from './transformer.types';
+import { DEFAULT_MODEL_NAME, ProgressCallback, ScoreLabel } from './transformer.types';
 
 export class SentimentAnalyser {
   static instance: SentimentAnalyser | null = null;
@@ -22,7 +22,7 @@ export class SentimentAnalyser {
     this.instance = new SentimentAnalyser();
     this.instance.sentimentAnalysisPipeline = await pipeline(
       'sentiment-analysis',
-      'Xenova/bert-base-multilingual-uncased-sentiment',
+      DEFAULT_MODEL_NAME,
       { progress_callback }
     );
 
