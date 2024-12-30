@@ -1,4 +1,4 @@
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Fontisto, MaterialIcons } from '@expo/vector-icons';
 import { Drawer } from 'expo-router/drawer';
 
 import { HeaderButton } from '~/components/header-button';
@@ -18,11 +18,11 @@ const DrawerLayout = () => (
     />
 
     <Drawer.Screen
-      name="demo-bottom-sheet"
+      name="other-experiments"
       options={{
-        headerTitle: '@gorhom/bottom-sheet',
-        drawerLabel: 'Bottom sheet',
-        drawerIcon: ({ size, color }) => <Ionicons name="information-circle" size={size} color={color} />,
+        headerTitle: 'other experiments',
+        drawerLabel: 'Other POCs',
+        drawerIcon: ({ size, color }) => <Fontisto name="laboratory" size={size} color={color} />,
       }}
     />
   </Drawer>

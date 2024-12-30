@@ -1,34 +1,35 @@
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { Stack } from 'expo-router';
-import { Fragment, useRef } from 'react';
-import { Button, StyleSheet } from 'react-native';
+import { Fragment, useRef, useState } from 'react';
+import { Button, StyleSheet, useWindowDimensions } from 'react-native';
 import WebView from 'react-native-webview';
+import { POST_HEIGHT_SCRIPT } from '~/components/bottom-sheet/bottom-sheet.utils';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
-import { DEMO_TAKE_PICTURE_HTML } from '~/components/bottom-sheet/bottom-sheet.utils';
 import { Container } from '~/components/safe-container';
 
-const SNAP_POINTS = ['75%', '100%'];
+const SNAP_POINTS = ['75%', '90%'];
+
+const webViewScript = `
+  setTimeout(function() { 
+    window.postMessage(document.documentElement.scrollHeight); 
+  }, 500);
+  true; // note: this is required, or you'll sometimes get silent failures
+`;
 
 export default function DemoBottomSheet() {
-  // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  // callbacks
   const handlePresentModalPress = () => bottomSheetModalRef.current?.present();
-
-  const handleDismissModalPress = () => bottomSheetModalRef.current?.dismiss();
-
-  const handleSheetChanges = (index: number) => console.log('handleSheetChanges', index);
+  const handleSheetChanges = (index: number) => console.info('handleSheetChanges', index);
 
   // renders
   return (
     <Fragment>
-      <Stack.Screen options={{ headerTitle: 'Demo @gorhom/bottom-sheet' }} />
+      <Stack.Screen options={{ headerTitle: 'Other POCs' }} />
 
       <Container>
         <Button onPress={handlePresentModalPress} title="Show Modal" color="black" />
-        <Button onPress={handleDismissModalPress} title="Close Modal" color="black" />
 
         <BottomSheetModal
           ref={bottomSheetModalRef}
@@ -38,15 +39,15 @@ export default function DemoBottomSheet() {
           enableDynamicSizing={false}
           onChange={handleSheetChanges}
           snapPoints={SNAP_POINTS}>
-          <BottomSheetView style={styles.contentContainer}>
+          <BottomSheetScrollView style={styles.contentContainer}>
             <WebView
-              // source={{ uri: 'https://anssiko.github.io/html-media-capture/' }}
-              source={{ html: DEMO_TAKE_PICTURE_HTML }}
+              style={{ height: 600 }}
+              source={{ uri: 'https://google.com' }}
               nestedScrollEnabled={true}
               javaScriptEnabled={true}
               javaScriptCanOpenWindowsAutomatically={true}
             />
-          </BottomSheetView>
+          </BottomSheetScrollView>
         </BottomSheetModal>
       </Container>
     </Fragment>
