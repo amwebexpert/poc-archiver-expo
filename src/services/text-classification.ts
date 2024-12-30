@@ -1,13 +1,7 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
 import { pipeline, TextClassificationPipeline } from '@fugood/transformers';
-
-type ProgressCallback = (progress: any) => void;
-
-interface ScoreLabel {
-  score: number;
-  label: string;
-}
+import { ProgressCallback, ScoreLabel } from './transformer.types';
 
 export class SentimentAnalyser {
   static instance: SentimentAnalyser | null = null;
