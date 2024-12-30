@@ -3,7 +3,6 @@ import { Stack } from 'expo-router';
 import { Fragment, useRef, useState } from 'react';
 import { Button, StyleSheet, useWindowDimensions } from 'react-native';
 import WebView from 'react-native-webview';
-import { POST_HEIGHT_SCRIPT } from '~/components/bottom-sheet/bottom-sheet.utils';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
 import { Container } from '~/components/safe-container';
