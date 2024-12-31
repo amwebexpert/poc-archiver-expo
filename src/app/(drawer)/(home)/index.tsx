@@ -1,6 +1,6 @@
 import * as Updates from 'expo-updates';
 import { useEffect } from 'react';
-import { Button, Text } from 'react-native';
+import { Button, Text } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Container } from '~/components/safe-container';
@@ -25,9 +25,9 @@ export default function Home() {
     <Container>
       <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
 
-      <Button onPress={Updates.checkForUpdateAsync} title="Check manually for updates" />
+      <Button onPress={Updates.checkForUpdateAsync}>Check manually for updates</Button>
       {isUpdateAvailable && (
-        <Button onPress={Updates.fetchUpdateAsync} title="Download and run update" />
+        <Button onPress={Updates.fetchUpdateAsync}>Download and run update</Button>
       )}
 
       <ScrollView style={{ flex: 1 }}>

@@ -10,9 +10,7 @@ const DrawerLayout = () => (
       options={{
         headerTitle: 'Home',
         drawerLabel: 'Home',
-        drawerIcon: ({ size, color }) => (
-          <MaterialIcons name="home" size={size} color={color} />
-        ),
+        drawerIcon: ({ size, color }) => <MaterialIcons name="home" size={size} color={color} />,
         headerRight: () => <HeaderButton />,
       }}
     />
@@ -23,6 +21,15 @@ const DrawerLayout = () => (
         headerTitle: 'other experiments',
         drawerLabel: 'Other POCs',
         drawerIcon: ({ size, color }) => <Fontisto name="laboratory" size={size} color={color} />,
+      }}
+    />
+
+    <Drawer.Screen
+      name="settings"
+      options={{
+        headerTitle: 'Settings',
+        drawerLabel: 'Settings',
+        drawerIcon: ({ size, color }) => <MaterialIcons name="settings" size={size} color={color} />,
       }}
     />
   </Drawer>

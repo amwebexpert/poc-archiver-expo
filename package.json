@@ -16,7 +16,8 @@
     "eas:build:android:development": "eas build --platform android --profile development",
     "generate:version": "node scripts/generate-version",
     "eas:run:ios": "eas build:run -p ios --latest",
-    "eas:run:android": "eas build:run -p android --latest"
+    "eas:run:android": "eas build:run -p android --latest",
+    "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
     "@craftzdog/react-native-buffer": "^6.0.5",
@@ -38,12 +39,15 @@
     "expo-system-ui": "~4.0.6",
     "expo-updates": "~0.26.10",
     "expo-web-browser": "~14.0.1",
+    "mobx": "^6.13.5",
+    "mobx-react-lite": "^4.1.0",
     "onnxruntime-react-native": "^1.20.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.5",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.20.2",
+    "react-native-paper": "^5.12.5",
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.14.0",
     "react-native-screens": "~4.4.0",
@@ -63,6 +67,7 @@
     "babel-plugin-transform-import-meta": "^2.2.1",
     "eslint": "^9.14.0",
     "eslint-config-universe": "^14.0.0",
+    "npm-license-crawler": "^0.2.1",
     "patch-package": "^8.0.0",
     "prettier": "^3.3.3",
     "typescript": "~5.6.3"

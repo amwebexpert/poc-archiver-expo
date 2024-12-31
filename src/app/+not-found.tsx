@@ -1,10 +1,12 @@
 import { Link, Stack } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native-paper';
+import { Fragment } from 'react';
+import { StyleSheet } from 'react-native';
 import { Container } from '~/components/safe-container';
 
 export default function NotFoundScreen() {
   return (
-    <>
+    <Fragment>
       <Stack.Screen options={{ headerTitle: 'Oops!' }} />
 
       <Container>
@@ -13,7 +15,7 @@ export default function NotFoundScreen() {
           <Text style={styles.linkText}>Go to home screen!</Text>
         </Link>
       </Container>
-    </>
+    </Fragment>
   );
 }
 

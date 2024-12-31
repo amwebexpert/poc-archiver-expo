@@ -1,6 +1,7 @@
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
+import { Text } from 'react-native-paper';
 import { FullCentered } from '~/components/full-centered';
 import { Container } from '~/components/safe-container';
 import { isProgressStatusReady } from '~/services/transformer.types';

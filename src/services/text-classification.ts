@@ -1,6 +1,6 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
-import { pipeline, TextClassificationPipeline } from '@fugood/transformers';
+import { pipeline, TextClassificationPipeline, env } from '@fugood/transformers';
 import {
   DEFAULT_MODEL_NAME,
   PROGRESS_STATUS_READY,
@@ -25,11 +25,13 @@ export class SentimentAnalyser {
       return this.instance;
     }
 
+    console.info('===> env', JSON.stringify(env, null, 2))
+
     this.instance = new SentimentAnalyser();
     this.instance.sentimentAnalysisPipeline = await pipeline(
       'sentiment-analysis',
       DEFAULT_MODEL_NAME,
-      { progress_callback: progressHandler }
+      { progress_callback: progressHandler, local_files_only: true }
     );
 
     return this.instance;
