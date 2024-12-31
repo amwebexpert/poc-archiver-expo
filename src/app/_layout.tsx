@@ -3,6 +3,7 @@ import '~/utils/polyfills';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
 import 'expo-dev-client';
+import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
@@ -18,6 +19,8 @@ const RootLayout = () => {
 
   return (
     <PaperProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+
       <ThemeProvider value={isDarkMode ? NAVIGATION_DARK : NAVIGATION_LIGHT}>
         <GestureHandlerRootView style={styles.container}>
           <BottomSheetModalProvider>

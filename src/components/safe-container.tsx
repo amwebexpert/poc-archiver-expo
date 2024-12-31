@@ -1,15 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { settingsStore } from '~/features/settings/settings.store';
 
-export const SafeContainer = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style={settingsStore.isDarkMode ? 'light' : 'dark'} />
-
-      {children}
-    </SafeAreaView>
-  );
+export const SafeContainer: FunctionComponent<PropsWithChildren> = ({ children }) => {
+  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
 };
 
 const styles = StyleSheet.create({

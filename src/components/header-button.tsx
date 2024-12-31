@@ -11,7 +11,7 @@ export const HeaderButton: FunctionComponent<Props> = ({ onPress }) => {
     <Pressable onPress={onPress}>
       {({ pressed }) => (
         <FontAwesome
-          name="info-circle"
+          name="gear"
           size={25}
           color="gray"
           style={[
