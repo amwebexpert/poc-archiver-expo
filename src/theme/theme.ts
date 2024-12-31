@@ -3,6 +3,8 @@ import {
   DefaultTheme as LightNavigationTheme,
 } from '@react-navigation/native';
 import { MD3DarkTheme, MD3LightTheme, adaptNavigationTheme } from 'react-native-paper';
+import { DARK_COLORS_SCHEME } from './dark-colors-scheme';
+import { LIGHT_COLORS_SCHEME } from './light-colors-scheme';
 
 const DEFAULT_SPACING: number = 8;
 const spacing = (units: number = 1): number => units * DEFAULT_SPACING;
@@ -13,9 +15,7 @@ export const DARK_THEME = {
   ...MD3DarkTheme,
   colors: {
     ...MD3DarkTheme.colors,
-    primary: '#3498db',
-    secondary: '#f1c40f',
-    tertiary: '#a1b2c3',
+    ...DARK_COLORS_SCHEME,
   },
   spacing,
   roundness,
@@ -25,9 +25,7 @@ export const LIGHT_THEME = {
   ...MD3LightTheme,
   colors: {
     ...MD3LightTheme.colors,
-    primary: '#3498db',
-    secondary: '#f1c40f',
-    tertiary: '#a1b2c3',
+    ...LIGHT_COLORS_SCHEME,
   },
   spacing,
   roundness,

@@ -1,10 +1,11 @@
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { settingsStore } from '~/stores/settings.store';
 
-export const Container = ({ children }: { children: React.ReactNode }) => {
+export const SafeContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={settingsStore.darkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar style={settingsStore.isDarkMode ? 'light' : 'dark'} />
 
       {children}
     </SafeAreaView>

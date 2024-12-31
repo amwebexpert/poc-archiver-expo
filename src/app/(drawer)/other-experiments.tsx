@@ -6,7 +6,7 @@ import { Button } from 'react-native-paper';
 import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
-import { Container } from '~/components/safe-container';
+import { SafeContainer } from '~/components/safe-container';
 
 const SNAP_POINTS = ['75%', '90%'];
 
@@ -17,7 +17,7 @@ const DemoBottomSheet: FunctionComponent = () => {
   const handleSheetChanges = (index: number) => console.info('handleSheetChanges', index);
 
   return (
-    <Container>
+    <SafeContainer>
       <Stack.Screen options={{ headerTitle: 'Other POCs' }} />
 
       <Button mode='contained' onPress={handlePresentModalPress}>Show Modal</Button>
@@ -40,7 +40,7 @@ const DemoBottomSheet: FunctionComponent = () => {
           />
         </BottomSheetScrollView>
       </BottomSheetModal>
-    </Container>
+    </SafeContainer>
   );
 };
 

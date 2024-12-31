@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Text } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { Container } from '~/components/safe-container';
+import { SafeContainer } from '~/components/safe-container';
 import { LONG_VERSION_DATE } from '~/constants';
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
     : `app running an update ${LONG_VERSION_DATE}`;
 
   return (
-    <Container>
+    <SafeContainer>
       <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
 
       <Button onPress={Updates.checkForUpdateAsync}>Check manually for updates</Button>
@@ -35,6 +35,6 @@ export default function Home() {
           {JSON.stringify({ isUpdateAvailable, isUpdatePending, currentlyRunning }, null, 2)}
         </Text>
       </ScrollView>
-    </Container>
+    </SafeContainer>
   );
 }

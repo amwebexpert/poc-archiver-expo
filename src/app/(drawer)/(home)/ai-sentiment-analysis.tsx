@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { Text } from 'react-native-paper';
 import { FullCentered } from '~/components/full-centered';
-import { Container } from '~/components/safe-container';
+import { SafeContainer } from '~/components/safe-container';
 import { isProgressStatusReady } from '~/services/transformer.types';
 import { aiSentimentAnalysys } from '../../../services/ai-sentiment-analysis.utils';
 
@@ -36,7 +36,7 @@ export default function Profile() {
   }
 
   return (
-    <Container>
+    <SafeContainer>
       <View style={{ flex: 1, justifyContent: 'center', margin: 20 }}>
         {TEXTS_TO_ANALYSE.map((text, index) => {
           const score = textClassification[index] ?? '';
@@ -50,6 +50,6 @@ export default function Profile() {
           );
         })}
       </View>
-    </Container>
+    </SafeContainer>
   );
 }

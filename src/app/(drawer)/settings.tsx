@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
-import { Container } from '~/components/safe-container';
+import { SafeContainer } from '~/components/safe-container';
 import { useSnackbar } from '~/components/snack-bar/snackbar-provider';
 import { settingsStore } from '~/stores/settings.store';
 
@@ -18,13 +18,13 @@ const SettingsScreen: FunctionComponent = () => {
   }, [settingsStore.isDarkMode]);
 
   return (
-    <Container>
+    <SafeContainer>
       <View style={styles.root}>
         <Button icon="switch" mode="contained" onPress={() => settingsStore.toggleDarkMode()}>
           Toggle Dark mode
         </Button>
       </View>
-    </Container>
+    </SafeContainer>
   );
 };
 
