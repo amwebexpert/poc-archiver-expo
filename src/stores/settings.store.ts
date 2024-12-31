@@ -1,25 +1,17 @@
 import { autorun, makeAutoObservable, runInAction } from 'mobx';
-import { AppTheme, DARK_THEME, LIGHT_THEME } from '~/theme/theme';
+import { storage } from '~/utils/storage';
 
 class SettingsStore {
-  darkMode: boolean = false;
+  isDarkMode: boolean = storage.getBoolean('darkMode') ?? false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   toggleDarkMode() {
-    const toggledValue = !this.darkMode;
-    runInAction(() => (this.darkMode = toggledValue));
-    console.info('===> this.darkMode', this.isDarkMode);
-  }
-
-  get currentTheme(): AppTheme {
-    return this.darkMode ? DARK_THEME : LIGHT_THEME;
-  }
-
-  get isDarkMode() {
-    return this.darkMode;
+    const toggledValue = !this.isDarkMode;
+    runInAction(() => (this.isDarkMode = toggledValue));
+    storage.set('darkMode', toggledValue);
   }
 }
 

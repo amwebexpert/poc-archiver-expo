@@ -14,7 +14,7 @@ const TEXTS_TO_ANALYSE = [
   'Ce plat était délicieux et le service excellent. Même si le prix est un peu élevé, ca en vallait la peine!',
 ];
 
-export default function Profile() {
+export default function AiSentimentAnalysis() {
   const [isReady, setIsReady] = useState(false);
   const [textClassification, setTextClassification] = useState<string[]>([]);
 

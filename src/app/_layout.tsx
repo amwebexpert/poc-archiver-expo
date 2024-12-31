@@ -14,11 +14,11 @@ import { settingsStore } from '~/stores/settings.store';
 import { DARK_THEME, LIGHT_THEME, NAVIGATION_DARK, NAVIGATION_LIGHT } from '~/theme/theme';
 
 const RootLayout = () => {
-  const { darkMode } = settingsStore;
+  const { isDarkMode } = settingsStore;
 
   return (
-    <PaperProvider theme={darkMode ? DARK_THEME : LIGHT_THEME}>
-      <ThemeProvider value={darkMode ? NAVIGATION_DARK : NAVIGATION_LIGHT}>
+    <PaperProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
+      <ThemeProvider value={isDarkMode ? NAVIGATION_DARK : NAVIGATION_LIGHT}>
         <GestureHandlerRootView style={styles.container}>
           <BottomSheetModalProvider>
             <SnackbarProvider>

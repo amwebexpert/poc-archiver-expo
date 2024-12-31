@@ -149,6 +149,12 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-mmkv@3.2.0": {
+        "licenses": "(MIT AND BSD-3-Clause)",
+        "repository": "https://github.com/mrousavy/react-native-mmkv",
+        "licenseUrl": "https://github.com/mrousavy/react-native-mmkv",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-paper@5.12.5": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
