@@ -31,7 +31,7 @@ export class SentimentAnalyser {
     this.instance.sentimentAnalysisPipeline = await pipeline(
       'sentiment-analysis',
       DEFAULT_MODEL_NAME,
-      { progress_callback: progressHandler, local_files_only: true }
+      { progress_callback: progressHandler, local_files_only: false }
     );
 
     return this.instance;

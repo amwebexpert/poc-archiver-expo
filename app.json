@@ -6,7 +6,8 @@
     "scheme": "poc-archiver-expo",
     "newArchEnabled": true,
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -6,7 +6,7 @@ import { Button, Text } from 'react-native-paper';
 
 import { SafeContainer } from '~/components/safe-container';
 import { useSnackbar } from '~/components/snack-bar/snackbar-provider';
-import { settingsStore } from '~/stores/settings.store';
+import { settingsStore } from '~/features/settings/settings.store';
 
 const SettingsScreen: FunctionComponent = () => {
   const { showSnackbarMessage } = useSnackbar();

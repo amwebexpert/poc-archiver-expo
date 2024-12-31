@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { Text } from 'react-native-paper';
 import { FullCentered } from '~/components/full-centered';
 import { SafeContainer } from '~/components/safe-container';
-import { isProgressStatusReady } from '~/services/transformer.types';
-import { aiSentimentAnalysys } from '../../../services/ai-sentiment-analysis.utils';
+import { aiSentimentAnalysys } from '~/features/ai-sentiments/ai-sentiment-analysis.utils';
+import { isProgressStatusReady } from '~/features/ai-sentiments/transformer.types';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',

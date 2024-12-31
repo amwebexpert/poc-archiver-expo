@@ -1,4 +1,4 @@
-import { SentimentAnalyser } from '~/services/text-classification';
+import { SentimentAnalyser } from './text-classification';
 import { ProgressCallback } from './transformer.types';
 
 type AiSentimentAnalysysArgs = {

@@ -10,7 +10,7 @@ import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { PaperProvider } from 'react-native-paper';
 import { SnackbarProvider } from '~/components/snack-bar/snackbar-provider';
-import { settingsStore } from '~/stores/settings.store';
+import { settingsStore } from '~/features/settings/settings.store';
 import { DARK_THEME, LIGHT_THEME, NAVIGATION_DARK, NAVIGATION_LIGHT } from '~/theme/theme';
 
 const RootLayout = () => {

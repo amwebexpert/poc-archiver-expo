@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { settingsStore } from '~/stores/settings.store';
+import { settingsStore } from '~/features/settings/settings.store';
 
 export const SafeContainer = ({ children }: { children: React.ReactNode }) => {
   return (

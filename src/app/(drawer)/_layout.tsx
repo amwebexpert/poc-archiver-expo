@@ -29,7 +29,20 @@ const DrawerLayout = () => (
       options={{
         headerTitle: 'Settings',
         drawerLabel: 'Settings',
-        drawerIcon: ({ size, color }) => <MaterialIcons name="settings" size={size} color={color} />,
+        drawerIcon: ({ size, color }) => (
+          <MaterialIcons name="settings" size={size} color={color} />
+        ),
+      }}
+    />
+
+    <Drawer.Screen
+      name="about"
+      options={{
+        headerTitle: 'About',
+        drawerLabel: 'About',
+        drawerIcon: ({ size, color }) => (
+          <MaterialIcons name="info" size={size} color={color} />
+        ),
       }}
     />
   </Drawer>

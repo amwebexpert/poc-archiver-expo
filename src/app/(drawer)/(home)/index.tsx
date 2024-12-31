@@ -25,13 +25,14 @@ export default function Home() {
     <SafeContainer>
       <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
 
-      <Button onPress={Updates.checkForUpdateAsync}>Check manually for updates</Button>
+      <Button mode='contained' onPress={Updates.checkForUpdateAsync}>Check manually for updates</Button>
+
       {isUpdateAvailable && (
-        <Button onPress={Updates.fetchUpdateAsync}>Download and run update</Button>
+        <Button mode='contained' onPress={Updates.fetchUpdateAsync}>Download and run update</Button>
       )}
 
       <ScrollView style={{ flex: 1 }}>
-        <Text style={{ width: '100%', fontFamily: 'monospace', fontSize: 9 }}>
+        <Text style={{ fontFamily: 'monospace', fontSize: 12, padding: 10 }}>
           {JSON.stringify({ isUpdateAvailable, isUpdatePending, currentlyRunning }, null, 2)}
         </Text>
       </ScrollView>
