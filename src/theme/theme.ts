@@ -2,7 +2,7 @@ import {
   DarkTheme as DarkNavigationTheme,
   DefaultTheme as LightNavigationTheme,
 } from '@react-navigation/native';
-import { MD3DarkTheme, MD3LightTheme, adaptNavigationTheme } from 'react-native-paper';
+import { MD3DarkTheme, MD3LightTheme, adaptNavigationTheme, useTheme } from 'react-native-paper';
 import { DARK_COLORS_SCHEME } from './dark-colors-scheme';
 import { LIGHT_COLORS_SCHEME } from './light-colors-scheme';
 
@@ -44,3 +44,5 @@ const navigationAdaptedThemes = adaptNavigationTheme({
 const { DarkTheme, LightTheme } = navigationAdaptedThemes;
 export const NAVIGATION_DARK = { ...DarkTheme, fonts: { ...DarkNavigationTheme.fonts } };
 export const NAVIGATION_LIGHT = { ...LightTheme, fonts: { ...LightNavigationTheme.fonts } };
+
+export const useAppTheme = () => useTheme() as AppTheme;

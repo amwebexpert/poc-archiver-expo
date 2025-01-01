@@ -1,8 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { type FunctionComponent } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
-import { AppTheme } from '~/theme/theme';
+import { useAppTheme } from '~/theme/theme';
 
 type Props = {
   iconName: keyof typeof FontAwesome.glyphMap;
@@ -11,7 +10,7 @@ type Props = {
 
 export const HeaderButton: FunctionComponent<Props> = ({ iconName, onPress }) => {
   const styles = useStyles();
-  const theme = useTheme() as AppTheme;
+  const theme = useAppTheme();
 
   return (
     <Pressable onPress={onPress}>
@@ -33,7 +32,7 @@ export const HeaderButton: FunctionComponent<Props> = ({ iconName, onPress }) =>
 };
 
 const useStyles = () => {
-  const theme = useTheme() as AppTheme;
+  const theme = useAppTheme();
 
   return StyleSheet.create({
     iconStyle: {

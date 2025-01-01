@@ -2,11 +2,11 @@ import { FlashList } from '@shopify/flash-list';
 import * as Updates from 'expo-updates';
 import { FunctionComponent } from 'react';
 import { Image, Linking, StyleSheet } from 'react-native';
-import { Button, Card, List, Text, useTheme } from 'react-native-paper';
+import { Button, Card, List, Text } from 'react-native-paper';
 
 import { SafeContainer } from '~/components/safe-container';
 import { useUpdates } from '~/hooks/use-updates';
-import { AppTheme } from '~/theme/theme';
+import { useAppTheme } from '~/theme/theme';
 import { parseLicenceData } from '~/utils/licences.utils';
 
 import { APP_VERSION_INFO } from '~/constants';
@@ -20,7 +20,7 @@ const AboutScreen: FunctionComponent = () => {
 
   return (
     <SafeContainer style={styles.root}>
-      <Card>
+      <Card contentStyle={styles.card}>
         <Card.Title
           title={DISPLAY_NAME}
           subtitle={DESCRIPTION}
@@ -71,12 +71,15 @@ const AboutScreen: FunctionComponent = () => {
 };
 
 const useStyles = () => {
-  const theme = useTheme() as AppTheme;
+  const theme = useAppTheme();
 
   return StyleSheet.create({
     root: {
       margin: theme.spacing(2),
       gap: theme.spacing(2),
+    },
+    card: {
+      padding: theme.spacing(2),
     },
     paragraph: {
       alignSelf: 'center',

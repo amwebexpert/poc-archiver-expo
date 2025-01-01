@@ -1,10 +1,10 @@
-import { Linking, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
-import { Button, Paragraph, Text, useTheme } from 'react-native-paper';
+import { Linking, StyleSheet, View } from 'react-native';
+import { Button, Paragraph, Text } from 'react-native-paper';
 
 import { SafeContainer } from '~/components/safe-container';
 import { APP_VERSION_INFO } from '~/constants';
-import { AppTheme } from '~/theme/theme';
+import { useAppTheme } from '~/theme/theme';
 
 const { REPOSITORY } = APP_VERSION_INFO;
 
@@ -50,7 +50,7 @@ export default function Home() {
 }
 
 const useStyles = () => {
-  const theme = useTheme() as AppTheme;
+  const theme = useAppTheme();
 
   return StyleSheet.create({
     root: {
