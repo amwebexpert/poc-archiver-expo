@@ -1,6 +1,6 @@
 {
   "name": "poc-archiver-expo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": false,
   "main": "expo-router/entry",
   "scripts": {

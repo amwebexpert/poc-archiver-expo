@@ -4,11 +4,13 @@
 // ----------------------------------------------------------------------------------------
 export const APP_VERSION_INFO = Object.freeze({
   NAME: 'poc-archiver-expo',
+  DISPLAY_NAME: 'ExpoPOC',
+  GITHUB_URL: 'https://github.com/amwebexpert/poc-archiver-expo',
   DESCRIPTION: 'undefined',
   REPOSITORY: 'undefined',
   AUTHOR: 'undefined',
-  VERSION: '1.1.0',
-  VERSION_DATE: '2024-12-24',
+  VERSION: '1.2.0',
+  VERSION_DATE: '2025-01-01',
 })
 
-export const LONG_VERSION_DATE = '1.1.0 (2024-12-24)'
+export const LONG_VERSION_DATE = '1.2.0 (2025-01-01)'
