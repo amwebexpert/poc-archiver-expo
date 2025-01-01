@@ -161,6 +161,12 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-dropdown-select-list@2.0.5": {
+        "licenses": "MIT",
+        "repository": "https://github.com/danish1658/react-native-dropdown-select-list",
+        "licenseUrl": "https://github.com/danish1658/react-native-dropdown-select-list/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-fs@2.20.0": {
         "licenses": "MIT",
         "repository": "https://github.com/itinance/react-native-fs",

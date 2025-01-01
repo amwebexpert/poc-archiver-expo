@@ -1,3 +1,4 @@
+import { storage, StorageKey } from '~/utils/storage';
 import { SentimentAnalyser } from './text-classification';
 import { ProgressCallback } from './transformer.types';
 
@@ -13,3 +14,9 @@ export const aiSentimentAnalysys = async ({
   const analyser = await SentimentAnalyser.getInstance(progressHandler);
   return analyser.analyse(texts);
 };
+
+export const canUseOfflineMode = (): boolean =>
+  storage.getBoolean(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE) ?? false;
+
+export const updateCanUseOfflineMode = (value = true): void =>
+  storage.set(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE, value);

@@ -1,7 +1,7 @@
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useEffect, useState } from 'react';
-import { Text } from 'react-native-paper';
+import { ActivityIndicator, Text } from 'react-native-paper';
 import { FullCentered } from '~/components/full-centered';
 import { SafeContainer } from '~/components/safe-container';
 import { aiSentimentAnalysys } from '~/features/ai-sentiments/ai-sentiment-analysis.utils';

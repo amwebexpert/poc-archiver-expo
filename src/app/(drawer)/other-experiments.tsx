@@ -7,20 +7,27 @@ import WebView from 'react-native-webview';
 import { DefaultBackdrop } from '~/components/bottom-sheet/default-backdrop';
 
 import { SafeContainer } from '~/components/safe-container';
+import { DropDownList } from '~/features/experiments/drop-down-list';
+import { useAppTheme } from '~/theme/theme';
 
 const SNAP_POINTS = ['75%', '90%'];
 
 const DemoBottomSheet: FunctionComponent = () => {
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const styles = useStyles();
 
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const handlePresentModalPress = () => bottomSheetModalRef.current?.present();
   const handleSheetChanges = (index: number) => console.info('handleSheetChanges', index);
 
   return (
-    <SafeContainer>
+    <SafeContainer style={styles.container}>
       <Stack.Screen options={{ headerTitle: 'Other POCs' }} />
 
-      <Button mode='contained' onPress={handlePresentModalPress}>Show Modal</Button>
+      <Button mode="contained" onPress={handlePresentModalPress}>
+        Show Modal
+      </Button>
+
+      <DropDownList />
 
       <BottomSheetModal
         ref={bottomSheetModalRef}
@@ -44,17 +51,19 @@ const DemoBottomSheet: FunctionComponent = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: 'grey',
-  },
-  contentContainer: {
-    flex: 1,
-    width: '100%',
-  },
-});
+const useStyles = () => {
+  const theme = useAppTheme();
+
+  return StyleSheet.create({
+    container: {
+      margin: theme.spacing(3),
+      gap: theme.spacing(3),
+    },
+    contentContainer: {
+      flex: 1,
+      width: '100%',
+    },
+  });
+};
 
 export default DemoBottomSheet;
