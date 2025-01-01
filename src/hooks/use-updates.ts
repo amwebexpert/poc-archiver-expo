@@ -1,7 +1,9 @@
 import * as Updates from 'expo-updates';
 
 import { useEffect } from 'react';
-import { LONG_VERSION_DATE } from '~/constants';
+import { APP_VERSION_INFO, LONG_VERSION_DATE } from '~/constants';
+
+const { NAME } = APP_VERSION_INFO;
 
 export const useUpdates = () => {
   const { currentlyRunning, isUpdateAvailable, isUpdatePending } = Updates.useUpdates();
@@ -13,8 +15,8 @@ export const useUpdates = () => {
   }, [isUpdatePending]);
 
   const runTypeMessage = currentlyRunning.isEmbeddedLaunch
-    ? 'app running from built-in code ✓'
-    : `app running an update ${LONG_VERSION_DATE}`;
+    ? `App "${NAME}" is running from built-in code ✓`
+    : `App "${NAME}" is running an dynamic update. Version name: ${LONG_VERSION_DATE}`;
 
   console.info(
     '===> info',

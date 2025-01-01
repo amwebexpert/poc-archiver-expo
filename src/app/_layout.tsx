@@ -6,16 +6,21 @@ import 'expo-dev-client';
 import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { PaperProvider } from 'react-native-paper';
 import { SnackbarProvider } from '~/components/snack-bar/snackbar-provider';
 import { settingsStore } from '~/features/settings/settings.store';
 import { DARK_THEME, LIGHT_THEME, NAVIGATION_DARK, NAVIGATION_LIGHT } from '~/theme/theme';
+import * as SplashScreen from 'expo-splash-screen';
 
 const RootLayout = () => {
   const { isDarkMode } = settingsStore;
+
+  useEffect(() => {
+    SplashScreen.setOptions({ duration: 300, fade: true });
+  }, []);
 
   return (
     <PaperProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>

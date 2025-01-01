@@ -1,13 +1,17 @@
 import { FlashList } from '@shopify/flash-list';
 import * as Updates from 'expo-updates';
 import { FunctionComponent } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
-import { Button, List, Text, useTheme } from 'react-native-paper';
+import { Image, Linking, StyleSheet } from 'react-native';
+import { Button, Card, List, Text, useTheme } from 'react-native-paper';
 
 import { SafeContainer } from '~/components/safe-container';
 import { useUpdates } from '~/hooks/use-updates';
 import { AppTheme } from '~/theme/theme';
 import { parseLicenceData } from '~/utils/licences.utils';
+
+import { APP_VERSION_INFO } from '~/constants';
+
+const { DISPLAY_NAME, DESCRIPTION } = APP_VERSION_INFO;
 
 const AboutScreen: FunctionComponent = () => {
   const styles = useStyles();
@@ -15,23 +19,40 @@ const AboutScreen: FunctionComponent = () => {
   const { runTypeMessage, isUpdateAvailable } = useUpdates();
 
   return (
-    <SafeContainer>
-      <Text style={{ textAlign: 'center' }}>{runTypeMessage}</Text>
+    <SafeContainer style={styles.root}>
+      <Card>
+        <Card.Title
+          title={DISPLAY_NAME}
+          subtitle={DESCRIPTION}
+          left={() => (
+            <Image
+              style={{ height: 48, width: 48 }}
+              source={require('../../../assets/adaptive-icon.png')}
+            />
+          )}
+        />
 
-      <Button mode="contained" onPress={Updates.checkForUpdateAsync}>
-        Check manually for updates
-      </Button>
+        <Card.Content>
+          <Text style={styles.paragraph}>{runTypeMessage}</Text>
+        </Card.Content>
 
-      {isUpdateAvailable && (
-        <Button mode="contained" onPress={Updates.fetchUpdateAsync}>
-          Download and run update
-        </Button>
-      )}
+        <Card.Actions>
+          <Button mode="contained" icon="refresh" onPress={Updates.checkForUpdateAsync}>
+            Check
+          </Button>
 
-      <View style={styles.paragraph}>
-        <Text>Open source dependencies:</Text>
-      </View>
+          {isUpdateAvailable || true && (
+            <Button
+              mode="contained"
+              icon="briefcase-download-outline"
+              onPress={Updates.fetchUpdateAsync}>
+              Apply update
+            </Button>
+          )}
+        </Card.Actions>
+      </Card>
 
+      <Text style={styles.paragraph}>Open source dependencies:</Text>
       <FlashList
         data={data}
         renderItem={({ item }) => (
@@ -52,8 +73,12 @@ const useStyles = () => {
   const theme = useTheme() as AppTheme;
 
   return StyleSheet.create({
+    root: {
+      margin: theme.spacing(2),
+      gap: theme.spacing(2),
+    },
     paragraph: {
-      textAlign: 'center',
+      alignSelf: 'center',
       marginVertical: theme.spacing(2),
     },
   });

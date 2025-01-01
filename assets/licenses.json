@@ -65,6 +65,12 @@
         "licenseUrl": "https://github.com/devongovett/browserify-zlib/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "expo-application@6.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "poc-archiver-expo"
+    },
     "expo-asset@11.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
@@ -77,7 +83,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-dev-client@5.0.7": {
+    "expo-dev-client@5.0.8": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -90,6 +96,12 @@
         "parents": "poc-archiver-expo"
     },
     "expo-router@4.0.15": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "poc-archiver-expo"
+    },
+    "expo-splash-screen@0.29.18": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",

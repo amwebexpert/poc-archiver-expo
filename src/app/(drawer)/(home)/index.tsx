@@ -6,7 +6,7 @@ import { SafeContainer } from '~/components/safe-container';
 import { APP_VERSION_INFO } from '~/constants';
 import { AppTheme } from '~/theme/theme';
 
-const { GITHUB_URL } = APP_VERSION_INFO;
+const { REPOSITORY } = APP_VERSION_INFO;
 
 export default function Home() {
   const styles = useStyles();
@@ -32,7 +32,7 @@ export default function Home() {
           </Paragraph>
 
           <View style={styles.actions}>
-            <Button mode="outlined" onPress={() => Linking.openURL(GITHUB_URL)} icon="star">
+            <Button mode="outlined" onPress={() => Linking.openURL(REPOSITORY)} icon="star">
               Star it!
             </Button>
 

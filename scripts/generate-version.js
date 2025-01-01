@@ -11,7 +11,6 @@ const data = `/* eslint-disable */
 export const APP_VERSION_INFO = Object.freeze({
   NAME: '${name}',
   DISPLAY_NAME: 'ExpoPOC',
-  GITHUB_URL: 'https://github.com/amwebexpert/${name}',
   DESCRIPTION: '${description}',
   REPOSITORY: '${repository}',
   AUTHOR: '${author}',

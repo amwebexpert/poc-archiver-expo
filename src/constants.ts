@@ -5,9 +5,8 @@
 export const APP_VERSION_INFO = Object.freeze({
   NAME: 'poc-archiver-expo',
   DISPLAY_NAME: 'ExpoPOC',
-  GITHUB_URL: 'https://github.com/amwebexpert/poc-archiver-expo',
-  DESCRIPTION: 'undefined',
-  REPOSITORY: 'undefined',
+  DESCRIPTION: 'ReactNative Expo SDK POC collection',
+  REPOSITORY: 'https://github.com/amwebexpert/poc-archiver-expo',
   AUTHOR: 'undefined',
   VERSION: '1.2.0',
   VERSION_DATE: '2025-01-01',
