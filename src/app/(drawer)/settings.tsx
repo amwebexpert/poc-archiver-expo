@@ -20,8 +20,8 @@ const SettingsScreen: FunctionComponent = () => {
   return (
     <SafeContainer>
       <View style={styles.root}>
-        <Button icon="switch" mode="contained" onPress={() => settingsStore.toggleDarkMode()}>
-          Toggle Dark mode
+        <Button icon="theme-light-dark" mode="contained" onPress={() => settingsStore.toggleDarkMode()}>
+          Toggle theme
         </Button>
       </View>
     </SafeContainer>
