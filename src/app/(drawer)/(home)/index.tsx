@@ -57,7 +57,7 @@ const useStyles = () => {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      marginHorizontal: theme.spacing(2),
+      marginHorizontal: theme.spacing(4),
       gap: theme.spacing(6),
     },
     paragraph: {
