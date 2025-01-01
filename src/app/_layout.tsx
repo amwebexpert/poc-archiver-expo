@@ -19,7 +19,7 @@ const RootLayout = () => {
   const { isDarkMode } = settingsStore;
 
   useEffect(() => {
-    SplashScreen.setOptions({ duration: 300, fade: true });
+    SplashScreen.setOptions({ duration: 3000, fade: true });
   }, []);
 
   return (

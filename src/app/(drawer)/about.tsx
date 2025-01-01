@@ -26,7 +26,7 @@ const AboutScreen: FunctionComponent = () => {
           subtitle={DESCRIPTION}
           left={() => (
             <Image
-              style={{ height: 48, width: 48 }}
+              style={{ height: 40, width: 40 }}
               source={require('../../../assets/adaptive-icon.png')}
             />
           )}
@@ -37,18 +37,19 @@ const AboutScreen: FunctionComponent = () => {
         </Card.Content>
 
         <Card.Actions>
-          <Button mode="contained" icon="refresh" onPress={Updates.checkForUpdateAsync}>
+          <Button mode="outlined" icon="refresh" onPress={Updates.checkForUpdateAsync}>
             Check
           </Button>
 
-          {isUpdateAvailable || true && (
-            <Button
-              mode="contained"
-              icon="briefcase-download-outline"
-              onPress={Updates.fetchUpdateAsync}>
-              Apply update
-            </Button>
-          )}
+          {isUpdateAvailable ||
+            (true && (
+              <Button
+                mode="outlined"
+                icon="briefcase-download-outline"
+                onPress={Updates.fetchUpdateAsync}>
+                Apply update
+              </Button>
+            ))}
         </Card.Actions>
       </Card>
 
