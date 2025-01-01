@@ -3,18 +3,21 @@ import { router } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 
 import { FunctionComponent } from 'react';
-import { HeaderButton } from '~/components/header-button';
+import { HeaderBackButton } from '~/components/header-actions/header-back-button';
+import { HeaderButton } from '~/components/header-actions/header-button';
 
 const DrawerLayout: FunctionComponent = () => {
   return (
-    <Drawer>
+    <Drawer initialRouteName="(home)">
       <Drawer.Screen
         name="(home)"
         options={{
           headerTitle: 'Home',
           drawerLabel: 'Home',
           drawerIcon: ({ size, color }) => <MaterialIcons name="home" size={size} color={color} />,
-          headerRight: () => <HeaderButton onPress={() => router.push('/settings')} />,
+          headerRight: () => (
+            <HeaderButton iconName="gear" onPress={() => router.push('/settings')} />
+          ),
         }}
       />
 
@@ -24,6 +27,7 @@ const DrawerLayout: FunctionComponent = () => {
           headerTitle: 'other experiments',
           drawerLabel: 'Other POCs',
           drawerIcon: ({ size, color }) => <Fontisto name="laboratory" size={size} color={color} />,
+          headerLeft: () => <HeaderBackButton />,
         }}
       />
 
@@ -35,6 +39,7 @@ const DrawerLayout: FunctionComponent = () => {
           drawerIcon: ({ size, color }) => (
             <MaterialIcons name="settings" size={size} color={color} />
           ),
+          headerLeft: () => <HeaderBackButton />,
         }}
       />
 
@@ -44,6 +49,7 @@ const DrawerLayout: FunctionComponent = () => {
           headerTitle: 'About',
           drawerLabel: 'About',
           drawerIcon: ({ size, color }) => <MaterialIcons name="info" size={size} color={color} />,
+          headerLeft: () => <HeaderBackButton />,
         }}
       />
     </Drawer>
