@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, TextInput, Text } from 'react-native-paper';
 import { LanguageSelector } from '~/components/language-selector/language-selector';
 import { SafeContainer } from '~/components/safe-container';
 import { useAppTheme } from '~/theme/theme';
@@ -10,14 +10,12 @@ type FormData = {
   sourceLanguage: string;
   targetLanguage: string;
   sourceText: string;
-  targetText: string;
 };
 
 const DEFAULT_FORM_VALUES: FormData = {
   sourceLanguage: 'eng_Latn',
   targetLanguage: 'fra_Latn',
   sourceText: 'Translate directly in your app, without server!',
-  targetText: '',
 };
 
 export const TranslatorScreen: FunctionComponent = () => {
@@ -56,8 +54,8 @@ export const TranslatorScreen: FunctionComponent = () => {
         render={({ field: { onChange, value } }) => (
           <TextInput
             label="Source Text"
+            mode="outlined"
             multiline={true}
-            numberOfLines={4}
             value={value}
             onChangeText={onChange}
             error={!!errors.sourceText}
@@ -79,6 +77,16 @@ export const TranslatorScreen: FunctionComponent = () => {
         )}
       />
 
+      <TextInput
+        label="Translation"
+        mode="outlined"
+        multiline={true}
+        value="Translation will appear here"
+        readOnly={true}
+      />
+
+      <View style={{ flex: 1 }}></View>
+
       <View style={styles.buttonRow}>
         <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid}>
           Submit
@@ -87,8 +95,6 @@ export const TranslatorScreen: FunctionComponent = () => {
           Reset
         </Button>
       </View>
-
-      <TextInput label="Translation" value={''} editable={false} />
     </SafeContainer>
   );
 };

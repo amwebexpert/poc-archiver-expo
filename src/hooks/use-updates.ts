@@ -15,11 +15,10 @@ export const useUpdates = () => {
     }
   }, [isUpdatePending]);
 
-  const app = `App "${NAME}" ${LONG_VERSION_DATE}`;
   const storeVersion = `Store version: ${nativeApplicationVersion} (${nativeBuildVersion})`;
   const runTypeMessage = currentlyRunning.isEmbeddedLaunch
-    ? `${app} is running from built-in code ✓. ${storeVersion}.`
-    : `${app} is running an dynamic update. ${storeVersion}.`;
+    ? `App is running from built-in code ✓. ${storeVersion}.`
+    : `App is running an dynamic update. ${storeVersion}.`;
 
   console.info(
     '===> info',
