@@ -173,6 +173,12 @@
         "licenseUrl": "https://github.com/danish1658/react-native-dropdown-select-list/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-element-dropdown@2.12.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/hoaphantn7604/react-native-element-dropdown",
+        "licenseUrl": "https://github.com/hoaphantn7604/react-native-element-dropdown/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-fs@2.20.0": {
         "licenses": "MIT",
         "repository": "https://github.com/itinance/react-native-fs",
