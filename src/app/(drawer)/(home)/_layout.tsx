@@ -16,11 +16,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="ai-sentiment-analysis"
         options={{
           title: 'Sentiments',
           tabBarIcon: ({ color }) => <TabBarIcon name="smile-o" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="ai-translator"
+        options={{
+          title: 'Translator',
+          tabBarIcon: ({ color }) => <TabBarIcon name="language" color={color} />,
         }}
       />
     </Tabs>
