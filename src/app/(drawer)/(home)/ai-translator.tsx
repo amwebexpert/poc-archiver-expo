@@ -39,10 +39,9 @@ export const TranslatorScreen: FunctionComponent = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <LanguageSelector
-            label="Source Language"
+            label="Source:"
             value={value}
             onChange={onChange}
-            isError={!!errors.sourceLanguage}
           />
         )}
       />
@@ -53,13 +52,13 @@ export const TranslatorScreen: FunctionComponent = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <TextInput
-            label="Source Text"
+            label="Text to translate"
             mode="outlined"
             multiline={true}
             value={value}
             onChangeText={onChange}
-            error={!!errors.sourceText}
-          />
+            style={{ flex: 1 }}
+            />
         )}
       />
 
@@ -69,10 +68,9 @@ export const TranslatorScreen: FunctionComponent = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <LanguageSelector
-            label="Target Language"
+            label="Target:"
             value={value}
             onChange={onChange}
-            isError={!!errors.targetLanguage}
           />
         )}
       />
@@ -83,16 +81,15 @@ export const TranslatorScreen: FunctionComponent = () => {
         multiline={true}
         value="Translation will appear here"
         readOnly={true}
+        style={{ flex: 1 }}
       />
 
-      <View style={{ flex: 1 }}></View>
-
       <View style={styles.buttonRow}>
-        <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid}>
-          Submit
-        </Button>
         <Button mode="outlined" onPress={() => reset()}>
           Reset
+        </Button>
+        <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid}>
+          Submit
         </Button>
       </View>
     </SafeContainer>
@@ -106,7 +103,7 @@ const useStyles = () => {
     root: {
       flex: 1,
       margin: theme.spacing(2),
-      gap: theme.spacing(4),
+      gap: theme.spacing(2),
     },
     buttonRow: {
       flexDirection: 'row',

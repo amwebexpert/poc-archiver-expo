@@ -24,7 +24,7 @@ export const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   const styles = useStyles(isFocus);
 
   return (
-    <View>
+    <View style={styles.label}>
       <Text style={[isFocus && { color: primary }, isError && { color: error }]}>{label}</Text>
 
       <Dropdown
@@ -42,7 +42,7 @@ export const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Select item' : '...'}
+        placeholder={isFocus ? '' : 'Select item'}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -60,7 +60,13 @@ const useStyles = (isFocus = false) => {
   const theme = useAppTheme();
 
   return StyleSheet.create({
+    label: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 4,
+    },
     dropdown: {
+      flex: 1,
       height: 50,
       borderColor: isFocus ? theme.colors.primary : theme.colors.outline,
       borderWidth: isFocus ? 2 : 1,
