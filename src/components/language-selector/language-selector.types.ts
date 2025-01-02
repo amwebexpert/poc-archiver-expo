@@ -208,18 +208,15 @@ const LANGUAGES = {
 };
 
 export interface LanguageOption {
-  key: string;
+  label: string;
   value: string;
-};
-
-export const DEFAULT_OPTION: LanguageOption = {
-  key: 'English',
-  value: 'eng_Latn',
 }
 
+export const DEFAULT_OPTION: LanguageOption = {
+  label: 'English',
+  value: 'eng_Latn',
+};
+
 export const LANGUAGE_OPTIONS: LanguageOption[] = Object.entries(LANGUAGES).map(
-  ([label, code]) => ({
-    value: label,
-    key: code,
-  })
+  ([label, value]) => ({ label, value })
 );

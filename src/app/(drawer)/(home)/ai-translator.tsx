@@ -39,10 +39,10 @@ export const TranslatorScreen: FunctionComponent = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <LanguageSelector
-            label="Source Language:"
+            label="Source Language"
             value={value}
             onChange={onChange}
-            error={!!errors.sourceLanguage}
+            isError={!!errors.sourceLanguage}
           />
         )}
       />
@@ -69,10 +69,10 @@ export const TranslatorScreen: FunctionComponent = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <LanguageSelector
-            label="Target Language:"
+            label="Target Language"
             value={value}
             onChange={onChange}
-            error={!!errors.targetLanguage}
+            isError={!!errors.targetLanguage}
           />
         )}
       />

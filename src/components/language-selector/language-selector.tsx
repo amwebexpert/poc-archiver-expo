@@ -1,8 +1,7 @@
-import { FontAwesome } from '@expo/vector-icons';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 import { Text } from 'react-native-paper';
-import { SelectList } from 'react-native-dropdown-select-list';
 import { useAppTheme } from '~/theme/theme';
 import { LANGUAGE_OPTIONS } from './language-selector.types';
 
@@ -10,52 +9,81 @@ type LanguageSelectorProps = {
   label: string;
   value?: string;
   onChange: (code: string) => void;
-  error?: boolean;
+  isError?: boolean;
 };
 
 export const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   label,
   value,
   onChange,
-  error,
+  isError,
 }) => {
-  const style = useStyles();
   const theme = useAppTheme();
-  const color = theme.colors.primary;
-  const defaultOption = LANGUAGE_OPTIONS.find(({ key }) => key === value);
+  const { primary, error } = theme.colors;
+  const [isFocus, setIsFocus] = useState(false);
+  const styles = useStyles(isFocus);
 
   return (
-    <View style={style.row}>
-      <Text>{label}</Text>
-      <SelectList
-        boxStyles={{ width: 260 }}
-        dropdownTextStyles={{ color }}
-        inputStyles={{
-          color,
-          marginLeft: theme.spacing(2),
-          borderColor: error ? 'red' : undefined,
-        }}
-        searchicon={<FontAwesome name="search" size={12} color={color} />}
-        closeicon={<FontAwesome name="close" size={12} color={color} />}
-        searchPlaceholder={label}
-        setSelected={onChange}
+    <View>
+      <Text style={[isFocus && { color: primary }, isError && { color: error }]}>{label}</Text>
+
+      <Dropdown
+        style={[
+          styles.dropdown,
+          isFocus && { borderColor: primary },
+          isError && { borderColor: error },
+        ]}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        inputSearchStyle={styles.inputSearchStyle}
+        iconStyle={styles.iconStyle}
         data={LANGUAGE_OPTIONS}
-        save="key"
-        defaultOption={defaultOption}
+        search={true}
+        maxHeight={300}
+        labelField="label"
+        valueField="value"
+        placeholder={!isFocus ? 'Select item' : '...'}
+        searchPlaceholder="Search..."
+        value={value}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+        onChange={({ value }) => {
+          onChange(value);
+          setIsFocus(false);
+        }}
       />
     </View>
   );
 };
 
-const useStyles = () => {
+const useStyles = (isFocus = false) => {
   const theme = useAppTheme();
 
   return StyleSheet.create({
-    row: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: theme.spacing(2),
+    dropdown: {
+      height: 50,
+      borderColor: isFocus ? theme.colors.primary : theme.colors.outline,
+      borderWidth: isFocus ? 2 : 1,
+      paddingHorizontal: theme.spacing(1),
+    },
+    icon: {
+      marginRight: 5,
+    },
+    placeholderStyle: {
+      fontSize: 16,
+      color: isFocus ? theme.colors.primary : theme.colors.secondary,
+    },
+    selectedTextStyle: {
+      fontSize: 16,
+      color: isFocus ? theme.colors.primary : theme.colors.secondary,
+    },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
     },
   });
 };
