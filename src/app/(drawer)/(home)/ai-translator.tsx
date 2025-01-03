@@ -5,7 +5,7 @@ import { Button, TextInput } from 'react-native-paper';
 import { LanguageSelector } from '~/components/language-selector/language-selector';
 import { SafeContainer } from '~/components/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
-import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
+import { extractProgressLog, isProgressStatusReady } from '~/features/ai-commons/transformer.types';
 import { TextTranslator } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
 import { getErrorMessage } from '~/utils/errors.utils';
@@ -24,7 +24,8 @@ const DEFAULT_FORM_VALUES: FormData = {
 
 const TranslatorScreen: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [translation, setTranslation] = useState<string>('Translation will appear here');
+  const [translation, setTranslation] = useState('');
+  const [modelLoadingLogs, setModelLoadingLogs] = useState<string[]>([]);
 
   const styles = useStyles();
   const {
@@ -44,7 +45,7 @@ const TranslatorScreen: FunctionComponent = () => {
         sourceLanguage,
         targetLanguage,
         progressHandler: (progress) => {
-          console.info('===> progress', progress);
+          setModelLoadingLogs((logs) => [extractProgressLog(progress), ...logs]);
           setIsLoading(!isProgressStatusReady(progress));
         },
       });
@@ -117,6 +118,7 @@ const TranslatorScreen: FunctionComponent = () => {
           isVisible={isLoading}
           title="Loading model"
           description="Please wait while translation models are loading... Only run once: next time will be faster!"
+          modelLoadingLogs={modelLoadingLogs}
           onDismiss={() => setIsLoading(false)}
         />
       )}

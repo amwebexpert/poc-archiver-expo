@@ -26,7 +26,6 @@ export type GetInstanceArgs = {
 
 const getAvailableOfflineTasks = (): Record<PipelineType, boolean> => {
   const jsonValue = storage.getString(StorageKey.TRANSLATION_MODEL_AVAILABILITY) ?? '{}';
-  console.info('===> jsonValue', jsonValue);
   return JSON.parse(jsonValue);
 };
 

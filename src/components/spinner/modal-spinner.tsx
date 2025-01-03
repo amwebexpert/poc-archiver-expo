@@ -1,12 +1,13 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { StyleSheet } from 'react-native';
-import { ActivityIndicator, Button, Dialog, Portal, Text } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, Dialog, Portal, Text, TextInput } from 'react-native-paper';
 import { useAppTheme } from '~/theme/theme';
 
 export interface ModalSpinnerProps {
   isVisible: boolean;
   title: ReactNode;
   description: ReactNode;
+  modelLoadingLogs: string[];
   onDismiss: () => void;
 }
 
@@ -14,6 +15,7 @@ export const ModalSpinner: FunctionComponent<ModalSpinnerProps> = ({
   isVisible,
   title,
   description,
+  modelLoadingLogs,
   onDismiss,
 }) => {
   const styles = useStyles();
@@ -30,6 +32,14 @@ export const ModalSpinner: FunctionComponent<ModalSpinnerProps> = ({
         <Dialog.Content>
           <ActivityIndicator style={styles.spinner} />
           <Text>{description}</Text>
+
+          <View style={styles.progressLogs}>
+            {modelLoadingLogs.map((log) => (
+              <Text numberOfLines={1} key={log} ellipsizeMode="tail" style={styles.progressLog}>
+                {log}
+              </Text>
+            ))}
+          </View>
         </Dialog.Content>
 
         <Dialog.Actions>
@@ -49,6 +59,17 @@ const useStyles = () => {
     },
     spinner: {
       marginVertical: theme.spacing(3),
+    },
+    progressLogs: {
+      height: 80,
+      maxHeight: 80,
+      overflow: 'scroll',
+      marginVertical: 10,
+      width: '100%',
+    },
+    progressLog: {
+      color: theme.colors.secondary,
+      width: '100%',
     },
   });
 };
