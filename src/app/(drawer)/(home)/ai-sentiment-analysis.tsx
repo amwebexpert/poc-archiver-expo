@@ -1,11 +1,11 @@
 import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Text } from 'react-native-paper';
-import { FullCentered } from '~/components/full-centered';
+import { FullCenteredSpinner } from '~/components/spinner/full-centered-spinner';
 import { SafeContainer } from '~/components/safe-container';
+import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
 import { aiSentimentAnalysys } from '~/features/ai-sentiments/ai-sentiment-analysis.utils';
-import { isProgressStatusReady } from '~/features/ai-sentiments/transformer.types';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',
@@ -28,11 +28,7 @@ export default function AiSentimentAnalysis() {
   }, []);
 
   if (!isReady) {
-    return (
-      <FullCentered>
-        <ActivityIndicator />
-      </FullCentered>
-    );
+    return <FullCenteredSpinner />;
   }
 
   return (

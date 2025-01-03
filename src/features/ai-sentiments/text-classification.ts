@@ -1,14 +1,27 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
 import { env, pipeline, TextClassificationPipeline } from '@fugood/transformers';
-import { canUseOfflineMode, updateCanUseOfflineMode } from './ai-sentiment-analysis.utils';
-import {
-  DEFAULT_MODEL_NAME,
-  PROGRESS_STATUS_READY,
-  ProgressCallback,
-  ScoreLabel,
-} from './transformer.types';
+import { storage, StorageKey } from '~/utils/storage';
+import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
 
+const DEFAULT_MODEL_NAME = 'Xenova/bert-base-multilingual-uncased-sentiment';
+
+export type ScoreLabel = {
+  score: number;
+  label: string;
+};
+
+const canUseOfflineMode = (): boolean =>
+  storage.getBoolean(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE) ?? false;
+
+const updateCanUseOfflineMode = (value = true): void =>
+  storage.set(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE, value);
+
+/**
+ * This class uses the Singleton pattern to ensure that only one instance of the
+ * pipeline is loaded. This is because loading the pipeline is an expensive
+ * operation and we don't want to do it every time we want to use LLM models.
+ */
 export class SentimentAnalyser {
   static instance: SentimentAnalyser | null = null;
 
