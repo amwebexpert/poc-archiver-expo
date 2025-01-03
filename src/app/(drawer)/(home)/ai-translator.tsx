@@ -19,7 +19,7 @@ type FormData = {
 const DEFAULT_FORM_VALUES: FormData = {
   sourceLanguage: 'en',
   targetLanguage: 'fr',
-  sourceText: 'Translate in your app, without server, even in offline mode!',
+  sourceText: 'Translate in your app, without server, even in offline mode',
 };
 
 const TranslatorScreen: FunctionComponent = () => {

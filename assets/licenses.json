@@ -65,6 +65,12 @@
         "licenseUrl": "https://github.com/devongovett/browserify-zlib/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "date-fns@4.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/date-fns/date-fns",
+        "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
+        "parents": "poc-archiver-expo"
+    },
     "expo-application@6.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
