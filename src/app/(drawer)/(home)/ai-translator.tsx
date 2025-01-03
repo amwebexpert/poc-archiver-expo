@@ -6,8 +6,9 @@ import { LanguageSelector } from '~/components/language-selector/language-select
 import { SafeContainer } from '~/components/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
-import { aiTranslation } from '~/features/ai-translation/ai-translation.utils';
+import { TextTranslator } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
+import { getErrorMessage } from '~/utils/errors.utils';
 
 type FormData = {
   sourceLanguage: string;
@@ -21,7 +22,7 @@ const DEFAULT_FORM_VALUES: FormData = {
   sourceText: 'Translate in your app, without server, even in offline mode!',
 };
 
-export const TranslatorScreen: FunctionComponent = () => {
+const TranslatorScreen: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [translation, setTranslation] = useState<string>('Translation will appear here');
 
@@ -29,24 +30,28 @@ export const TranslatorScreen: FunctionComponent = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
     reset,
   } = useForm<FormData>({ mode: 'onChange', defaultValues: DEFAULT_FORM_VALUES });
 
-  const onSubmit = (data: FormData) => {
-    setIsLoading(true);
+  const onSubmit = async (data: FormData) => {
+    setTranslation('');
 
-    setTimeout(() => {
-      aiTranslation({
-        text: data.sourceText,
-        sourceLanguage: data.sourceLanguage,
-        targetLanguage: data.targetLanguage,
-        progressHandler: (progress) => {
-          console.info('===> progress', progress);
-          setIsLoading(!isProgressStatusReady(progress));
-        },
-      }).then(setTranslation);
-    }, 1000);
+    const { sourceText: text, sourceLanguage, targetLanguage } = data;
+
+    try {
+      const analyser = await TextTranslator.getInstance((progress) => {
+        console.info('===> progress', progress);
+        setIsLoading(!isProgressStatusReady(progress));
+      });
+
+      const result = await analyser.translate({ text, sourceLanguage, targetLanguage });
+      setTranslation(result);
+    } catch (error: unknown) {
+      setTranslation(`Error while translating text: ${getErrorMessage(error)}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -95,10 +100,10 @@ export const TranslatorScreen: FunctionComponent = () => {
       />
 
       <View style={styles.buttonRow}>
-        <Button mode="outlined" onPress={() => reset()}>
+        <Button mode="outlined" onPress={() => reset()} disabled={isLoading}>
           Reset
         </Button>
-        <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid}>
+        <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid || isLoading}>
           Submit
         </Button>
       </View>

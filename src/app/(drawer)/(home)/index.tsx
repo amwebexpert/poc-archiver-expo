@@ -38,7 +38,7 @@ export default function Home() {
 
             <Button
               mode="outlined"
-              onPress={() => router.push('/(drawer)/about')}
+              onPress={() => router.push('/(drawer)/(about)')}
               icon="book-information-variant">
               Licences…
             </Button>

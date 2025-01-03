@@ -179,6 +179,12 @@
         "licenseUrl": "https://github.com/hoaphantn7604/react-native-element-dropdown/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-fs@2.20.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/itinance/react-native-fs",
+        "licenseUrl": "https://github.com/itinance/react-native-fs/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-gesture-handler@2.20.2": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-gesture-handler",

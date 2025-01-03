@@ -1,11 +1,12 @@
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
-import { useEffect, useState } from 'react';
-import { FullCenteredSpinner } from '~/components/spinner/full-centered-spinner';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { SafeContainer } from '~/components/safe-container';
+import { FullCenteredSpinner } from '~/components/spinner/full-centered-spinner';
 import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
-import { aiSentimentAnalysys } from '~/features/ai-sentiments/ai-sentiment-analysis.utils';
+import { SentimentAnalyser } from '~/features/ai-sentiments/text-classification';
+import { useAppTheme } from '~/theme/theme';
 
 const TEXTS_TO_ANALYSE = [
   'I love transformers!',
@@ -14,17 +15,21 @@ const TEXTS_TO_ANALYSE = [
   'Ce plat était délicieux et le service excellent. Même si le prix est un peu élevé, ca en vallait la peine!',
 ];
 
-export default function AiSentimentAnalysis() {
+const AiSentimentAnalysis: FunctionComponent = () => {
+  const styles = useStyles();
   const [isReady, setIsReady] = useState(false);
-  const [textClassification, setTextClassification] = useState<string[]>([]);
+  const [classifications, setClassifications] = useState<string[]>([]);
+
+  const analyse = async (): Promise<string[]> => {
+    const analyser = await SentimentAnalyser.getInstance((progress) => {
+      setIsReady(isProgressStatusReady(progress));
+    });
+
+    return analyser.analyse(TEXTS_TO_ANALYSE);
+  };
 
   useEffect(() => {
-    aiSentimentAnalysys({
-      texts: TEXTS_TO_ANALYSE,
-      progressHandler: (progress) => {
-        setIsReady(isProgressStatusReady(progress));
-      },
-    }).then(setTextClassification);
+    analyse().then(setClassifications);
   }, []);
 
   if (!isReady) {
@@ -32,20 +37,35 @@ export default function AiSentimentAnalysis() {
   }
 
   return (
-    <SafeContainer>
-      <View style={{ flex: 1, justifyContent: 'center', margin: 20 }}>
-        {TEXTS_TO_ANALYSE.map((text, index) => {
-          const score = textClassification[index] ?? '';
-          const result = score ? `→ ${score}` : '...';
+    <SafeContainer style={styles.root}>
+      {TEXTS_TO_ANALYSE.map((text, index) => {
+        const score = classifications[index] ?? '';
+        const result = score ? `→ ${score}` : '...';
 
-          return (
-            <View key={text} style={{ marginBottom: 20 }}>
-              <Text>{text}</Text>
-              <Text>{result}</Text>
-            </View>
-          );
-        })}
-      </View>
+        return (
+          <View key={text} style={styles.classification}>
+            <Text>{text}</Text>
+            <Text>{result}</Text>
+          </View>
+        );
+      })}
     </SafeContainer>
   );
-}
+};
+
+const useStyles = () => {
+  const theme = useAppTheme();
+
+  return StyleSheet.create({
+    root: {
+      flex: 1,
+      justifyContent: 'center',
+      margin: theme.spacing(2),
+    },
+    classification: {
+      marginBottom: theme.spacing(2),
+    },
+  });
+};
+
+export default AiSentimentAnalysis;

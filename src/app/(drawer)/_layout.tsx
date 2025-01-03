@@ -44,7 +44,7 @@ const DrawerLayout: FunctionComponent = () => {
       />
 
       <Drawer.Screen
-        name="about"
+        name="(about)"
         options={{
           headerTitle: 'About',
           drawerLabel: 'About',
