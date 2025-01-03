@@ -5,23 +5,51 @@ import {
   pipeline,
   PipelineType,
   TranslationPipeline,
-  TranslationSingle
+  TranslationSingle,
 } from '@fugood/transformers';
 import { storage, StorageKey } from '~/utils/storage';
 import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
 
 const DEFAULT_MODEL_NAME = 'Xenova/nllb-200-distilled-600M';
 
-const canUseOfflineMode = (): boolean =>
-  storage.getBoolean(StorageKey.TRANSLATION_MODEL_AVAILABLE_OFFLINE) ?? false;
-
-const updateCanUseOfflineMode = (value = true): void =>
-  storage.set(StorageKey.TRANSLATION_MODEL_AVAILABLE_OFFLINE, value);
-
 export type TranslateArgs = {
   text: string;
   sourceLanguage: string;
   targetLanguage: string;
+};
+
+export type GetInstanceArgs = {
+  sourceLanguage: string;
+  targetLanguage: string;
+  progressHandler?: ProgressCallback;
+};
+
+const getAvailableOfflineTasks = (): Record<PipelineType, boolean> => {
+  const jsonValue = storage.getString(StorageKey.TRANSLATION_MODEL_AVAILABILITY) ?? '{}';
+  console.info('===> jsonValue', jsonValue);
+  return JSON.parse(jsonValue);
+};
+
+const canUseOfflineMode = (task: PipelineType): boolean =>
+  getAvailableOfflineTasks()[task] ?? false;
+
+const updateCanUseOfflineMode = (task: PipelineType): void => {
+  const availableOfflineTasks = getAvailableOfflineTasks();
+  availableOfflineTasks[task] = true;
+  storage.set(StorageKey.TRANSLATION_MODEL_AVAILABILITY, JSON.stringify(availableOfflineTasks));
+};
+
+const validateSupportedLanguages = (params: GetInstanceArgs): void => {
+  const { sourceLanguage, targetLanguage } = params;
+  if (sourceLanguage !== 'en') {
+    throw new Error('Xenova/t5-small ONNX model only support "English" as source language');
+  }
+
+  if (!['de', 'fr'].includes(targetLanguage)) {
+    throw new Error(
+      'Xenova/t5-small ONNX model only support "German" and "French" as target languages'
+    );
+  }
 };
 
 /**
@@ -40,27 +68,35 @@ export class TextTranslator {
     return !!this.translator;
   }
 
-  static async getInstance(progressHandler?: ProgressCallback) {
-    if (this.instance?.isReady) {
+  static async getInstance(params: GetInstanceArgs): Promise<TextTranslator> {
+    validateSupportedLanguages(params);
+
+    const { progressHandler, sourceLanguage, targetLanguage } = params;
+
+    const task = `translation_${sourceLanguage}_to_${targetLanguage}` as PipelineType;
+    const model = 'Xenova/t5-small';
+
+    if (this.instance?.isReady && this.instance.translator?.task === task) {
       progressHandler?.(PROGRESS_STATUS_READY);
       return this.instance;
     }
 
-    console.info('===> env', JSON.stringify(env, null, 2));
+    this.instance?.translator?.dispose();
+    console.info('===> getInstance', task, JSON.stringify(env, null, 2));
 
     this.instance = new TextTranslator();
-    this.instance.translator = (await pipeline('translation_en_to_fr' as PipelineType, undefined, {
+    this.instance.translator = (await pipeline(task, model, {
       progress_callback: progressHandler,
-      local_files_only: canUseOfflineMode(),
+      local_files_only: canUseOfflineMode(task),
     })) as TranslationPipeline;
 
-    updateCanUseOfflineMode();
+    updateCanUseOfflineMode(task);
 
     return this.instance;
   }
 
   async translate(params: TranslateArgs): Promise<string> {
-    const { text, sourceLanguage, targetLanguage } = params;
+    const { text } = params;
     if (!this.translator) {
       throw new Error('Model is not loaded yet');
     }

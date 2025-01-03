@@ -17,8 +17,8 @@ type FormData = {
 };
 
 const DEFAULT_FORM_VALUES: FormData = {
-  sourceLanguage: 'eng_Latn',
-  targetLanguage: 'fra_Latn',
+  sourceLanguage: 'en',
+  targetLanguage: 'fr',
   sourceText: 'Translate in your app, without server, even in offline mode!',
 };
 
@@ -40,9 +40,13 @@ const TranslatorScreen: FunctionComponent = () => {
     const { sourceText: text, sourceLanguage, targetLanguage } = data;
 
     try {
-      const analyser = await TextTranslator.getInstance((progress) => {
-        console.info('===> progress', progress);
-        setIsLoading(!isProgressStatusReady(progress));
+      const analyser = await TextTranslator.getInstance({
+        sourceLanguage,
+        targetLanguage,
+        progressHandler: (progress) => {
+          console.info('===> progress', progress);
+          setIsLoading(!isProgressStatusReady(progress));
+        },
       });
 
       const result = await analyser.translate({ text, sourceLanguage, targetLanguage });
