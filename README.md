@@ -7,15 +7,9 @@ Expo SDK Proof of concepts collection
 
 ## Some screen captures
 
-| Android Dark | iOS Dark | Android Light | iOS Light |
-|--------------|----------|---------------|-----------|
+| Android Dark                                                                   | iOS Dark                                                                   | Android Light                                                                  | iOS Light                                                                  |
+|--------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | <img src="docs/captures/transformerjs-translation-en-de-screen-android.png" /> | <img src="docs/captures/transformerjs-translation-en-fr-screen-ios.png" /> | <img src="docs/captures/transformerjs-translation-en-fr-screen-android.png" /> | <img src="docs/captures/transformerjs-translation-en-de-screen-ios.png" /> |
-
-## Project coding guidelines
-
-Adhering to established coding guidelines is essential for developing efficient, maintainable, and scalable software. These guidelines promote consistency across codebases, making it easier for teams to collaborate and for new developers to understand existing code. By following standardized patterns, such as those outlined in the [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md), developers can reduce errors and enhance code readability.
-
-* [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md)
 
 ## Scripts
 
@@ -35,6 +29,14 @@ Adhering to established coding guidelines is essential for developing efficient,
 | `yarn eas:run:ios`                   | Run the latest `EAS iOS build`.                                                 |
 | `yarn eas:run:android`               | Run the latest `EAS Android build`.                                             |
 | `yarn postinstall`                   | Run `patch-package` and `npm-license-crawler` after dependencies are installed. |
+
+
+## Project coding guidelines
+
+Adhering to established coding guidelines is essential for developing efficient, maintainable, and scalable software. These guidelines promote consistency across codebases, making it easier for teams to collaborate and for new developers to understand existing code. By following standardized patterns, such as those outlined in the [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md), developers can reduce errors and enhance code readability.
+
+* [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md)
+
 
 ## References
 
