@@ -3,7 +3,7 @@
   "description": "ReactNative Expo SDK POC collection",
   "repository": "https://github.com/amwebexpert/poc-archiver-expo",
   "author": "amwebexpert@gmail.com",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": false,
   "main": "expo-router/entry",
   "scripts": {
