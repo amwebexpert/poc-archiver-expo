@@ -45,11 +45,6 @@ export const useUpdates = () => {
     ? `${storeVersion}: from built-in code.`
     : `${storeVersion}: with dynamic update.`;
 
-  console.info(
-    '===> info',
-    JSON.stringify({ isUpdateAvailable, isUpdatePending, currentlyRunning }, null, 2)
-  );
-
   return {
     runTypeMessage,
     isUpdateAvailable,
