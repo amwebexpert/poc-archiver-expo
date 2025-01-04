@@ -21,7 +21,7 @@ export const AboutDetails: FunctionComponent = () => {
         <DataTable.Cell style={styles.tableValueCell}>{AUTHOR}</DataTable.Cell>
       </DataTable.Row>
       <DataTable.Row>
-        <DataTable.Cell>Date ISO:</DataTable.Cell>
+        <DataTable.Cell>Updated:</DataTable.Cell>
         <DataTable.Cell style={styles.tableValueCell}>{formattedDate}</DataTable.Cell>
       </DataTable.Row>
     </DataTable>

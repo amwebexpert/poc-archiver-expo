@@ -1,4 +1,3 @@
-import * as Updates from 'expo-updates';
 import { FunctionComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
@@ -17,7 +16,8 @@ const { DISPLAY_NAME, DESCRIPTION } = APP_VERSION_INFO;
 
 const AboutScreen: FunctionComponent = () => {
   const styles = useStyles();
-  const { runTypeMessage, isUpdateAvailable } = useUpdates();
+  const { runTypeMessage, isUpdateAvailable, checkForUpdates, isLoading, fetchAndApplyUpdate } =
+    useUpdates();
 
   return (
     <SafeContainer style={styles.root}>
@@ -37,7 +37,7 @@ const AboutScreen: FunctionComponent = () => {
             Http
           </Button>
 
-          <Button mode="outlined" icon="refresh" onPress={Updates.checkForUpdateAsync}>
+          <Button mode="outlined" icon="refresh" onPress={checkForUpdates} loading={isLoading}>
             Check
           </Button>
 
@@ -45,7 +45,8 @@ const AboutScreen: FunctionComponent = () => {
             <Button
               mode="outlined"
               icon="briefcase-download-outline"
-              onPress={Updates.fetchUpdateAsync}>
+              loading={isLoading}
+              onPress={fetchAndApplyUpdate}>
               Apply
             </Button>
           )}
