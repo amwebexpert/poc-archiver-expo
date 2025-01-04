@@ -5,7 +5,7 @@ import { Button, TextInput } from 'react-native-paper';
 import { LanguageSelector } from '~/components/language-selector/language-selector';
 import { SafeContainer } from '~/components/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
-import { extractProgressLog, isProgressStatusReady } from '~/features/ai-commons/transformer.types';
+import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { TextTranslator } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
 import { getErrorMessage } from '~/utils/errors.utils';
@@ -19,13 +19,12 @@ type FormData = {
 const DEFAULT_FORM_VALUES: FormData = {
   sourceLanguage: 'en',
   targetLanguage: 'fr',
-  sourceText: 'Translate in your app, without server, even in offline mode',
+  sourceText: 'Translate from your app, without server, even in offline mode',
 };
 
 const TranslatorScreen: FunctionComponent = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [translation, setTranslation] = useState('');
-  const [modelLoadingLogs, setModelLoadingLogs] = useState<string[]>([]);
+  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
 
   const styles = useStyles();
   const {
@@ -44,10 +43,7 @@ const TranslatorScreen: FunctionComponent = () => {
       const analyser = await TextTranslator.getInstance({
         sourceLanguage,
         targetLanguage,
-        progressHandler: (progress) => {
-          setModelLoadingLogs((logs) => [extractProgressLog(progress), ...logs]);
-          setIsLoading(!isProgressStatusReady(progress));
-        },
+        progressHandler,
       });
 
       const result = await analyser.translate({ text, sourceLanguage, targetLanguage });

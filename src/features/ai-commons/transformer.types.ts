@@ -1,6 +1,6 @@
 import { nowAsTime } from '~/utils/date.utils';
 
-type Progress = Record<string, string>;
+export type Progress = Record<string, string>;
 
 export type ProgressCallback = (progress: Progress) => void;
 
