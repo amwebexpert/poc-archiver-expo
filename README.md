@@ -1,7 +1,32 @@
 # poc-archiver-expo
-Expo Proof of concepts collection
 
-## Builds for iOS Simulator
+Expo SDK Proof of concepts collection
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/amwebexpert/poc-archiver-expo) ![GitHub Release Date](https://img.shields.io/github/release-date/amwebexpert/poc-archiver-expo) ![GitHub last commit](https://img.shields.io/github/last-commit/amwebexpert/poc-archiver-expo) ![GitHub](https://img.shields.io/github/license/amwebexpert/poc-archiver-expo)
+
+
+## Scripts
+
+| Command                              | Description                                                                     |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| `yarn android`                       | Build & run the Expo project on an `Android` device or emulator.                |
+| `yarn ios`                           | Build & run the Expo project on an `iOS` device or simulator.                   |
+| `yarn start`                         | Start the `Expo` development server.                                            |
+| `yarn lint`                          | Run linter to check for code style and formatting issues.                       |
+| `yarn format`                        | Run linter to automatically fix code style and formatting issues.               |
+| `yarn expo:doctor`                   | Run Expo's doctor command to diagnose issues in the project.                    |
+| `yarn eas:build:ios:preview`         | Build `iOS` preview using EAS.                                                  |
+| `yarn eas:build:ios:development`     | Build `iOS` development using EAS.                                              |
+| `yarn eas:build:android:preview`     | Build `Android` preview using EAS.                                              |
+| `yarn eas:build:android:development` | Build `Android` development using EAS.                                          |
+| `yarn generate:version`              | Generate version infos (see `src/constants.ts`)                                 |
+| `yarn eas:run:ios`                   | Run the latest `EAS iOS build`.                                                 |
+| `yarn eas:run:android`               | Run the latest `EAS Android build`.                                             |
+| `yarn postinstall`                   | Run `patch-package` and `npm-license-crawler` after dependencies are installed. |
+
+## References
+
+### Builds for iOS Simulator
 
 - https://docs.expo.dev/develop/development-builds/create-a-build/#create-a-build-for-emulatorsimulator
 - https://docs.expo.dev/build-reference/simulators/#installing-build-on-the-simulator
@@ -10,7 +35,7 @@ Expo Proof of concepts collection
 
 `eas update --channel preview --platform android --message "OTA detail message here..."` 
 
-### ONNX Runtime for RN
+### ONNX Runtime for RN (early access PR ref.)
 
 - https://github.com/hans00/react-native-transformers-example
 - https://github.com/huggingface/transformers.js/pull/118
