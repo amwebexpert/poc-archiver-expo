@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { StyleSheet, View } from 'react-native';
+import { Share, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { LanguageSelector } from '~/components/language-selector/language-selector';
 import { SafeContainer } from '~/components/safe-container';
@@ -98,6 +98,7 @@ const TranslatorScreen: FunctionComponent = () => {
         value={translation}
         readOnly={true}
         style={{ flex: 1 }}
+        onPress={() => Share.share({ message: translation })}
       />
 
       <View style={styles.buttonRow}>
