@@ -10,9 +10,12 @@ Expo SDK Proof of concepts collection
 | Android Dark | iOS Dark | Android Light | iOS Light |
 |--------------|----------|---------------|-----------|
 | <img src="docs/captures/transformerjs-translation-en-de-screen-android.png" /> | <img src="docs/captures/transformerjs-translation-en-fr-screen-ios.png" /> | <img src="docs/captures/transformerjs-translation-en-fr-screen-android.png" /> | <img src="docs/captures/transformerjs-translation-en-de-screen-ios.png" /> |
-## Coding guidelines
 
+## Project coding guidelines
 
+Adhering to established coding guidelines is essential for developing efficient, maintainable, and scalable software. These guidelines promote consistency across codebases, making it easier for teams to collaborate and for new developers to understand existing code. By following standardized patterns, such as those outlined in the [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md), developers can reduce errors and enhance code readability.
+
+* [Coding guidelines](https://github.com/amwebexpert/chrome-extensions-collection/blob/master/packages/coding-guide-helper/public/markdowns/table-of-content.md)
 
 ## Scripts
 
