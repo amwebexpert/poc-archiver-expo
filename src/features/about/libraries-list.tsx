@@ -36,8 +36,6 @@ const useStyles = () => {
   return StyleSheet.create({
     paragraph: {
       width: '100%',
-      textAlign: 'center',
-      marginVertical: theme.spacing(2),
     },
   });
 };

@@ -5,7 +5,7 @@ import { DataTable } from 'react-native-paper';
 
 import { APP_VERSION_INFO } from '~/constants';
 
-const { AUTHOR, VERSION_DATE, NAME } = APP_VERSION_INFO;
+const { AUTHOR, VERSION_DATE_ISO, NAME } = APP_VERSION_INFO;
 
 export const AboutDetails: FunctionComponent = () => (
   <DataTable>
@@ -14,12 +14,12 @@ export const AboutDetails: FunctionComponent = () => (
       <DataTable.Cell style={styles.tableValueCell}>{NAME}</DataTable.Cell>
     </DataTable.Row>
     <DataTable.Row>
-      <DataTable.Cell>Date:</DataTable.Cell>
-      <DataTable.Cell style={styles.tableValueCell}>{VERSION_DATE}</DataTable.Cell>
-    </DataTable.Row>
-    <DataTable.Row>
       <DataTable.Cell>Author:</DataTable.Cell>
       <DataTable.Cell style={styles.tableValueCell}>{AUTHOR}</DataTable.Cell>
+    </DataTable.Row>
+    <DataTable.Row>
+      <DataTable.Cell>Date ISO:</DataTable.Cell>
+      <DataTable.Cell style={styles.tableValueCell}>{VERSION_DATE_ISO}</DataTable.Cell>
     </DataTable.Row>
   </DataTable>
 );

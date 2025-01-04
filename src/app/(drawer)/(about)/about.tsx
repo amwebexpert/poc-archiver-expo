@@ -46,7 +46,7 @@ const AboutScreen: FunctionComponent = () => {
               mode="outlined"
               icon="briefcase-download-outline"
               onPress={Updates.fetchUpdateAsync}>
-              Apply update
+              Apply
             </Button>
           )}
         </Card.Actions>
