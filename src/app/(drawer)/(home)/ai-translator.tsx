@@ -112,8 +112,6 @@ const TranslatorScreen: FunctionComponent = () => {
       {isLoading && (
         <ModalSpinner
           isVisible={isLoading}
-          title="Loading model"
-          description="Please wait while translation models are loading... Only run once: next time will be faster!"
           modelLoadingLogs={modelLoadingLogs}
           onDismiss={() => setIsLoading(false)}
         />

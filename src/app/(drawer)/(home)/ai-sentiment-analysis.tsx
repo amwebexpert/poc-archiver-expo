@@ -3,8 +3,9 @@ import { Text } from 'react-native-paper';
 
 import { FunctionComponent, useEffect, useState } from 'react';
 import { SafeContainer } from '~/components/safe-container';
-import { FullCenteredSpinner } from '~/components/spinner/full-centered-spinner';
+import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
+import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { SentimentAnalyser } from '~/features/ai-sentiments/text-classification';
 import { useAppTheme } from '~/theme/theme';
 
@@ -17,24 +18,17 @@ const TEXTS_TO_ANALYSE = [
 
 const AiSentimentAnalysis: FunctionComponent = () => {
   const styles = useStyles();
-  const [isReady, setIsReady] = useState(false);
+  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
   const [classifications, setClassifications] = useState<string[]>([]);
 
   const analyse = async (): Promise<string[]> => {
-    const analyser = await SentimentAnalyser.getInstance((progress) => {
-      setIsReady(isProgressStatusReady(progress));
-    });
-
+    const analyser = await SentimentAnalyser.getInstance(progressHandler);
     return analyser.analyse(TEXTS_TO_ANALYSE);
   };
 
   useEffect(() => {
     analyse().then(setClassifications);
   }, []);
-
-  if (!isReady) {
-    return <FullCenteredSpinner />;
-  }
 
   return (
     <SafeContainer style={styles.root}>
@@ -49,6 +43,14 @@ const AiSentimentAnalysis: FunctionComponent = () => {
           </View>
         );
       })}
+
+      {isLoading && (
+        <ModalSpinner
+          isVisible={isLoading}
+          modelLoadingLogs={modelLoadingLogs}
+          onDismiss={() => setIsLoading(false)}
+        />
+      )}
     </SafeContainer>
   );
 };

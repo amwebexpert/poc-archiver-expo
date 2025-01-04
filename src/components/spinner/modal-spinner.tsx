@@ -1,20 +1,20 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, Dialog, Portal, Text, TextInput } from 'react-native-paper';
+import { ActivityIndicator, Button, Dialog, Portal, Text } from 'react-native-paper';
 import { useAppTheme } from '~/theme/theme';
 
 export interface ModalSpinnerProps {
   isVisible: boolean;
-  title: ReactNode;
-  description: ReactNode;
+  title?: ReactNode;
+  description?: ReactNode;
   modelLoadingLogs: string[];
   onDismiss: () => void;
 }
 
 export const ModalSpinner: FunctionComponent<ModalSpinnerProps> = ({
   isVisible,
-  title,
-  description,
+  title = 'Loading model',
+  description = 'Please wait while translation models are loading... Only run once: next time will be faster!',
   modelLoadingLogs,
   onDismiss,
 }) => {
