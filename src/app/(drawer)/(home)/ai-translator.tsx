@@ -92,7 +92,7 @@ const TranslatorScreen: FunctionComponent = () => {
       />
 
       <TextInput
-        label="Translation"
+        label="Translation (press to share)"
         mode="outlined"
         multiline={true}
         value={translation}
