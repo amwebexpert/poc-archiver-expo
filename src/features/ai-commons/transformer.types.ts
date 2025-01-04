@@ -10,8 +10,8 @@ export const isProgressStatusReady = (progress: Progress) => progress.status ===
 export const extractProgressLog = (progress: Progress) => {
   const time = nowAsTime();
   if (progress.file) {
-    return `${time} - ${progress.file}: ${progress.status}`;
+    return `${time} ${progress.file}: ${progress.status}`;
   }
 
-  return `${time} - ${progress.model}: ${progress.status}`;
+  return `${time} ${progress.model}: ${progress.status}`;
 };

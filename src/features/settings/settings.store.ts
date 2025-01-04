@@ -1,4 +1,4 @@
-import { autorun, makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { storage, StorageKey } from '~/utils/storage';
 
 class SettingsStore {
@@ -16,7 +16,3 @@ class SettingsStore {
 }
 
 export const settingsStore = new SettingsStore();
-
-autorun(() => {
-  console.info('DarkMode: ', settingsStore.isDarkMode);
-});

@@ -1,8 +1,8 @@
+import { nativeApplicationVersion, nativeBuildVersion } from 'expo-application';
 import * as Updates from 'expo-updates';
-import { nativeBuildVersion, nativeApplicationVersion } from 'expo-application';
 
 import { useEffect } from 'react';
-import { APP_VERSION_INFO, LONG_VERSION_DATE } from '~/constants';
+import { APP_VERSION_INFO } from '~/constants';
 
 const { NAME } = APP_VERSION_INFO;
 
@@ -17,8 +17,8 @@ export const useUpdates = () => {
 
   const storeVersion = `Store version: ${nativeApplicationVersion} (${nativeBuildVersion})`;
   const runTypeMessage = currentlyRunning.isEmbeddedLaunch
-    ? `App is running from built-in code ✓. ${storeVersion}.`
-    : `App is running an dynamic update. ${storeVersion}.`;
+    ? `${storeVersion}: from built-in code.`
+    : `${storeVersion}: with dynamic update.`;
 
   console.info(
     '===> info',
