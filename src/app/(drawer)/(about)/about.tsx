@@ -34,7 +34,7 @@ const AboutScreen: FunctionComponent = () => {
             mode="outlined"
             onPress={() => router.push('/(drawer)/(about)/network-logs')}
             icon="network">
-            Network
+            Http
           </Button>
 
           <Button mode="outlined" icon="refresh" onPress={Updates.checkForUpdateAsync}>
