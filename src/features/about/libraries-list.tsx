@@ -1,6 +1,7 @@
 import { FlashList } from '@shopify/flash-list';
+import * as WebBrowser from 'expo-web-browser';
 import React, { FunctionComponent } from 'react';
-import { Linking, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { List, Text } from 'react-native-paper';
 
 import { useAppTheme } from '~/theme/theme';
@@ -20,7 +21,7 @@ export const LibrariesList: FunctionComponent = () => {
           <List.Item
             title={item.title}
             description={`${item.version} [${item.licenceType} licence]`}
-            onPress={() => Linking.openURL(item.repository)}
+            onPress={() => WebBrowser.openBrowserAsync(item.repository)}
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
           />
         )}

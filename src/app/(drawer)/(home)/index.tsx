@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import { Linking, StyleSheet, View } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+import { StyleSheet, View } from 'react-native';
 import { Button, Paragraph, Text } from 'react-native-paper';
 
 import { SafeContainer } from '~/components/layout/safe-container';
@@ -32,7 +33,7 @@ export default function Home() {
           </Paragraph>
 
           <View style={styles.actions}>
-            <Button mode="outlined" onPress={() => Linking.openURL(REPOSITORY)} icon="star">
+            <Button mode="outlined" onPress={() => WebBrowser.openBrowserAsync(REPOSITORY)} icon="star">
               Star it!
             </Button>
 
