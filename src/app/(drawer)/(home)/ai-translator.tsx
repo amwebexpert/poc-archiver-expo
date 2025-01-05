@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Share, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { LanguageSelector } from '~/components/language-selector/language-selector';
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { TextTranslator } from '~/features/ai-translation/text-translation';

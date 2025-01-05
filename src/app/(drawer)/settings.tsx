@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import { useSnackbar } from '~/components/snack-bar/snackbar-provider';
 import { settingsStore } from '~/features/settings/settings.store';
 

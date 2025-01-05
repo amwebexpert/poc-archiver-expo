@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
 import { FunctionComponent, useEffect, useState } from 'react';
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';

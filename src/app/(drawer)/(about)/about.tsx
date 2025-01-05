@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
 
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import { useUpdates } from '~/hooks/use-updates';
 import { useAppTheme } from '~/theme/theme';
 

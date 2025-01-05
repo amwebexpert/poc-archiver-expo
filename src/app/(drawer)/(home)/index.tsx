@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { Linking, StyleSheet, View } from 'react-native';
 import { Button, Paragraph, Text } from 'react-native-paper';
 
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import { APP_VERSION_INFO } from '~/constants';
 import { useAppTheme } from '~/theme/theme';
 

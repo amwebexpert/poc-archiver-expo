@@ -2,7 +2,7 @@ import { Link, Stack } from 'expo-router';
 import { Text } from 'react-native-paper';
 import { Fragment } from 'react';
 import { StyleSheet } from 'react-native';
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 
 export default function NotFoundScreen() {
   return (

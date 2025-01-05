@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import { FunctionComponent } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { SafeContainer } from '~/components/safe-container';
+import { SafeContainer } from '~/components/layout/safe-container';
 import BottomSheetDemo from '~/features/experiments/bottom-sheet';
 import { DropDownList } from '~/features/experiments/drop-down-list';
 import { useAppTheme } from '~/theme/theme';
