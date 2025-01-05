@@ -14,7 +14,7 @@ export default {
         'expo-splash-screen',
         {
           backgroundColor: '#6aa563',
-          image: './assets/icon.png',
+          image: './assets/images/icon.png',
           imageWidth: 100,
         },
       ],
@@ -24,24 +24,24 @@ export default {
       tsconfigPaths: true,
     },
     orientation: 'portrait',
-    icon: './assets/icon.png',
+    icon: './assets/images/icon.png',
     userInterfaceStyle: 'light',
     splash: {
-      image: './assets/splash.png',
+      image: './assets/images/splash.png',
     },
     assetBundlePatterns: ['**/*'],
     ios: {
       icon: {
-        light: './assets/icon.png',
-        dark: './assets/icon.png',
-        tinted: './assets/icon.png',
+        light: './assets/images/icon.png',
+        dark: './assets/images/icon.png',
+        tinted: './assets/images/icon.png',
       },
       supportsTablet: true,
       bundleIdentifier: 'com.amwebexpert.pocarchiverexpo',
     },
     android: {
       adaptiveIcon: {
-        foregroundImage: './assets/adaptive-icon.png',
+        foregroundImage: './assets/images/adaptive-icon.png',
         backgroundColor: '#6aa563',
       },
       package: 'com.amwebexpert.pocarchiverexpo',
