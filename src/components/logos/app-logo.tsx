@@ -8,6 +8,6 @@ export interface AppLogoProps {
 export const AppLogo: FunctionComponent<AppLogoProps> = ({ size }) => (
   <Image
     style={{ height: size, width: size }}
-    source={require('../../../assets/icon-transparent-background.png')}
+    source={require('@assets/icon-transparent-background.png')}
   />
 );

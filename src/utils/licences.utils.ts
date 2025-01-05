@@ -1,4 +1,4 @@
-import LICENCES from "../../assets/licenses.json";
+import LICENCES from "@assets/licenses.json";
 
 const numberRegex = /\d+(\.\d+)*/;
 const atRegex = /(?:@)/gi;
