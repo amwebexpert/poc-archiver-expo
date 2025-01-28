@@ -1,4 +1,7 @@
 // The full list of languages in FLORES-200 is available here:
+
+import { SelectOption } from '~/components/drop-down-selector/drop-down-selector';
+
 // @see https://github.com/facebookresearch/flores/blob/main/flores200/README.md#languages-in-flores-200
 const LANGUAGES = {
   en: 'English',
@@ -34,11 +37,6 @@ const LANGUAGES = {
   sl: 'Slovenian',
 };
 
-export interface LanguageOption {
-  label: string;
-  value: string;
-}
-
-export const LANGUAGE_OPTIONS: LanguageOption[] = Object.entries(LANGUAGES)
+export const LANGUAGE_OPTIONS: SelectOption[] = Object.entries(LANGUAGES)
   .map(([value, label]) => ({ label, value }))
   .sort((a, b) => a.label.localeCompare(b.label));

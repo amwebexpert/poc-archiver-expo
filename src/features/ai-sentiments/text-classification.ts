@@ -4,6 +4,10 @@ import { env, pipeline, TextClassificationPipeline } from '@fugood/transformers'
 import { storage, StorageKey } from '~/utils/storage';
 import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
 
+// The model is fine-tuned specifically for sentiment analysis, meaning it can predict the
+// sentiment of a given text (e.g., positive, negative, or neutral).
+// It is particularly useful for tasks like customer feedback analysis, social media monitoring, and
+// review classification.
 const DEFAULT_MODEL_NAME = 'Xenova/bert-base-multilingual-uncased-sentiment';
 
 export type ScoreLabel = {

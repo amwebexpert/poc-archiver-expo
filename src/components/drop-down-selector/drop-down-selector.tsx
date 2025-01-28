@@ -3,20 +3,26 @@ import { StyleSheet, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Text } from 'react-native-paper';
 import { useAppTheme } from '~/theme/theme';
-import { LANGUAGE_OPTIONS } from './language-selector.types';
 
-type LanguageSelectorProps = {
+export interface SelectOption {
+  label: string;
+  value: string;
+}
+
+export type DropDownSelectorProps = {
   label: string;
   value?: string;
   onChange: (code: string) => void;
   isError?: boolean;
+  options: SelectOption[];
 };
 
-export const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
+export const DropDownSelector: FunctionComponent<DropDownSelectorProps> = ({
   label,
   value,
   onChange,
   isError,
+  options,
 }) => {
   const theme = useAppTheme();
   const { primary, error } = theme.colors;
@@ -37,7 +43,7 @@ export const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={LANGUAGE_OPTIONS}
+        data={options}
         search={true}
         maxHeight={300}
         labelField="label"

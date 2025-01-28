@@ -3,10 +3,11 @@ import React, { FunctionComponent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Share, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import { LanguageSelector } from '~/components/language-selector/language-selector';
+import { DropDownSelector } from '~/components/drop-down-selector/drop-down-selector';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
+import { LANGUAGE_OPTIONS } from '~/features/ai-translation/languages.types';
 import { TextTranslator } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
 import { getErrorMessage } from '~/utils/errors.utils';
@@ -65,7 +66,12 @@ const TranslatorScreen: FunctionComponent = () => {
         name="sourceLanguage"
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
-          <LanguageSelector label="Source:" value={value} onChange={onChange} />
+          <DropDownSelector
+            label="Source:"
+            value={value}
+            onChange={onChange}
+            options={LANGUAGE_OPTIONS}
+          />
         )}
       />
 
@@ -90,7 +96,12 @@ const TranslatorScreen: FunctionComponent = () => {
         name="targetLanguage"
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
-          <LanguageSelector label="Target:" value={value} onChange={onChange} />
+          <DropDownSelector
+            label="Target:"
+            value={value}
+            onChange={onChange}
+            options={LANGUAGE_OPTIONS}
+          />
         )}
       />
 
@@ -116,7 +127,7 @@ const TranslatorScreen: FunctionComponent = () => {
           mode="contained"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid || isLoading || isWorking}
-          loading={isWorking}>
+          loading={isWorking && !isLoading}>
           Submit
         </Button>
       </View>
