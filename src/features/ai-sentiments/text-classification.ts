@@ -15,6 +15,11 @@ export type ScoreLabel = {
   label: string;
 };
 
+export type AugmentedScoreLabel = ScoreLabel & {
+  verboseLabel: string;
+  percent: number;
+};
+
 const canUseOfflineMode = (): boolean =>
   storage.getBoolean(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE) ?? false;
 
@@ -64,12 +69,29 @@ export class SentimentAnalyser {
     return this.instance;
   }
 
-  async analyse(texts: string[]): Promise<string[]> {
+  async analyse(texts: string[]): Promise<AugmentedScoreLabel[]> {
     if (!this.sentimentAnalysisPipeline) {
       throw new Error('Model is not loaded yet');
     }
 
-    const result = (await this.sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
-    return result.map((r) => `${r.label} (score: ${r.score.toFixed(2)})`);
+    const results = (await this.sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
+    return results.map((result) => ({
+      ...result,
+      verboseLabel: `${result.label} (score: ${result.score?.toFixed(2)})`,
+      percent: +result.label.split(' ')[0] / 5,
+    }));
   }
 }
+
+export const MULTI_LANG_FOOD_RATING = [
+  'I love transformers!',
+  'I hate this food, not good at all!',
+  'Ce plat était délicieux et le service était excellent!',
+  'Ce plat était délicieux et le service excellent. Même si le prix est un peu élevé, ca en vallait la peine!',
+];
+
+export const FRENCH_INSPECTION_REPORT = [
+  "L'inspection de l'entrée de la mine révèle un état critique des infrastructures. Les portes en acier inox, censées garantir la sécurité et la protection de l'accès, sont gravement endommagées. Une des portes est complètement rouillée et hors d'usage, laissant l'accès non sécurisé. Le système de verrouillage est défectueux et plusieurs charnières sont cassées, rendant impossible une fermeture hermétique. De plus, des débris et des accumulations de boue obstruent l'entrée, compliquant l'accès des travailleurs et des équipements. Ces conditions représentent un danger immédiat, tant pour la sécurité des personnes que pour la continuité des activités minières. Une intervention rapide et complète est impérative.",
+  "Suite à une inspection approfondie, l'état général du hangar est jugé préoccupant. La structure principale montre des signes avancés de corrosion au niveau des poutres métalliques, principalement dues à une exposition prolongée à des conditions climatiques humides et à l'absence de traitement protecteur. Le système de ventilation est également défectueux, entraînant une accumulation d'humidité qui aggrave la dégradation. De plus, certaines parties de la toiture sont endommagées, permettant des infiltrations d'eau. Ces problèmes représentent un risque pour la sécurité des employés et des équipements, nécessitant des travaux de réparation urgents pour éviter des dommages plus importants.",
+  "L'inspection du barrage de rivière, mesurant 500 mètres de hauteur et 300 mètres de largeur, révèle qu'il est dans un bon état général. La structure principale est solide et bien entretenue, avec seulement quelques petites fissures superficielles au niveau des joints qui ne compromettent pas la sécurité globale. Les systèmes de drainage et les vannes de régulation fonctionnent correctement, bien que des améliorations mineures soient nécessaires pour optimiser leur efficacité. Une attention particulière devra être accordée à la surveillance régulière de ces fissures pour prévenir d'éventuels problèmes à long terme. Aucune menace immédiate n'a été détectée pour les populations en aval.",
+];

@@ -33,7 +33,7 @@ const TranslatorScreen: FunctionComponent = () => {
   const {
     control,
     handleSubmit,
-    formState: { isValid, defaultValues },
+    formState: { isValid },
   } = useForm<FormData>({ mode: 'onChange', defaultValues: DEFAULT_FORM_VALUES });
 
   const onSubmit = async (data: FormData) => {
