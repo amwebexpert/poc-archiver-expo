@@ -10,7 +10,7 @@ export interface SelectOption {
 }
 
 export type DropDownSelectorProps = {
-  label: string;
+  label?: string;
   value?: string;
   onChange: (code: string) => void;
   isError?: boolean;
@@ -27,11 +27,14 @@ export const DropDownSelector: FunctionComponent<DropDownSelectorProps> = ({
   const theme = useAppTheme();
   const { primary, error } = theme.colors;
   const [isFocus, setIsFocus] = useState(false);
-  const styles = useStyles(isFocus);
+  const hasLabel = !!label;
+  const styles = useStyles({ isFocus, hasLabel });
 
   return (
     <View style={styles.label}>
-      <Text style={[isFocus && { color: primary }, isError && { color: error }]}>{label}</Text>
+      {hasLabel && (
+        <Text style={[isFocus && { color: primary }, isError && { color: error }]}>{label}</Text>
+      )}
 
       <Dropdown
         style={[
@@ -62,14 +65,19 @@ export const DropDownSelector: FunctionComponent<DropDownSelectorProps> = ({
   );
 };
 
-const useStyles = (isFocus = false) => {
+type UseStypesProps = {
+  isFocus: boolean;
+  hasLabel: boolean;
+};
+
+const useStyles = ({ isFocus, hasLabel }: UseStypesProps) => {
   const theme = useAppTheme();
 
   return StyleSheet.create({
     label: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 4,
+      gap: hasLabel ? theme.spacing(0.5) : 0,
     },
     dropdown: {
       flex: 1,
