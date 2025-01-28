@@ -7,11 +7,13 @@ import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { ImageObjectsDetector } from '~/features/ai-objects-detection/objects-detection';
+import { useImagePicker } from '~/hooks/use-image-picker';
 import { useAppTheme } from '~/theme/theme';
 
 const ObjectsDetection: FunctionComponent = () => {
   const styles = useStyles();
   const [maxHeight, setMaxHeight] = useState<number>(0);
+  const { pickImage, selectedImage, dimensions } = useImagePicker();
 
   const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
@@ -40,6 +42,14 @@ const ObjectsDetection: FunctionComponent = () => {
       </View>
 
       <View style={styles.buttonRow}>
+        <Button
+          mode="outlined"
+          loading={isLoading}
+          onPress={pickImage}
+          disabled={isWorking || isLoading}>
+          Pick image
+        </Button>
+
         <Button
           mode="contained"
           loading={isLoading}
