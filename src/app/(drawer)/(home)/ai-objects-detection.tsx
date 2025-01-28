@@ -1,26 +1,27 @@
 import { useToggle } from '@uidotdev/usehooks';
-import { StyleSheet, View, Image, useWindowDimensions, LayoutChangeEvent } from 'react-native';
-import { Button, Card, Text } from 'react-native-paper';
+import { Image, LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { Button } from 'react-native-paper';
 
 import { FunctionComponent, useState } from 'react';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
+import { useModelLoading } from '~/features/ai-commons/use-model-loading';
+import { ImageObjectsDetector } from '~/features/ai-objects-detection/objects-detection';
 import { useAppTheme } from '~/theme/theme';
 
 const ObjectsDetection: FunctionComponent = () => {
   const styles = useStyles();
   const [maxHeight, setMaxHeight] = useState<number>(0);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const modelLoadingLogs = [''];
-
+  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
 
   const onAnalysePress = async () => {
     toggleWorking();
 
     try {
-      // TODO
+      const analyser = await ImageObjectsDetector.getInstance(progressHandler);
+      await analyser.analyse('');
     } finally {
       toggleWorking(false);
     }

@@ -6,4 +6,5 @@ export enum StorageKey {
   DARK_MODE = 'darkMode',
   SENTIMENT_MODEL_AVAILABLE_OFFLINE = 'sentimentAnalysisModelAvailableOffline',
   TRANSLATION_MODEL_AVAILABILITY = 'translationModelAvailability',
+  OBJECTS_DETECTION_MODEL_AVAILABILITY = 'objectsDetectionModelAvailability',
 }
