@@ -20,8 +20,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="ai-sentiment-analysis"
         options={{
-          title: 'Sentiments',
-          tabBarIcon: ({ color }) => <TabBarIcon name="smile-o" color={color} />,
+          title: 'Inspections',
+          tabBarIcon: ({ color }) => <TabBarIcon name="check-square-o" color={color} />,
         }}
       />
 
@@ -30,6 +30,14 @@ export default function TabLayout() {
         options={{
           title: 'Translator',
           tabBarIcon: ({ color }) => <TabBarIcon name="language" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="ai-objects-detection"
+        options={{
+          title: 'Objects',
+          tabBarIcon: ({ color }) => <TabBarIcon name="image" color={color} />,
         }}
       />
     </Tabs>
