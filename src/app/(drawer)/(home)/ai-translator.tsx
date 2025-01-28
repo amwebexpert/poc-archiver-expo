@@ -1,3 +1,4 @@
+import { useToggle } from '@uidotdev/usehooks';
 import React, { FunctionComponent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Share, StyleSheet, View } from 'react-native';
@@ -25,6 +26,7 @@ const DEFAULT_FORM_VALUES: FormData = {
 const TranslatorScreen: FunctionComponent = () => {
   const [translation, setTranslation] = useState('');
   const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
+  const [isWorking, toggleWorking] = useToggle(false);
 
   const styles = useStyles();
   const {
@@ -34,7 +36,8 @@ const TranslatorScreen: FunctionComponent = () => {
   } = useForm<FormData>({ mode: 'onChange', defaultValues: DEFAULT_FORM_VALUES });
 
   const onSubmit = async (data: FormData) => {
-    setTranslation('');
+    toggleWorking();
+    setTranslation(' ');
 
     const { sourceText: text, sourceLanguage, targetLanguage } = data;
 
@@ -51,6 +54,7 @@ const TranslatorScreen: FunctionComponent = () => {
       setTranslation(`Error while translating text: ${getErrorMessage(error)}`);
     } finally {
       setIsLoading(false);
+      toggleWorking();
     }
   };
 
@@ -101,10 +105,18 @@ const TranslatorScreen: FunctionComponent = () => {
       />
 
       <View style={styles.buttonRow}>
-        <Button mode="outlined" onPress={() => setTranslation('')} disabled={isLoading}>
+        <Button
+          mode="outlined"
+          onPress={() => setTranslation('')}
+          disabled={isLoading || isWorking}>
           Reset
         </Button>
-        <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid || isLoading}>
+
+        <Button
+          mode="contained"
+          onPress={handleSubmit(onSubmit)}
+          disabled={!isValid || isLoading || isWorking}
+          loading={isWorking}>
           Submit
         </Button>
       </View>

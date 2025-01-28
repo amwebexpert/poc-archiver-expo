@@ -59,3 +59,8 @@ Adhering to established coding guidelines is essential for developing efficient,
 
 - https://github.com/openspacelabs/react-native-zoomable-view/issues/61
 - https://www.npmjs.com/package/@openspacelabs/react-native-zoomable-view
+
+### TODOs
+
+- PocArchiverExpo-0001
+  - improve model loading progress Typescript types and UI progress bar
