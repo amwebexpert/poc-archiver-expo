@@ -30,8 +30,7 @@ const TranslatorScreen: FunctionComponent = () => {
   const {
     control,
     handleSubmit,
-    formState: { isValid },
-    reset,
+    formState: { isValid, defaultValues },
   } = useForm<FormData>({ mode: 'onChange', defaultValues: DEFAULT_FORM_VALUES });
 
   const onSubmit = async (data: FormData) => {
@@ -92,7 +91,7 @@ const TranslatorScreen: FunctionComponent = () => {
       />
 
       <TextInput
-        label="Translation (press to share)"
+        label={!!translation ? 'Translation (press to share)' : ''}
         mode="outlined"
         multiline={true}
         value={translation}
@@ -102,7 +101,7 @@ const TranslatorScreen: FunctionComponent = () => {
       />
 
       <View style={styles.buttonRow}>
-        <Button mode="outlined" onPress={() => reset()} disabled={isLoading}>
+        <Button mode="outlined" onPress={() => setTranslation('')} disabled={isLoading}>
           Reset
         </Button>
         <Button mode="contained" onPress={handleSubmit(onSubmit)} disabled={!isValid || isLoading}>

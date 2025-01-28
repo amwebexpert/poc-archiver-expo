@@ -65,6 +65,12 @@
         "licenseUrl": "https://github.com/Shopify/react-native-skia/raw/master/LICENSE.md",
         "parents": "poc-archiver-expo"
     },
+    "@uidotdev/usehooks@2.4.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/uidotdev/usehooks",
+        "licenseUrl": "https://github.com/uidotdev/usehooks/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "browserify-zlib@0.2.0": {
         "licenses": "MIT",
         "repository": "https://github.com/devongovett/browserify-zlib",

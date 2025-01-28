@@ -33,6 +33,10 @@ export class SentimentAnalyser {
     return !!this.sentimentAnalysisPipeline;
   }
 
+  static isInstanceReady(): boolean {
+    return !!this.instance?.isReady;
+  }
+
   static async getInstance(progressHandler?: ProgressCallback) {
     if (this.instance?.isReady) {
       progressHandler?.(PROGRESS_STATUS_READY);

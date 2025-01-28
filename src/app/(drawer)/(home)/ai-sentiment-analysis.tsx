@@ -1,10 +1,10 @@
+import { useToggle } from '@uidotdev/usehooks';
 import { StyleSheet, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
-import { isProgressStatusReady } from '~/features/ai-commons/transformer.types';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { SentimentAnalyser } from '~/features/ai-sentiments/text-classification';
 import { useAppTheme } from '~/theme/theme';
@@ -18,17 +18,21 @@ const TEXTS_TO_ANALYSE = [
 
 const AiSentimentAnalysis: FunctionComponent = () => {
   const styles = useStyles();
+
   const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
+  const [isWorking, toggleWorking] = useToggle(false);
   const [classifications, setClassifications] = useState<string[]>([]);
 
-  const analyse = async (): Promise<string[]> => {
-    const analyser = await SentimentAnalyser.getInstance(progressHandler);
-    return analyser.analyse(TEXTS_TO_ANALYSE);
-  };
+  const onAnalysePress = async () => {
+    toggleWorking();
 
-  useEffect(() => {
-    analyse().then(setClassifications);
-  }, []);
+    try {
+      const analyser = await SentimentAnalyser.getInstance(progressHandler);
+      analyser.analyse(TEXTS_TO_ANALYSE).then(setClassifications);
+    } finally {
+      toggleWorking(false);
+    }
+  };
 
   return (
     <SafeContainer style={styles.root}>
@@ -43,6 +47,23 @@ const AiSentimentAnalysis: FunctionComponent = () => {
           </View>
         );
       })}
+
+      <View style={styles.buttonRow}>
+        <Button
+          mode="outlined"
+          onPress={() => setClassifications([])}
+          disabled={isWorking || isLoading}>
+          Reset
+        </Button>
+
+        <Button
+          mode="contained"
+          loading={isLoading}
+          onPress={onAnalysePress}
+          disabled={isWorking || isLoading}>
+          Analyse
+        </Button>
+      </View>
 
       {isLoading && (
         <ModalSpinner
@@ -66,6 +87,11 @@ const useStyles = () => {
     },
     classification: {
       marginBottom: theme.spacing(2),
+    },
+    buttonRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginVertical: theme.spacing(2),
     },
   });
 };
