@@ -13,17 +13,24 @@ import { useAppTheme } from '~/theme/theme';
 const ObjectsDetection: FunctionComponent = () => {
   const styles = useStyles();
   const [maxHeight, setMaxHeight] = useState<number>(0);
-  const { pickImage, selectedImage, dimensions } = useImagePicker();
+  const { pickImage, selectedImage, hasSelectedImage } = useImagePicker();
 
   const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
 
   const onAnalysePress = async () => {
+    if (!selectedImage) {
+      return;
+    }
+
     toggleWorking();
 
     try {
       const analyser = await ImageObjectsDetector.getInstance(progressHandler);
-      await analyser.analyse('');
+      const results = await analyser.analyse(selectedImage);
+      console.info('🚀 → 1st detected object', JSON.stringify(results[0], null, 2));
+    } catch (error) {
+      console.error('Error analysing image:', error);
     } finally {
       toggleWorking(false);
     }
@@ -34,11 +41,9 @@ const ObjectsDetection: FunctionComponent = () => {
   return (
     <SafeContainer style={styles.root}>
       <View onLayout={onLayout} style={styles.imageContainer}>
-        <Image
-          source={{ uri: 'https://picsum.photos/800' }}
-          resizeMode="contain"
-          height={maxHeight}
-        />
+        {!!selectedImage && (
+          <Image source={{ uri: selectedImage }} resizeMode="contain" height={maxHeight} />
+        )}
       </View>
 
       <View style={styles.buttonRow}>
@@ -54,7 +59,7 @@ const ObjectsDetection: FunctionComponent = () => {
           mode="contained"
           loading={isLoading}
           onPress={onAnalysePress}
-          disabled={isWorking || isLoading}>
+          disabled={isWorking || isLoading || !hasSelectedImage}>
           Analyse
         </Button>
       </View>

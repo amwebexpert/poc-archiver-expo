@@ -18,6 +18,8 @@ export const useImagePicker = () => {
   const [selectedImage, setSelectedImage] = useState<string>();
   const [dimensions, setDimensions] = useState<ImageDimensions>();
 
+  const hasSelectedImage: boolean = !!selectedImage;
+
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync(options);
     if (result.canceled) {
@@ -26,7 +28,6 @@ export const useImagePicker = () => {
 
     const { uri } = result.assets[0];
     setSelectedImage(uri);
-    console.info('🚀 → pickImage uri', { uri });
 
     Image.getSize(
       uri,
@@ -37,6 +38,7 @@ export const useImagePicker = () => {
 
   return {
     pickImage,
+    hasSelectedImage,
     selectedImage,
     dimensions,
   };

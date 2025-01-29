@@ -3,6 +3,7 @@
 import { env, ObjectDetectionPipeline, pipeline } from '@fugood/transformers';
 import { storage, StorageKey } from '~/utils/storage';
 import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
+import { DetectedObject } from './objects-detection.types';
 
 const DEFAULT_MODEL_NAME = 'Xenova/detr-resnet-50';
 
@@ -55,7 +56,7 @@ export class ImageObjectsDetector {
     return this.instance;
   }
 
-  async analyse(base64: string): Promise<void> {
+  async analyse(base64: string): Promise<DetectedObject[]> {
     if (!this.objectsDetectionPipeline) {
       throw new Error('Model is not loaded yet');
     }
@@ -64,7 +65,7 @@ export class ImageObjectsDetector {
       threshold: 0.5,
       percentage: true,
     });
- 
-    console.info('🚀 → info', JSON.stringify(results, null, 2));
+
+    return results as DetectedObject[];
   }
 }
