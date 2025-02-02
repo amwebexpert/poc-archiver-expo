@@ -14,9 +14,15 @@ export interface ImageDimensions {
   aspectRatio: number;
 }
 
+const DEFAULT_DIMENSIONS: ImageDimensions = {
+  width: 0,
+  height: 0,
+  aspectRatio: 1,
+};
+
 export const useImagePicker = () => {
   const [selectedImage, setSelectedImage] = useState<string>();
-  const [dimensions, setDimensions] = useState<ImageDimensions>();
+  const [dimensions, setDimensions] = useState<ImageDimensions>(DEFAULT_DIMENSIONS);
 
   const hasSelectedImage: boolean = !!selectedImage;
 
