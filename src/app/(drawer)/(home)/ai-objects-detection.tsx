@@ -1,11 +1,12 @@
 import { useToggle } from '@uidotdev/usehooks';
-import { Image, LayoutChangeEvent, LayoutRectangle, StyleSheet, Text, View } from 'react-native';
+import { LayoutRectangle, StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
 
-import { Fragment, FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
+import { DetectedObjects } from '~/features/ai-objects-detection/detected-objects';
 import { ImageObjectsDetector } from '~/features/ai-objects-detection/objects-detection';
 import { DetectedObject } from '~/features/ai-objects-detection/objects-detection.types';
 import { useImagePicker } from '~/hooks/use-image-picker';
@@ -21,10 +22,6 @@ const DEFAULT_LAYOUT_RECT: LayoutRectangle = {
 const ObjectsDetection: FunctionComponent = () => {
   const styles = useStyles();
   const { pickImage, selectedImage, hasSelectedImage, dimensions } = useImagePicker();
-
-  const [imageLayout, setImageLayout] = useState<LayoutRectangle>(DEFAULT_LAYOUT_RECT);
-  const imageHeight = imageLayout.width / dimensions.aspectRatio;
-  const imageTopY = (imageLayout.height - imageHeight) / 2;
 
   const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
@@ -52,33 +49,14 @@ const ObjectsDetection: FunctionComponent = () => {
     }
   };
 
-  const onLayout = (event: LayoutChangeEvent) => setImageLayout(event.nativeEvent.layout);
-
   return (
     <SafeContainer style={styles.root}>
       <View style={styles.imageContainer}>
-        {!!selectedImage && (
-          <Image
-            source={{ uri: selectedImage }}
-            resizeMode="contain"
-            style={styles.image}
-            onLayout={onLayout}
-          />
-        )}
-
-        {detectedObjects.map(({ label, box }, index) => {
-          const top = box.ymin * imageHeight + imageTopY;
-          const left = box.xmin * imageLayout.width;
-          const width = (box.xmax - box.xmin) * imageLayout.width;
-          const height = (box.ymax - box.ymin) * imageHeight;
-
-          return (
-            <Fragment key={`${label}-${index}`}>
-              <View style={[styles.boundingBox, { top, left, width, height }]} />
-              <Text style={[styles.boundingBoxLabel, { top: top - 12, left }]}>{label}</Text>
-            </Fragment>
-          );
-        })}
+        <DetectedObjects
+          selectedImage={selectedImage}
+          aspectRatio={dimensions.aspectRatio}
+          detectedObjects={detectedObjects}
+        />
       </View>
 
       <View style={styles.buttonRow}>
@@ -92,7 +70,7 @@ const ObjectsDetection: FunctionComponent = () => {
 
         <Button
           mode="contained"
-          loading={isLoading}
+          loading={isWorking}
           onPress={onAnalysePress}
           disabled={isWorking || isLoading || !hasSelectedImage}>
           Analyse
