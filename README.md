@@ -64,3 +64,12 @@ Adhering to established coding guidelines is essential for developing efficient,
 
 - PocArchiverExpo-0001
   - improve model loading progress Typescript types and UI progress bar
+
+### iOS Simulator tips
+
+#### Deactivate WiFi and Cellular Mode
+
+    xcrun simctl list devices
+    xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E override --wifiBars 0
+    xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E override --cellularBars 0
+    xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E clear
