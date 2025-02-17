@@ -5,12 +5,17 @@ import { storage, StorageKey } from '~/utils/storage';
 import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
 import { DetectedObject } from './objects-detection.types';
 
+// Other models tried so far:
+// - 'Xenova/detr-resnet-101'
+// - 'Xenova/yolos-small-300'
+// - 'Xenova/yolos-base'
+// - 'Xenova/yolos-small'
 const DEFAULT_MODEL_NAME = 'Xenova/detr-resnet-50';
 
 const canUseOfflineMode = (): boolean =>
   storage.getBoolean(StorageKey.OBJECTS_DETECTION_MODEL_AVAILABILITY) ?? false;
 
-const updateCanUseOfflineMode = (value = true): void =>
+export const updateCanUseOfflineMode = (value = true): void =>
   storage.set(StorageKey.OBJECTS_DETECTION_MODEL_AVAILABILITY, value);
 
 /**
