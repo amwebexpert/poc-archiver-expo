@@ -101,6 +101,8 @@ export class TextTranslator {
     }
 
     const result = await this.translator(text);
+    console.info('🚀 → translate result', result);
+    
     const translations = result as TranslationSingle[];
 
     return translations.map(({ translation_text }) => translation_text).join(' ');

@@ -12,6 +12,11 @@ import { TextTranslator } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
 import { getErrorMessage } from '~/utils/errors.utils';
 
+const EN_TXT_EXAMPLES = [
+  'Translate from your app, without server, even in offline mode',
+  'This is a great example of offline usage',
+];
+
 type FormData = {
   sourceLanguage: string;
   targetLanguage: string;
@@ -21,7 +26,7 @@ type FormData = {
 const DEFAULT_FORM_VALUES: FormData = {
   sourceLanguage: 'en',
   targetLanguage: 'fr',
-  sourceText: 'Translate from your app, without server, even in offline mode',
+  sourceText: EN_TXT_EXAMPLES[0],
 };
 
 const TranslatorScreen: FunctionComponent = () => {
