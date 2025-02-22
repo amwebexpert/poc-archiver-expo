@@ -21,13 +21,16 @@ Expo SDK Proof of concepts collection
 | `yarn lint`                          | Run linter to check for code style and formatting issues.                       |
 | `yarn format`                        | Run linter to automatically fix code style and formatting issues.               |
 | `yarn expo:doctor`                   | Run Expo's doctor command to diagnose issues in the project.                    |
+| `yarn expo:install:fix`              | Update Expo dependencies to the latest versions                                 |
 | `yarn eas:build:ios:preview`         | Build `iOS` preview using EAS.                                                  |
 | `yarn eas:build:ios:development`     | Build `iOS` development using EAS.                                              |
 | `yarn eas:build:android:preview`     | Build `Android` preview using EAS.                                              |
 | `yarn eas:build:android:development` | Build `Android` development using EAS.                                          |
-| `yarn generate:version`              | Generate version infos (see `src/constants.ts`)                                 |
 | `yarn eas:run:ios`                   | Run the latest `EAS iOS build`.                                                 |
 | `yarn eas:run:android`               | Run the latest `EAS Android build`.                                             |
+| `eas:update:ios:preview`             | Publish an OTA `iOS` preview update with changes from project                   |
+| `eas:update:android:preview`         | Publish an OTA `Android` preview update with changes from project               |
+| `yarn generate:version`              | Generate version infos (see `src/constants.ts`)                                 |
 | `yarn postinstall`                   | Run `patch-package` and `npm-license-crawler` after dependencies are installed. |
 
 
