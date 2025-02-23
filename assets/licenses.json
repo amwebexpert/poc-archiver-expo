@@ -305,6 +305,12 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "sonner-native@0.17.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/gunnartorfis/sonner-native",
+        "licenseUrl": "https://github.com/gunnartorfis/sonner-native/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "stream-browserify@3.0.0": {
         "licenses": "MIT",
         "repository": "https://github.com/browserify/stream-browserify",

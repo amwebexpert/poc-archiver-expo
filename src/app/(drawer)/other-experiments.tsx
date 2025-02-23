@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { SafeContainer } from '~/components/layout/safe-container';
 import BottomSheetDemo from '~/features/experiments/bottom-sheet';
 import { DropDownList } from '~/features/experiments/drop-down-list';
+import ToasterDemoScreen from '~/features/experiments/sunner-native';
 import { useAppTheme } from '~/theme/theme';
 
 const DemoBottomSheet: FunctionComponent = () => {
@@ -15,6 +16,7 @@ const DemoBottomSheet: FunctionComponent = () => {
       <Stack.Screen options={{ headerTitle: 'Other POCs' }} />
 
       <BottomSheetDemo />
+      <ToasterDemoScreen />
       <DropDownList />
     </SafeContainer>
   );
@@ -26,7 +28,7 @@ const useStyles = () => {
   return StyleSheet.create({
     container: {
       margin: theme.spacing(3),
-      gap: theme.spacing(3),
+      gap: theme.spacing(2),
     },
   });
 };

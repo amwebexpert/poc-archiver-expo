@@ -16,7 +16,7 @@ const BottomSheetDemo: FunctionComponent = () => {
 
   return (
     <Fragment>
-      <Button mode="contained" onPress={handlePresentModalPress}>
+      <Button icon="text" mode="contained" onPress={handlePresentModalPress}>
         @gorhom/bottom-sheet
       </Button>
 
