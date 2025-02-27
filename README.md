@@ -43,6 +43,10 @@ Adhering to established coding guidelines is essential for developing efficient,
 
 ## References
 
+- [Transformer.js & ONNX Runtime](https://docs.google.com/document/d/1HFsJIK97eaktqOj5au0DIa4gtvGvN9ojnef0uNQ6H2I/edit?usp=sharing)
+- [IA model inference at 0$](https://github.com/amwebexpert/chrome-extensions-collection/tree/master/packages/coding-guide-helper#semantic-search)
+- [WASM example](https://github.com/amwebexpert/chrome-extensions-collection)
+
 ### Builds for iOS Simulator
 
 - https://docs.expo.dev/develop/development-builds/create-a-build/#create-a-build-for-emulatorsimulator
@@ -76,3 +80,4 @@ Adhering to established coding guidelines is essential for developing efficient,
     xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E override --wifiBars 0
     xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E override --cellularBars 0
     xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E clear
+
