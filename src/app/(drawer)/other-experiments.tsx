@@ -13,7 +13,7 @@ const DemoBottomSheet: FunctionComponent = () => {
 
   return (
     <SafeContainer style={styles.container}>
-      <Stack.Screen options={{ headerTitle: 'Other POCs' }} />
+      <Stack.Screen options={{ headerTitle: 'Other POCs..' }} />
 
       <BottomSheetDemo />
       <ToasterDemoScreen />

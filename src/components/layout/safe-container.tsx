@@ -1,12 +1,25 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { SafeAreaView, StyleSheet, ViewStyle } from 'react-native';
+import Animated, { FadeInUp } from 'react-native-reanimated';
+import { useAnimateOnFocus } from '~/hooks/use-animate-on-focus';
 
 type SafeContainerProps = PropsWithChildren<{
   style?: ViewStyle;
 }>;
 
 export const SafeContainer: FunctionComponent<SafeContainerProps> = ({ children, style }) => {
-  return <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>;
+  const isVisible = useAnimateOnFocus();
+  if (!isVisible) {
+    return null;
+  }
+
+  return (
+    <SafeAreaView style={[styles.container, style]}>
+      <Animated.View style={styles.container} entering={FadeInUp.duration(500)}>
+        {children}
+      </Animated.View>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({

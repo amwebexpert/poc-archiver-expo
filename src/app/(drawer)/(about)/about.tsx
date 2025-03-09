@@ -33,7 +33,8 @@ const AboutScreen: FunctionComponent = () => {
           <Button
             mode="outlined"
             onPress={() => router.push('/(drawer)/(about)/network-logs')}
-            icon="network">
+            icon="network"
+          >
             Http
           </Button>
 
@@ -46,7 +47,8 @@ const AboutScreen: FunctionComponent = () => {
               mode="outlined"
               icon="briefcase-download-outline"
               loading={isLoading}
-              onPress={fetchAndApplyUpdate}>
+              onPress={fetchAndApplyUpdate}
+            >
               Apply
             </Button>
           )}
@@ -65,6 +67,9 @@ const useStyles = () => {
     root: {
       margin: theme.spacing(2),
       gap: theme.spacing(2),
+    },
+    container: {
+      flex: 1,
     },
     card: {
       padding: theme.spacing(2),
