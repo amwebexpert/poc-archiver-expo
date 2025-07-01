@@ -9,7 +9,7 @@ const config: ExpoConfig = {
   newArchEnabled: true,
   plugins: [
     [
-      "expo-router",
+      'expo-router',
       {
         origin: 'http://localhost:8081',
       },
@@ -18,6 +18,15 @@ const config: ExpoConfig = {
     [
       'expo-splash-screen',
       { backgroundColor: '#6aa563', image: './assets/images/icon.png', imageWidth: 100 },
+    ],
+    [
+      'react-native-edge-to-edge',
+      {
+        android: {
+          parentTheme: 'Default',
+          enforceNavigationBarContrast: false,
+        },
+      },
     ],
   ],
   experiments: { typedRoutes: true, tsconfigPaths: true },

@@ -1,5 +1,5 @@
 {
-    "@craftzdog/react-native-buffer@6.0.5": {
+    "@craftzdog/react-native-buffer@6.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/craftzdog/react-native-buffer",
         "licenseUrl": "https://github.com/craftzdog/react-native-buffer/raw/master/LICENSE",
@@ -23,7 +23,7 @@
         "licenseUrl": "https://github.com/huggingface/transformers.js/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "@gorhom/bottom-sheet@5.1.2": {
+    "@gorhom/bottom-sheet@5.1.6": {
         "licenses": "MIT",
         "repository": "https://github.com/gorhom/react-native-bottom-sheet",
         "licenseUrl": "https://github.com/gorhom/react-native-bottom-sheet/raw/master/LICENSE",
@@ -35,7 +35,7 @@
         "licenseUrl": "https://github.com/react-native-netinfo/react-native-netinfo/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "@react-navigation/bottom-tabs@7.2.0": {
+    "@react-navigation/bottom-tabs@7.4.2": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
@@ -47,7 +47,7 @@
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "@react-navigation/native@7.0.14": {
+    "@react-navigation/native@7.1.14": {
         "licenses": "MIT",
         "repository": "https://github.com/react-navigation/react-navigation",
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
@@ -197,7 +197,7 @@
         "licenseUrl": "https://github.com/mobxjs/mobx/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "onnxruntime-react-native@1.21.0": {
+    "onnxruntime-react-native@1.22.0": {
         "licenses": "MIT",
         "repository": "https://github.com/Microsoft/onnxruntime",
         "licenseUrl": "https://github.com/Microsoft/onnxruntime",
@@ -209,7 +209,7 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-hook-form@7.54.2": {
+    "react-hook-form@7.59.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-hook-form/react-hook-form",
         "licenseUrl": "https://github.com/react-hook-form/react-hook-form/raw/master/LICENSE",
@@ -239,19 +239,25 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-native-mmkv@3.2.0": {
+    "react-native-is-edge-to-edge@1.2.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/zoontek/react-native-edge-to-edge",
+        "licenseUrl": "https://github.com/zoontek/react-native-edge-to-edge/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
+    "react-native-mmkv@3.3.0": {
         "licenses": "(MIT AND BSD-3-Clause)",
         "repository": "https://github.com/mrousavy/react-native-mmkv",
         "licenseUrl": "https://github.com/mrousavy/react-native-mmkv",
         "parents": "poc-archiver-expo"
     },
-    "react-native-network-logger@1.17.0": {
+    "react-native-network-logger@2.0.1": {
         "licenses": "MIT",
         "repository": "https://github.com/alexbrazier/react-native-network-logger",
         "licenseUrl": "https://github.com/alexbrazier/react-native-network-logger/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-native-paper@5.13.1": {
+    "react-native-paper@5.14.5": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
