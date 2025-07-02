@@ -17,7 +17,7 @@
         "licenseUrl": "https://github.com/mybigday/react-native-audio-pcm-stream/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "@fugood/transformers@3.4.0-beta.1": {
+    "@fugood/transformers@3.5.1-beta.1": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/huggingface/transformers.js",
         "licenseUrl": "https://github.com/huggingface/transformers.js/raw/master/LICENSE",
@@ -107,7 +107,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-dev-client@5.2.2": {
+    "expo-dev-client@5.2.3": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -161,7 +161,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-system-ui@5.0.9": {
+    "expo-system-ui@5.0.10": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -179,7 +179,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo@53.0.15": {
+    "expo@53.0.16": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -299,7 +299,7 @@
         "licenseUrl": "https://github.com/react-native-webview/react-native-webview/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-native@0.79.4": {
+    "react-native@0.79.5": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react-native",
         "licenseUrl": "https://github.com/facebook/react-native/raw/master/LICENSE",
