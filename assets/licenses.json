@@ -17,7 +17,7 @@
         "licenseUrl": "https://github.com/mybigday/react-native-audio-pcm-stream/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "@fugood/transformers@3.5.1-beta.1": {
+    "@fugood/transformers@3.6.1-beta.1": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/huggingface/transformers.js",
         "licenseUrl": "https://github.com/huggingface/transformers.js/raw/master/LICENSE",
@@ -89,7 +89,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-asset@11.1.6": {
+    "expo-asset@11.1.7": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -101,13 +101,13 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-constants@17.1.6": {
+    "expo-constants@17.1.7": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-dev-client@5.2.3": {
+    "expo-dev-client@5.2.4": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -137,19 +137,19 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-linking@7.1.6": {
+    "expo-linking@7.1.7": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-router@5.1.2": {
+    "expo-router@5.1.3": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-splash-screen@0.30.9": {
+    "expo-splash-screen@0.30.10": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -167,7 +167,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo-updates@0.28.15": {
+    "expo-updates@0.28.16": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -179,7 +179,7 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "poc-archiver-expo"
     },
-    "expo@53.0.16": {
+    "expo@53.0.17": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
@@ -209,7 +209,7 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-hook-form@7.59.0": {
+    "react-hook-form@7.60.0": {
         "licenses": "MIT",
         "repository": "https://github.com/react-hook-form/react-hook-form",
         "licenseUrl": "https://github.com/react-hook-form/react-hook-form/raw/master/LICENSE",
@@ -263,7 +263,7 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "react-native-safe-area-context@5.3.0": {
+    "react-native-safe-area-context@5.4.0": {
         "licenses": "MIT",
         "repository": "https://github.com/th3rdwave/react-native-safe-area-context",
         "licenseUrl": "https://github.com/th3rdwave/react-native-safe-area-context/raw/master/LICENSE",
@@ -285,6 +285,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/react-native-community/react-native-svg",
         "licenseUrl": "https://github.com/react-native-community/react-native-svg/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
+    "react-native-url-polyfill@2.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/charpeni/react-native-url-polyfill",
+        "licenseUrl": "https://github.com/charpeni/react-native-url-polyfill/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
     "react-native-web@0.20.0": {
@@ -311,7 +317,7 @@
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
-    "sonner-native@0.17.0": {
+    "sonner-native@0.21.0": {
         "licenses": "MIT",
         "repository": "https://github.com/gunnartorfis/sonner-native",
         "licenseUrl": "https://github.com/gunnartorfis/sonner-native/raw/master/LICENSE",

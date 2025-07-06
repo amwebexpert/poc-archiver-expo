@@ -14,8 +14,18 @@ export type Progress = Record<string, string | number>;
 
 export type ProgressCallback = (progress: Progress) => void;
 
-export const PROGRESS_STATUS_READY: Progress = { status: 'ready' };
-export const isProgressStatusReady = (progress: Progress): boolean => progress.status === 'ready';
+export const PROGRESS_STATUS_READY: Progress = { status: 'done', file: 'model.onnx' };
+
+export const isAllFilesProgressStatusReady = (filesProgress: Record<string, string>): boolean => {
+  const files = Object.keys(filesProgress);
+  const statuses = Object.values(filesProgress);
+
+  if (!files.some((file) => file.includes('.onnx'))) {
+    return false;
+  }
+
+  return statuses.every((status) => status === 'done');
+};
 
 export const extractProgressLog = (progress: Progress): string => {
   const time = nowAsTime();

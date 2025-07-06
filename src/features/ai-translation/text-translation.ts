@@ -87,6 +87,8 @@ export class TextTranslator {
     this.instance.translator = (await pipeline(task, model, {
       progress_callback: progressHandler,
       local_files_only: canUseOfflineMode(task),
+      dtype: 'fp16',
+      device: 'auto',
     })) as TranslationPipeline;
 
     updateCanUseOfflineMode(task);
