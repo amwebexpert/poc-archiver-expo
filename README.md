@@ -81,3 +81,23 @@ Adhering to established coding guidelines is essential for developing efficient,
     xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E override --cellularBars 0
     xcrun simctl status_bar 6A716C79-D944-4243-B92B-1D9027E18E4E clear
 
+## Upgrade Expo SDK process
+
+* run `npx expo install expo@latest` to upgrade to the latest Expo SDK
+* run `npx expo install --check` to list latest versions of all expo dependencies. This will automatically ask to upgrade to the expected dependencies (if any)
+  * expected result: `Dependencies are up to date`
+* check other non-Expo dependencies (you need ncu utility which can be installed globally `yarn global add npm-check-updates`)
+  * `ncu -u`
+  * then re-run again `npx expo install --check` and accept Expo specific version suggestions
+* remove the node_modules and yarn.lock all together and re-install all dependencies
+  * `yarn clean:node`
+  * `yarn`
+* run `npx expo-doctor` to see if any dependency is not expected as part of the current Expo SDK major version. This will also list the command to upgrade the unaligned dependencies
+  * expected result: `15/15 checks passed. No issues detected!`
+* clean and re-generate the prebuild folders for `iOS` and `Android` platforms
+  * `npx expo prebuild --clean`
+* Test the development build
+  * run `npx expo run:ios` and test on the `iOS Simulator`
+  * run `npx expo run:android` and test on the `Android simulator`
+### References
+- [How to upgrade from Expo SDK X to Y](https://www.youtube.com/watch?v=HBPyP4OxVgs)

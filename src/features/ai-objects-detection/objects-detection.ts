@@ -53,6 +53,8 @@ export class ImageObjectsDetector {
       {
         progress_callback: progressHandler,
         local_files_only: canUseOfflineMode(),
+        dtype: 'fp16',
+        device: 'auto',
       }
     );
 

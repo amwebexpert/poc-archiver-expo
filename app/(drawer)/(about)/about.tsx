@@ -22,7 +22,7 @@ const AboutScreen: FunctionComponent = () => {
   return (
     <SafeContainer style={styles.root}>
       <Card contentStyle={styles.card}>
-        <Card.Title title={DISPLAY_NAME} subtitle={DESCRIPTION} left={AppLogo} />
+        <Card.Title title={DISPLAY_NAME} subtitle={DESCRIPTION} left={({ size }) => <AppLogo size={size} />} />
 
         <Card.Content>
           <AboutDetails />

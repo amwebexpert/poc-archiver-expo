@@ -1,3 +1,4 @@
+import 'react-native-url-polyfill/auto';
 import { Buffer } from 'buffer';
 import 'react-native-skia-offscreencanvas/polyfill';
 import 'text-encoding-polyfill'; // support TextEncoder

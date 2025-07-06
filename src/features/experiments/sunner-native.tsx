@@ -1,17 +1,21 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
+import Animated, { FadeInLeft, ZoomIn } from 'react-native-reanimated';
 
 import { toast } from 'sonner-native';
 import { useAppTheme } from '~/theme/theme';
+
+const AnimatedButton = Animated.createAnimatedComponent(Button);
 
 const ToasterDemoScreen: FunctionComponent = () => {
   const theme = useAppTheme();
   const styles = useStyles();
 
   return (
-    <View style={styles.container}>
-      <Button
+    <Animated.View style={styles.container}>
+      <AnimatedButton
+        entering={ZoomIn.delay(300).duration(700)}
         icon="lightbulb-outline"
         mode="contained"
         buttonColor={theme.colors.primary}
@@ -20,8 +24,9 @@ const ToasterDemoScreen: FunctionComponent = () => {
         }}
       >
         summer-native toast
-      </Button>
-      <Button
+      </AnimatedButton>
+      <AnimatedButton
+        entering={ZoomIn.delay(500).duration(700)}
         icon="android-messages"
         mode="contained"
         buttonColor="orange"
@@ -33,8 +38,9 @@ const ToasterDemoScreen: FunctionComponent = () => {
         }}
       >
         warn toast
-      </Button>
-      <Button
+      </AnimatedButton>
+      <AnimatedButton
+        entering={ZoomIn.delay(700).duration(700)}
         icon="chat-alert-outline"
         mode="contained"
         buttonColor={theme.colors.error}
@@ -46,8 +52,8 @@ const ToasterDemoScreen: FunctionComponent = () => {
         }}
       >
         error toast
-      </Button>
-    </View>
+      </AnimatedButton>
+    </Animated.View>
   );
 };
 

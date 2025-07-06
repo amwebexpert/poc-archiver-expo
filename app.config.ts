@@ -8,11 +8,25 @@ const config: ExpoConfig = {
   scheme: packageJson.name,
   newArchEnabled: true,
   plugins: [
-    'expo-router',
+    [
+      'expo-router',
+      {
+        origin: 'http://localhost:8081',
+      },
+    ],
     'expo-asset',
     [
       'expo-splash-screen',
       { backgroundColor: '#6aa563', image: './assets/images/icon.png', imageWidth: 100 },
+    ],
+    [
+      'react-native-edge-to-edge',
+      {
+        android: {
+          parentTheme: 'Default',
+          enforceNavigationBarContrast: false,
+        },
+      },
     ],
   ],
   experiments: { typedRoutes: true, tsconfigPaths: true },
@@ -36,6 +50,9 @@ const config: ExpoConfig = {
       backgroundColor: '#6aa563',
     },
     package: 'com.amwebexpert.pocarchiverexpo',
+  },
+  web: {
+    output: 'server',
   },
   extra: {
     router: { origin: false },

@@ -10,7 +10,7 @@ export const SnackbarContext = createContext({
 
 export const useSnackbar = () => useContext(SnackbarContext);
 
-export const SnackbarProvider = ({ children }: PropsWithChildren): JSX.Element => {
+export const SnackbarProvider = ({ children }: PropsWithChildren) => {
   const [message, setMessage] = useState("");
   const [duration, setDuration] = useState(DEFAULT_DURATION);
 
