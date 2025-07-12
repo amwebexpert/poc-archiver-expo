@@ -8,17 +8,12 @@ import {
   TranslationSingle,
 } from '@fugood/transformers';
 import { storage, StorageKey } from '~/utils/storage';
-import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
+import { ProgressCallback } from '../ai-commons/transformer.types';
 
-const DEFAULT_MODEL_NAME = 'Xenova/nllb-200-distilled-600M';
+const DEFAULT_MODEL_NAME = 'Xenova/t5-small';
 
 export type TranslateArgs = {
   text: string;
-  sourceLanguage: string;
-  targetLanguage: string;
-};
-
-export type GetInstanceArgs = {
   sourceLanguage: string;
   targetLanguage: string;
   progressHandler?: ProgressCallback;
@@ -38,8 +33,7 @@ const updateCanUseOfflineMode = (task: PipelineType): void => {
   storage.set(StorageKey.TRANSLATION_MODEL_AVAILABILITY, JSON.stringify(availableOfflineTasks));
 };
 
-const validateSupportedLanguages = (params: GetInstanceArgs): void => {
-  const { sourceLanguage, targetLanguage } = params;
+const validateSupportedLanguages = (sourceLanguage: string, targetLanguage: string): void => {
   if (sourceLanguage !== 'en') {
     throw new Error('Xenova/t5-small ONNX model only support "English" as source language');
   }
@@ -51,60 +45,30 @@ const validateSupportedLanguages = (params: GetInstanceArgs): void => {
   }
 };
 
-/**
- * This class uses the Singleton pattern to ensure that only one instance of the
- * pipeline is loaded. This is because loading the pipeline is an expensive
- * operation and we don't want to do it every time we want to use LLM models.
- */
-export class TextTranslator {
-  static instance: TextTranslator | null = null;
+export const translate = async ({
+  text,
+  sourceLanguage,
+  targetLanguage,
+  progressHandler,
+}: TranslateArgs): Promise<string> => {
+  validateSupportedLanguages(sourceLanguage, targetLanguage);
 
-  private translator?: TranslationPipeline;
+  const task = `translation_${sourceLanguage}_to_${targetLanguage}` as PipelineType;
+  const model = DEFAULT_MODEL_NAME;
 
-  private constructor() {}
+  console.info('===> translate', task, JSON.stringify(env, null, 2));
 
-  get isReady(): boolean {
-    return !!this.translator;
-  }
+  const translationPipeline = (await pipeline(task, model, {
+    progress_callback: progressHandler,
+    local_files_only: canUseOfflineMode(task),
+  })) as TranslationPipeline;
 
-  static async getInstance(params: GetInstanceArgs): Promise<TextTranslator> {
-    validateSupportedLanguages(params);
+  updateCanUseOfflineMode(task);
 
-    const { progressHandler, sourceLanguage, targetLanguage } = params;
+  const result = await translationPipeline(text);
+  console.info('🚀 → translate result', result);
 
-    const task = `translation_${sourceLanguage}_to_${targetLanguage}` as PipelineType;
-    const model = 'Xenova/t5-small';
+  const translations = result as TranslationSingle[];
 
-    if (this.instance?.isReady && this.instance.translator?.task === task) {
-      progressHandler?.(PROGRESS_STATUS_READY);
-      return this.instance;
-    }
-
-    this.instance?.translator?.dispose();
-    console.info('===> getInstance', task, JSON.stringify(env, null, 2));
-
-    this.instance = new TextTranslator();
-    this.instance.translator = (await pipeline(task, model, {
-      progress_callback: progressHandler,
-      local_files_only: canUseOfflineMode(task),
-    })) as TranslationPipeline;
-
-    updateCanUseOfflineMode(task);
-
-    return this.instance;
-  }
-
-  async translate(params: TranslateArgs): Promise<string> {
-    const { text } = params;
-    if (!this.translator) {
-      throw new Error('Model is not loaded yet');
-    }
-
-    const result = await this.translator(text);
-    console.info('🚀 → translate result', result);
-    
-    const translations = result as TranslationSingle[];
-
-    return translations.map(({ translation_text }) => translation_text).join(' ');
-  }
-}
+  return translations.map(({ translation_text }) => translation_text).join(' ');
+};

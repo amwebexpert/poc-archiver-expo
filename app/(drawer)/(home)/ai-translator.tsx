@@ -8,7 +8,7 @@ import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { LANGUAGE_OPTIONS } from '~/features/ai-translation/languages.types';
-import { TextTranslator } from '~/features/ai-translation/text-translation';
+import { translate } from '~/features/ai-translation/text-translation';
 import { useAppTheme } from '~/theme/theme';
 import { getErrorMessage } from '~/utils/errors.utils';
 
@@ -48,13 +48,7 @@ const TranslatorScreen: FunctionComponent = () => {
     const { sourceText: text, sourceLanguage, targetLanguage } = data;
 
     try {
-      const analyser = await TextTranslator.getInstance({
-        sourceLanguage,
-        targetLanguage,
-        progressHandler,
-      });
-
-      const result = await analyser.translate({ text, sourceLanguage, targetLanguage });
+      const result = await translate({ text, sourceLanguage, targetLanguage, progressHandler });
       setTranslation(result);
     } catch (error: unknown) {
       setTranslation(`Error while translating text: ${getErrorMessage(error)}`);
@@ -124,7 +118,8 @@ const TranslatorScreen: FunctionComponent = () => {
         <Button
           mode="outlined"
           onPress={() => setTranslation('')}
-          disabled={isLoading || isWorking}>
+          disabled={isLoading || isWorking}
+        >
           Reset
         </Button>
 
@@ -132,7 +127,8 @@ const TranslatorScreen: FunctionComponent = () => {
           mode="contained"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid || isLoading || isWorking}
-          loading={isWorking && !isLoading}>
+          loading={isWorking && !isLoading}
+        >
           Submit
         </Button>
       </View>
