@@ -7,7 +7,7 @@ import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import { DetectedObjects } from '~/features/ai-objects-detection/detected-objects';
-import { ImageObjectsDetector } from '~/features/ai-objects-detection/objects-detection';
+import { analyse } from '~/features/ai-objects-detection/objects-detection';
 import { DetectedObject } from '~/features/ai-objects-detection/objects-detection.types';
 import { useImagePicker } from '~/hooks/use-image-picker';
 import { useAppTheme } from '~/theme/theme';
@@ -39,8 +39,7 @@ const ObjectsDetection: FunctionComponent = () => {
     toggleWorking();
 
     try {
-      const analyser = await ImageObjectsDetector.getInstance(progressHandler);
-      const results = await analyser.analyse(selectedImage);
+      const results = await analyse(selectedImage, progressHandler);
       setDetectedObjects(results);
     } catch (error) {
       console.error('Error analysing image:', error);
@@ -64,7 +63,8 @@ const ObjectsDetection: FunctionComponent = () => {
           mode="outlined"
           loading={isLoading}
           onPress={pickImage}
-          disabled={isWorking || isLoading}>
+          disabled={isWorking || isLoading}
+        >
           Pick image
         </Button>
 
@@ -72,7 +72,8 @@ const ObjectsDetection: FunctionComponent = () => {
           mode="contained"
           loading={isWorking}
           onPress={onAnalysePress}
-          disabled={isWorking || isLoading || !hasSelectedImage}>
+          disabled={isWorking || isLoading || !hasSelectedImage}
+        >
           Analyse
         </Button>
       </View>

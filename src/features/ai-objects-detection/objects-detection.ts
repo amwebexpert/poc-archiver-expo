@@ -1,8 +1,8 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
-import { env, ObjectDetectionPipeline, pipeline } from '@fugood/transformers';
+import { env, pipeline } from '@fugood/transformers';
 import { storage, StorageKey } from '~/utils/storage';
-import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
+import { ProgressCallback } from '../ai-commons/transformer.types';
 import { DetectedObject } from './objects-detection.types';
 
 // Other models tried so far:
@@ -18,59 +18,23 @@ const canUseOfflineMode = (): boolean =>
 export const updateCanUseOfflineMode = (value = true): void =>
   storage.set(StorageKey.OBJECTS_DETECTION_MODEL_AVAILABILITY, value);
 
-/**
- * This class uses the Singleton pattern to ensure that only one instance of the
- * pipeline is loaded. This is because loading the pipeline is an expensive
- * operation and we don't want to do it every time we want to use LLM models.
- */
-export class ImageObjectsDetector {
-  static instance: ImageObjectsDetector | null = null;
+export const analyse = async (
+  base64: string,
+  progressHandler?: ProgressCallback
+): Promise<DetectedObject[]> => {
+  console.info('===> env', JSON.stringify(env, null, 2));
 
-  private objectsDetectionPipeline?: ObjectDetectionPipeline;
+  const objectsDetectionPipeline = await pipeline('object-detection', DEFAULT_MODEL_NAME, {
+    progress_callback: progressHandler,
+    local_files_only: canUseOfflineMode(),
+  });
 
-  private constructor() {}
+  updateCanUseOfflineMode();
 
-  get isReady(): boolean {
-    return !!this.objectsDetectionPipeline;
-  }
+  const results = await objectsDetectionPipeline(base64, {
+    threshold: 0.5,
+    percentage: true,
+  });
 
-  static isInstanceReady(): boolean {
-    return !!this.instance?.isReady;
-  }
-
-  static async getInstance(progressHandler?: ProgressCallback) {
-    if (this.instance?.isReady) {
-      progressHandler?.(PROGRESS_STATUS_READY);
-      return this.instance;
-    }
-
-    console.info('===> env', JSON.stringify(env, null, 2));
-
-    this.instance = new ImageObjectsDetector();
-    this.instance.objectsDetectionPipeline = await pipeline(
-      'object-detection',
-      DEFAULT_MODEL_NAME,
-      {
-        progress_callback: progressHandler,
-        local_files_only: canUseOfflineMode(),
-      }
-    );
-
-    updateCanUseOfflineMode();
-
-    return this.instance;
-  }
-
-  async analyse(base64: string): Promise<DetectedObject[]> {
-    if (!this.objectsDetectionPipeline) {
-      throw new Error('Model is not loaded yet');
-    }
-
-    const results = await this.objectsDetectionPipeline(base64, {
-      threshold: 0.5,
-      percentage: true,
-    });
-
-    return results as DetectedObject[];
-  }
-}
+  return results as DetectedObject[];
+};
