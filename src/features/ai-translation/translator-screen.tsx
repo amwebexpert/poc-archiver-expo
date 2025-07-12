@@ -31,7 +31,7 @@ const DEFAULT_FORM_VALUES: FormData = {
 
 const TranslatorScreen: FunctionComponent = () => {
   const [translation, setTranslation] = useState('');
-  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
+  const { isLoading, setIsLoading, filesProgress, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
 
   const styles = useStyles();
@@ -136,7 +136,7 @@ const TranslatorScreen: FunctionComponent = () => {
       {isLoading && (
         <ModalSpinner
           isVisible={isLoading}
-          modelLoadingLogs={modelLoadingLogs}
+          filesProgress={filesProgress}
           onDismiss={() => setIsLoading(false)}
         />
       )}

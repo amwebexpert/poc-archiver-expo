@@ -23,7 +23,7 @@ const ObjectsDetectionScreen: FunctionComponent = () => {
   const styles = useStyles();
   const { pickImage, selectedImage, hasSelectedImage, dimensions } = useImagePicker();
 
-  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
+  const { isLoading, setIsLoading, filesProgress, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
   const [detectedObjects, setDetectedObjects] = useState<DetectedObject[]>([]);
 
@@ -81,7 +81,7 @@ const ObjectsDetectionScreen: FunctionComponent = () => {
       {isLoading && (
         <ModalSpinner
           isVisible={isLoading}
-          modelLoadingLogs={modelLoadingLogs}
+          filesProgress={filesProgress}
           onDismiss={() => setIsLoading(false)}
         />
       )}

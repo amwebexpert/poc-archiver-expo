@@ -19,7 +19,7 @@ const SentimentAnalysisScreen: FunctionComponent = () => {
   const styles = useStyles();
   const [textsToAnalyse, setTextsToAnalyse] = useState<string[]>(FRENCH_INSPECTION_REPORT);
 
-  const { isLoading, setIsLoading, modelLoadingLogs, progressHandler } = useModelLoading();
+  const { isLoading, setIsLoading, filesProgress, progressHandler } = useModelLoading();
   const [isWorking, toggleWorking] = useToggle(false);
   const [classifications, setClassifications] = useState<AugmentedScoreLabel[]>([]);
 
@@ -75,7 +75,7 @@ const SentimentAnalysisScreen: FunctionComponent = () => {
       {isLoading && (
         <ModalSpinner
           isVisible={isLoading}
-          modelLoadingLogs={modelLoadingLogs}
+          filesProgress={filesProgress}
           onDismiss={() => setIsLoading(false)}
         />
       )}

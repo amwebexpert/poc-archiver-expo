@@ -1,13 +1,13 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, Dialog, Portal, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Dialog, Portal, ProgressBar, Text } from 'react-native-paper';
 import { useAppTheme } from '~/theme/theme';
 
 export interface ModalSpinnerProps {
   isVisible: boolean;
   title?: ReactNode;
   description?: ReactNode;
-  modelLoadingLogs: string[];
+  filesProgress: Record<string, number>;
   onDismiss: () => void;
 }
 
@@ -15,7 +15,7 @@ export const ModalSpinner: FunctionComponent<ModalSpinnerProps> = ({
   isVisible,
   title = 'Loading model',
   description = 'Please wait while translation models are loading... Only run once: next time will be faster!',
-  modelLoadingLogs,
+  filesProgress,
   onDismiss,
 }) => {
   const styles = useStyles();
@@ -33,12 +33,16 @@ export const ModalSpinner: FunctionComponent<ModalSpinnerProps> = ({
           <ActivityIndicator style={styles.spinner} />
           <Text>{description}</Text>
 
-          <View style={styles.progressLogs}>
-            {modelLoadingLogs.map((log) => (
-              <Text numberOfLines={1} key={log} ellipsizeMode="tail" style={styles.progressLog}>
-                {log}
-              </Text>
-            ))}
+          <View style={styles.progressContainer}>
+            {Object.entries(filesProgress)
+              .map(([fileName, progress]) => (
+                <View key={fileName} style={styles.progressItem}>
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    {`${Math.round(progress * 100)}% - ${fileName}`}
+                  </Text>
+                  <ProgressBar progress={progress} />
+                </View>
+              ))}
           </View>
         </Dialog.Content>
 
@@ -60,16 +64,13 @@ const useStyles = () => {
     spinner: {
       marginVertical: theme.spacing(3),
     },
-    progressLogs: {
-      height: 80,
-      maxHeight: 80,
-      overflow: 'scroll',
-      marginVertical: 10,
-      width: '100%',
+    progressContainer: {
+      marginVertical: theme.spacing(2),
+      minHeight: 180,
+      gap: theme.spacing(1),
     },
-    progressLog: {
-      color: theme.colors.secondary,
-      width: '100%',
+    progressItem: {
+      gap: theme.spacing(0.5),
     },
   });
 };

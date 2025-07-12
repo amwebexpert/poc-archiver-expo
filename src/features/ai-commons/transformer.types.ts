@@ -1,7 +1,7 @@
 import { nowAsTime } from '~/utils/date.utils';
 
 // TODO PocArchiverExpo-0001: improve model loading progress Typescript types and UI progress bar
-const progressExample: Progress = {
+const progressExample: ProgressInfos = {
   file: 'onnx/model_quantized.onnx',
   name: 'Xenova/bert-base-multilingual-uncased-sentiment',
   status: 'progress',
@@ -10,13 +10,13 @@ const progressExample: Progress = {
   total: 168593695,
 };
 
-export type Progress = Record<string, string | number>;
+export type ProgressInfos = Record<string, string | number>;
 
-export type ProgressCallback = (progress: Progress) => void;
+export type ProgressCallback = (progress: ProgressInfos) => void;
 
-export const PROGRESS_STATUS_READY: Progress = { status: 'done', file: 'model.onnx' };
+export const PROGRESS_STATUS_READY: ProgressInfos = { status: 'done', file: 'model.onnx' };
 
-export const isAllFilesProgressStatusReady = (progress: Progress): boolean => {
+export const isAllFilesProgressStatusReady = (progress: ProgressInfos): boolean => {
   if (!!progress.task && !!progress.model && progress.status === 'ready') {
     console.info(`🚀 → isAllFilesProgressStatusReady`, JSON.stringify(progress, null, 2));
     return true;
@@ -25,7 +25,7 @@ export const isAllFilesProgressStatusReady = (progress: Progress): boolean => {
   return false;
 };
 
-export const extractProgressLog = (progress: Progress): string => {
+export const extractProgressLog = (progress: ProgressInfos): string => {
   const time = nowAsTime();
   return `${time} ${JSON.stringify(progress)}`;
 };
