@@ -11,8 +11,7 @@ import { useModelLoading } from '~/features/ai-commons/use-model-loading';
 import {
   AugmentedScoreLabel,
   FRENCH_INSPECTION_REPORT,
-  MULTI_LANG_FOOD_RATING,
-  SentimentAnalyser,
+  analyse,
 } from '~/features/ai-sentiments/text-classification';
 import { useAppTheme } from '~/theme/theme';
 
@@ -28,8 +27,8 @@ const AiSentimentAnalysis: FunctionComponent = () => {
     toggleWorking();
 
     try {
-      const analyser = await SentimentAnalyser.getInstance(progressHandler);
-      analyser.analyse(textsToAnalyse).then(setClassifications);
+      const results = await analyse(textsToAnalyse, progressHandler);
+      setClassifications(results);
     } finally {
       toggleWorking(false);
     }

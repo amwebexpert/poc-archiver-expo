@@ -2,7 +2,7 @@
 // import { pipeline } from '@xenova/transformers';
 import { env, pipeline, TextClassificationPipeline } from '@fugood/transformers';
 import { storage, StorageKey } from '~/utils/storage';
-import { PROGRESS_STATUS_READY, ProgressCallback } from '../ai-commons/transformer.types';
+import { ProgressCallback } from '../ai-commons/transformer.types';
 
 // The model is fine-tuned specifically for sentiment analysis, meaning it can predict the
 // sentiment of a given text (e.g., positive, negative, or neutral).
@@ -26,62 +26,24 @@ const canUseOfflineMode = (): boolean =>
 const updateCanUseOfflineMode = (value = true): void =>
   storage.set(StorageKey.SENTIMENT_MODEL_AVAILABLE_OFFLINE, value);
 
-/**
- * This class uses the Singleton pattern to ensure that only one instance of the
- * pipeline is loaded. This is because loading the pipeline is an expensive
- * operation and we don't want to do it every time we want to use LLM models.
- */
-export class SentimentAnalyser {
-  static instance: SentimentAnalyser | null = null;
+export const analyse = async (
+  texts: string[],
+  progressHandler?: ProgressCallback
+): Promise<AugmentedScoreLabel[]> => {
+  const sentimentAnalysisPipeline = await pipeline('sentiment-analysis', DEFAULT_MODEL_NAME, {
+    progress_callback: progressHandler,
+    local_files_only: canUseOfflineMode(),
+  });
 
-  private sentimentAnalysisPipeline?: TextClassificationPipeline;
+  updateCanUseOfflineMode();
 
-  private constructor() {}
-
-  get isReady(): boolean {
-    return !!this.sentimentAnalysisPipeline;
-  }
-
-  static isInstanceReady(): boolean {
-    return !!this.instance?.isReady;
-  }
-
-  static async getInstance(progressHandler?: ProgressCallback) {
-    if (this.instance?.isReady) {
-      progressHandler?.(PROGRESS_STATUS_READY);
-      return this.instance;
-    }
-
-    console.info('===> env', JSON.stringify(env, null, 2));
-
-    this.instance = new SentimentAnalyser();
-    this.instance.sentimentAnalysisPipeline = await pipeline(
-      'sentiment-analysis',
-      DEFAULT_MODEL_NAME,
-      {
-        progress_callback: progressHandler,
-        local_files_only: canUseOfflineMode(),
-      }
-    );
-
-    updateCanUseOfflineMode();
-
-    return this.instance;
-  }
-
-  async analyse(texts: string[]): Promise<AugmentedScoreLabel[]> {
-    if (!this.sentimentAnalysisPipeline) {
-      throw new Error('Model is not loaded yet');
-    }
-
-    const results = (await this.sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
-    return results.map((result) => ({
-      ...result,
-      verboseLabel: `${result.label} (score: ${result.score?.toFixed(2)})`,
-      percent: +result.label.split(' ')[0] / 5,
-    }));
-  }
-}
+  const results = (await sentimentAnalysisPipeline(texts)) as unknown as ScoreLabel[];
+  return results.map((result) => ({
+    ...result,
+    verboseLabel: `${result.label} (score: ${result.score?.toFixed(2)})`,
+    percent: +result.label.split(' ')[0] / 5,
+  }));
+};
 
 export const MULTI_LANG_FOOD_RATING = [
   'I love transformers!',
