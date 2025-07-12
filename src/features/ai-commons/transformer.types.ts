@@ -14,14 +14,18 @@ export type Progress = Record<string, string | number>;
 
 export type ProgressCallback = (progress: Progress) => void;
 
-export const PROGRESS_STATUS_READY: Progress = { status: 'ready' };
-export const isProgressStatusReady = (progress: Progress): boolean => progress.status === 'ready';
+export const PROGRESS_STATUS_READY: Progress = { status: 'done', file: 'model.onnx' };
+
+export const isAllFilesProgressStatusReady = (progress: Progress): boolean => {
+  if (!!progress.task && !!progress.model && progress.status === 'ready') {
+    console.info(`🚀 → isAllFilesProgressStatusReady`, JSON.stringify(progress, null, 2));
+    return true;
+  }
+
+  return false;
+};
 
 export const extractProgressLog = (progress: Progress): string => {
   const time = nowAsTime();
-  if (progress.file) {
-    return `${time} ${progress.file}: ${progress.status}`;
-  }
-
-  return `${time} ${progress.model}: ${progress.status}`;
+  return `${time} ${JSON.stringify(progress)}`;
 };

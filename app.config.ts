@@ -8,7 +8,12 @@ const config: ExpoConfig = {
   scheme: packageJson.name,
   newArchEnabled: true,
   plugins: [
-    'expo-router',
+    [
+      'expo-router',
+      {
+        origin: 'http://localhost:8081',
+      },
+    ],
     'expo-asset',
     [
       'expo-splash-screen',
@@ -36,6 +41,9 @@ const config: ExpoConfig = {
       backgroundColor: '#6aa563',
     },
     package: 'com.amwebexpert.pocarchiverexpo',
+  },
+  web: {
+    output: 'server',
   },
   extra: {
     router: { origin: false },
