@@ -32,7 +32,7 @@ export const PdfTextExtractorDemo: FunctionComponent = () => {
         PDF Text Extractor
       </Button>
 
-      {pdfUri && <PdfTextExtractor />}
+      {pdfUri && <PdfTextExtractor pdfUri={pdfUri} />}
     </Fragment>
   );
 };

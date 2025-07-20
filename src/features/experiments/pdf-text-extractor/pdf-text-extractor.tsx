@@ -7,7 +7,11 @@ import { useOnHtmlDocMessage } from './use-on-html-message';
 import { usePdfReaderAssets } from './use-pdf-reader-assets';
 import { htmlDocumentMessage } from './webview.utils';
 
-export const PdfTextExtractor: FunctionComponent = () => {
+interface PdfTextExtractorProps {
+  pdfUri: string;
+}
+
+export const PdfTextExtractor: FunctionComponent<PdfTextExtractorProps> = ({ pdfUri }) => {
   const webViewRef = useRef<WebView>(null);
 
   const { isLoading, html, injectedJavaScript } = usePdfReaderAssets();
@@ -15,14 +19,10 @@ export const PdfTextExtractor: FunctionComponent = () => {
 
   useEffect(() => {
     if (isDocumentReady) {
-      console.log('✅ Document is ready, calling html document script');      
-      const jsCode = htmlDocumentMessage({ type: 'extractText', data: 'my data here' });
+      console.log('✅ Document is ready, calling html document script');
+      const jsCode = htmlDocumentMessage({ type: 'extractText', data: pdfUri });
       webViewRef.current?.injectJavaScript(jsCode);
     }
-  }, [isDocumentReady]);
-
-  useEffect(() => {
-    console.info('🚀 → info', isDocumentReady);
   }, [isDocumentReady]);
 
   const handleLoadEnd = () => {
