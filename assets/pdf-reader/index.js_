@@ -1,0 +1,20 @@
+const postMessageRN = (type = '', log) => {
+  const message = { type: 'console', data: { type, log } };
+  postObjectRN(message);
+};
+
+const postObjectRN = (message = {}) => {
+  const stringMessage = JSON.stringify(message);
+  setTimeout(() => window.ReactNativeWebView.postMessage(stringMessage), 0);
+};
+
+window.onReactNativeMessage = (message = '{}') => {
+  const { type, data } = JSON.parse(message ?? '{}');
+  if (type === 'extractText') {
+    alert('extractText' + '\n' + data);
+  } else {
+    postMessageRN('info', `webapp: onReactNativeMessage ${type}: ${data}`);
+  }
+};
+
+postObjectRN({ type: 'documentReady' });
