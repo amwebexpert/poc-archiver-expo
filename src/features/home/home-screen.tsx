@@ -7,7 +7,7 @@ import { Button, Paragraph, Text } from 'react-native-paper';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { APP_VERSION_INFO } from '~/constants';
 import { useAppTheme } from '~/theme/theme';
-import { extractFromLocalFile } from '~/utils/pdf.utils';
+import { PdfTextExtractor } from '~/components/pdfreader/pdf-text-extractor';
 
 const { REPOSITORY } = APP_VERSION_INFO;
 
@@ -19,24 +19,14 @@ const HomeScreen = () => {
       type: 'application/pdf',
     });
 
-    const extractedText = await extractFromLocalFile(assets?.[0]?.uri ?? '');
-    console.info('🚀 → info', extractedText);
+    // const extractedText = await extractFromLocalFile(assets?.[0]?.uri ?? '');
+    // console.info('🚀 → info', extractedText);
   };
 
   return (
     <SafeContainer>
       <View style={styles.root}>
-        <Text variant="headlineMedium">ReactNative demos</Text>
-
-        <Paragraph style={styles.paragraph}>
-          Enjoy this proof of concepts collection for React Native app development using Expo SDK
-          and development build
-        </Paragraph>
-
-        <Paragraph style={styles.paragraph}>
-          Stay tuned because this is also an evolutive app used as a sandbox to learn by
-          implementing real solutions to real problems.
-        </Paragraph>
+        <PdfTextExtractor />
 
         <View>
           <Paragraph style={styles.centeredText}>
@@ -75,8 +65,6 @@ const useStyles = () => {
   return StyleSheet.create({
     root: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
       marginHorizontal: theme.spacing(4),
       gap: theme.spacing(6),
     },

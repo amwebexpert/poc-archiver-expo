@@ -7,7 +7,7 @@ import { useOnHtmlDocMessage } from './use-on-html-message';
 import { usePdfReaderAssets } from './use-pdf-reader-assets';
 import { htmlDocumentMessage } from './webview.utils';
 
-export const PdfReader: FunctionComponent = () => {
+export const PdfTextExtractor: FunctionComponent = () => {
   const webViewRef = useRef<WebView>(null);
 
   const { isLoading, html, injectedJavaScript } = usePdfReaderAssets();
