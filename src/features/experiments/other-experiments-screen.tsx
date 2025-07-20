@@ -8,6 +8,7 @@ import BottomSheetDemo from '~/features/experiments/bottom-sheet';
 import { DropDownList } from '~/features/experiments/drop-down-list';
 import ToasterDemoScreen from '~/features/experiments/sunner-native';
 import { useAppTheme } from '~/theme/theme';
+import { PdfTextExtractorDemo } from './pdf-text-extractor/pdf-text-extractor-demo';
 
 const OtherExperimentsScreen: FunctionComponent = () => {
   const styles = useStyles();
@@ -20,6 +21,7 @@ const OtherExperimentsScreen: FunctionComponent = () => {
       <BottomSheetDemo />
       <ToasterDemoScreen />
       <DropDownList />
+      <PdfTextExtractorDemo />
     </SafeContainer>
   );
 };
@@ -35,4 +37,4 @@ const useStyles = () => {
   });
 };
 
-export default OtherExperimentsScreen; 
+export default OtherExperimentsScreen;

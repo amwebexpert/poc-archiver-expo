@@ -52,9 +52,7 @@ export const PdfTextExtractor: FunctionComponent = () => {
 
 const styles = StyleSheet.create({
   webView: {
-    flex: 1,
+    flex: 0.25,
     width: '100%',
-    borderWidth: 1,
-    borderColor: 'red',
   },
 });

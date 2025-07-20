@@ -1,5 +1,4 @@
 import { router } from 'expo-router';
-import * as DocumentPicker from 'expo-document-picker';
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, View } from 'react-native';
 import { Button, Paragraph, Text } from 'react-native-paper';
@@ -7,26 +6,26 @@ import { Button, Paragraph, Text } from 'react-native-paper';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { APP_VERSION_INFO } from '~/constants';
 import { useAppTheme } from '~/theme/theme';
-import { PdfTextExtractor } from '~/components/pdfreader/pdf-text-extractor';
 
 const { REPOSITORY } = APP_VERSION_INFO;
 
 const HomeScreen = () => {
   const styles = useStyles();
 
-  const onPdfReaddingPress = async () => {
-    const { canceled, assets } = await DocumentPicker.getDocumentAsync({
-      type: 'application/pdf',
-    });
-
-    // const extractedText = await extractFromLocalFile(assets?.[0]?.uri ?? '');
-    // console.info('🚀 → info', extractedText);
-  };
-
   return (
     <SafeContainer>
       <View style={styles.root}>
-        <PdfTextExtractor />
+        <Text variant="headlineMedium">ReactNative demos</Text>
+
+        <Paragraph style={styles.paragraph}>
+          Enjoy this proof of concepts collection for React Native app development using Expo SDK
+          and development build
+        </Paragraph>
+
+        <Paragraph style={styles.paragraph}>
+          Stay tuned because this is also an evolutive app used as a sandbox to learn by
+          implementing real solutions to real problems.
+        </Paragraph>
 
         <View>
           <Paragraph style={styles.centeredText}>
@@ -34,22 +33,14 @@ const HomeScreen = () => {
           </Paragraph>
 
           <View style={styles.actions}>
-            <Button mode="outlined" onPress={onPdfReaddingPress} icon="book-information-variant">
-              PDF test
-            </Button>
-            <Button
-              mode="outlined"
-              onPress={() => WebBrowser.openBrowserAsync(REPOSITORY)}
-              icon="star"
-            >
+            <Button mode="outlined" onPress={() => WebBrowser.openBrowserAsync(REPOSITORY)} icon="star">
               Star it!
             </Button>
 
             <Button
               mode="outlined"
               onPress={() => router.push('/(drawer)/(about)/about')}
-              icon="book-information-variant"
-            >
+              icon="book-information-variant">
               Licences…
             </Button>
           </View>
@@ -65,6 +56,8 @@ const useStyles = () => {
   return StyleSheet.create({
     root: {
       flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
       marginHorizontal: theme.spacing(4),
       gap: theme.spacing(6),
     },
@@ -86,4 +79,4 @@ const useStyles = () => {
   });
 };
 
-export default HomeScreen;
+export default HomeScreen; 
