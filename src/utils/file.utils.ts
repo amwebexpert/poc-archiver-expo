@@ -72,6 +72,22 @@ export const loadTextContent = async (fileUri = '') => {
   }
 };
 
+export const loadBase64Content = async (fileUri = '') => {
+  const exists = await isFileExists(fileUri);
+  if (!exists) {
+    return { exists };
+  }
+
+  try {
+    const content = await FileSystem.readAsStringAsync(fileUri, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+    return { exists, content };
+  } catch (error) {
+    return { exists, error };
+  }
+};
+
 export const deleteFile = async (fileUri = '') => {
   const exists = await isFileExists(fileUri);
 

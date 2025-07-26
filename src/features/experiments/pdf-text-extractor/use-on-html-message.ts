@@ -15,11 +15,13 @@ export const useOnHtmlDocMessage = () => {
         setIsDocumentReady(true);
       } else if (type === 'console') {
         logIncomingHtmlDocMessage(data);
+      } else if (type === 'extractedTexts') {
+        console.log('[useOnHtmlDocMessage] extractedTexts', data);
       } else {
-        console.warn(`[useWebviewDocument] onMessage: <${type}> not handled`);
+        console.warn(`[useOnHtmlDocMessage] onMessage: <${type}> not handled`);
       }
     } catch (e: unknown) {
-      console.error('[useWebviewDocument] unexpected error', e, payloadData);
+      console.error('[useOnHtmlDocMessage] unexpected error', e, payloadData);
     }
   };
 

@@ -4,6 +4,7 @@ import { Fragment, FunctionComponent, useState } from 'react';
 
 import { Button } from 'react-native-paper';
 import { PdfTextExtractor } from './pdf-text-extractor';
+import { View } from 'react-native';
 
 export const PdfTextExtractorDemo: FunctionComponent = () => {
   const [pdfUri, setPdfUri] = useState<string | null>(null);
@@ -12,18 +13,14 @@ export const PdfTextExtractorDemo: FunctionComponent = () => {
     const { canceled, assets } = await DocumentPicker.getDocumentAsync({
       type: 'application/pdf',
     });
-    console.info('🚀 → info', canceled, assets);
 
     if (!canceled && assets?.[0]?.uri) {
       setPdfUri(assets?.[0]?.uri);
     }
-
-    // const extractedText = await extractFromLocalFile(assets?.[0]?.uri ?? '');
-    // console.info('🚀 → info', extractedText);
   };
 
   return (
-    <Fragment>
+    <View>
       <Button
         icon={({ size, color }) => <FontAwesome5 name="file-pdf" size={size} color={color} />}
         mode="contained"
@@ -33,6 +30,6 @@ export const PdfTextExtractorDemo: FunctionComponent = () => {
       </Button>
 
       {pdfUri && <PdfTextExtractor pdfUri={pdfUri} />}
-    </Fragment>
+    </View>
   );
 };

@@ -1,3 +1,29 @@
+const base64ToUint8Array = (base64 = '') => {
+  const raw = atob(base64);
+  const uint8 = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; ++i) {
+    uint8[i] = raw.charCodeAt(i);
+  }
+
+  return uint8;
+}
+
+const extractPdfText = async (base64 = '') => {
+  const data = base64ToUint8Array(base64);
+  const pdf = await pdfjsLib.getDocument({ data }).promise;
+
+  const pages = [];
+
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const textContent = await page.getTextContent();
+    const text = textContent.items.map(item => item.str).join(' ');
+    pages.push({ page: pageNum, text });
+  }
+
+  return pages; // format: [{ page: 1, text: "..." }, ...]
+};
+
 const postMessageRN = (type = '', log) => {
   const message = { type: 'console', data: { type, log } };
   postObjectRN(message);
@@ -8,10 +34,22 @@ const postObjectRN = (message = {}) => {
   setTimeout(() => window.ReactNativeWebView.postMessage(stringMessage), 0);
 };
 
-window.onReactNativeMessage = (message = '{}') => {
+// Global error listener for DOM errors
+window.addEventListener('error', (event) => {
+  postMessageRN('error', event.message);
+});
+
+// Global unhandled promise rejection listener
+window.addEventListener('unhandledrejection', (event) => {
+  postMessageRN('error', event.reason?.message || event.reason || 'Unhandled promise rejection');
+});
+
+window.onReactNativeMessage = async (message = '{}') => {
   const { type, data } = JSON.parse(message ?? '{}');
   if (type === 'extractText') {
-    alert('extractText' + '\n' + data);
+    //alert('extractText' + '\n' + data.substring(0, 20));
+    const result = await extractPdfText(data);
+    postObjectRN({ type: 'extractedTexts', data: result });
   } else {
     postMessageRN('info', `webapp: onReactNativeMessage ${type}: ${data}`);
   }

@@ -3,6 +3,7 @@ import React, { FunctionComponent, useEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { WebView } from 'react-native-webview';
+import { loadBase64Content } from '~/utils/file.utils';
 import { useOnHtmlDocMessage } from './use-on-html-message';
 import { usePdfReaderAssets } from './use-pdf-reader-assets';
 import { htmlDocumentMessage } from './webview.utils';
@@ -18,12 +19,14 @@ export const PdfTextExtractor: FunctionComponent<PdfTextExtractorProps> = ({ pdf
   const { isDocumentReady, onMessage } = useOnHtmlDocMessage();
 
   useEffect(() => {
-    if (isDocumentReady) {
-      console.log('✅ Document is ready, calling html document script');
-      const jsCode = htmlDocumentMessage({ type: 'extractText', data: pdfUri });
+    if (!isDocumentReady) return;
+
+    loadBase64Content(pdfUri).then(({ content }) => {
+      if (!content) return;
+      const jsCode = htmlDocumentMessage({ type: 'extractText', data: content });
       webViewRef.current?.injectJavaScript(jsCode);
-    }
-  }, [isDocumentReady]);
+    });
+  }, [isDocumentReady, pdfUri]);
 
   const handleLoadEnd = () => {
     webViewRef.current?.injectJavaScript(`${injectedJavaScript}\ntrue;`);
@@ -52,7 +55,7 @@ export const PdfTextExtractor: FunctionComponent<PdfTextExtractorProps> = ({ pdf
 
 const styles = StyleSheet.create({
   webView: {
-    flex: 0.25,
-    width: '100%',
+    maxHeight: 1,
+    maxWidth: 1,
   },
 });
