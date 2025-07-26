@@ -26,7 +26,7 @@ export const PdfTextExtractorDemo: FunctionComponent = () => {
         mode="contained"
         onPress={onSelectPdf}
       >
-        PDF Text Extractor
+        PDF.js Text Extractor
       </Button>
 
       {pdfUri && <PdfTextExtractor pdfUri={pdfUri} />}
