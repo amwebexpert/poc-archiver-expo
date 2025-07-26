@@ -8,7 +8,8 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: 'black',
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -38,6 +39,14 @@ export default function TabLayout() {
         options={{
           title: 'Objects',
           tabBarIcon: ({ color }) => <TabBarIcon name="image" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="ai-feature-extraction"
+        options={{
+          title: 'Semantic',
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
       />
     </Tabs>

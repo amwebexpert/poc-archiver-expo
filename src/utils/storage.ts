@@ -7,4 +7,6 @@ export enum StorageKey {
   SENTIMENT_MODEL_AVAILABLE_OFFLINE = 'sentimentAnalysisModelAvailableOffline',
   TRANSLATION_MODEL_AVAILABILITY = 'translationModelAvailability',
   OBJECTS_DETECTION_MODEL_AVAILABILITY = 'objectsDetectionModelAvailability',
+  FEATURE_EXTRACTION_MODEL_AVAILABILITY = 'featureExtractionModelAvailability',
+  GUIDELINES_ORDERED_NODES = 'guidelinesOrderedNodes',
 }

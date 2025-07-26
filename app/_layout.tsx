@@ -14,6 +14,7 @@ import { PaperProvider } from 'react-native-paper';
 import { Toaster } from 'sonner-native';
 import { SnackbarProvider } from '~/components/snack-bar/snackbar-provider';
 import { settingsStore } from '~/features/settings/settings.store';
+import { AppQueryProvider } from '~/store/app-query-provider';
 import { DARK_THEME, LIGHT_THEME, NAVIGATION_DARK, NAVIGATION_LIGHT } from '~/theme/theme';
 
 const RootLayout = () => {
@@ -24,35 +25,37 @@ const RootLayout = () => {
   }, []);
 
   return (
-    <PaperProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+    <AppQueryProvider>
+      <PaperProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
+        <StatusBar style={isDarkMode ? 'light' : 'dark'} />
 
-      <ThemeProvider value={isDarkMode ? NAVIGATION_DARK : NAVIGATION_LIGHT}>
-        <GestureHandlerRootView style={styles.container}>
-          <BottomSheetModalProvider>
-            <SnackbarProvider>
-              <Stack>
-                <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-              </Stack>
-            </SnackbarProvider>
-          </BottomSheetModalProvider>
+        <ThemeProvider value={isDarkMode ? NAVIGATION_DARK : NAVIGATION_LIGHT}>
+          <GestureHandlerRootView style={styles.container}>
+            <BottomSheetModalProvider>
+              <SnackbarProvider>
+                <Stack>
+                  <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+                </Stack>
+              </SnackbarProvider>
+            </BottomSheetModalProvider>
 
-          <Toaster
-            position="top-center"
-            // offset={100}
-            duration={3000}
-            swipeToDismissDirection="up"
-            visibleToasts={4}
-            closeButton
-            autoWiggleOnUpdate="toast-change"
-            theme="system"
-            icons={{ error: <Text>💥</Text>, loading: <Text>🔄</Text> }}
-            toastOptions={{ actionButtonStyle: { paddingHorizontal: 20 } }}
-            pauseWhenPageIsHidden
-          />
-        </GestureHandlerRootView>
-      </ThemeProvider>
-    </PaperProvider>
+            <Toaster
+              position="top-center"
+              // offset={100}
+              duration={3000}
+              swipeToDismissDirection="up"
+              visibleToasts={4}
+              closeButton
+              autoWiggleOnUpdate="toast-change"
+              theme="system"
+              icons={{ error: <Text>💥</Text>, loading: <Text>🔄</Text> }}
+              toastOptions={{ actionButtonStyle: { paddingHorizontal: 20 } }}
+              pauseWhenPageIsHidden
+            />
+          </GestureHandlerRootView>
+        </ThemeProvider>
+      </PaperProvider>
+    </AppQueryProvider>
   );
 };
 

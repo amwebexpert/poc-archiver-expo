@@ -5,7 +5,7 @@ const { getDefaultConfig } = require('expo/metro-config');
 // eslint-disable-next-line no-undef
 const config = getDefaultConfig(__dirname);
 
-const EXTRA_EXTENTSIONS = ["js_", "html", "csv"];
+const EXTRA_EXTENTSIONS = ["js_", "html", "csv", "md"];
 
 config.resolver.assetExts.push(...EXTRA_EXTENTSIONS);
 config.resolver.sourceExts = config.resolver.sourceExts.filter(

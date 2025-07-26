@@ -1,0 +1,20 @@
+Voici une règle de "guide de développement" qui doit être reformattée:
+___________________________
+
+
+
+___________________________
+
+Instructions: 
+- tout doit être en anglais, même les explications
+- la section Avoid doit avoir aussi une phrase, ex: ### ❌ Avoid useless curly braces
+- la section Prefer doit avoir une phrase, ex: ### ✅ Prefer direct string assignment
+- les exemples Javascript doivent être convertis en Typescript (.js en .ts et .jsx en .tsx)
+- les props passées au component doivent être typées via une interface explicite
+- utilise la syntaxe arrow function, ex: const Component = () => { return ... }
+- formatte la règle pour suivre le modèle markdown avec Titre et 3 sous-sections: Avoid, Prefers, Explaination
+- Règles de formarttage markdown:
+  - utiliser ## pour le titre de la règle
+  - utiliser ### ❌ Avoid This or That
+  - utiliser ### ✅ Prefer This or That
+  - utiliser ### ℹ️ Explaination
