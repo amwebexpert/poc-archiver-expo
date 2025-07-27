@@ -57,11 +57,11 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
 
       {results.length > 0 && (
         <ScrollView contentContainerStyle={styles.container}>
-          <View style={styles.resultsContainer}>
+          <>
             {results.map((rule) => (
               <RuleDisplay key={rule.href} rule={rule} />
             ))}
-          </View>
+          </>
         </ScrollView>
       )}
 
@@ -93,7 +93,6 @@ const useStyles = () => {
       marginHorizontal: theme.spacing(2),
       marginVertical: theme.spacing(2),
     },
-    resultsContainer: {},
     searchInput: {
       flex: 1,
       marginRight: theme.spacing(1),
