@@ -1,104 +1,118 @@
+import { LIGHT_COLORS_SCHEME } from '~/theme/light-colors-scheme';
+
+const {
+  onSurface,
+  surface,
+  onSurfaceVariant,
+  primary,
+  tertiary,
+  secondary,
+  error,
+  errorContainer,
+  primaryContainer
+} = LIGHT_COLORS_SCHEME;
+
 export default {
   "hljs": {
     "display": "block",
     "overflowX": "auto",
     "padding": "0.5em",
-    "color": "#000",
-    "background": "#f8f8ff"
+    "color": onSurface,
+    "background": surface
   },
   "hljs-comment": {
-    "color": "#408080",
+    "color": onSurfaceVariant,
     "fontStyle": "italic"
   },
   "hljs-quote": {
-    "color": "#408080",
+    "color": onSurfaceVariant,
     "fontStyle": "italic"
   },
   "hljs-keyword": {
-    "color": "#954121"
+    "color": primary
   },
   "hljs-selector-tag": {
-    "color": "#954121"
+    "color": primary
   },
   "hljs-literal": {
-    "color": "#954121"
+    "color": primary
   },
   "hljs-subst": {
-    "color": "#954121"
+    "color": primary
   },
   "hljs-number": {
-    "color": "#40a070"
+    "color": tertiary
   },
   "hljs-string": {
-    "color": "#219161"
+    "color": secondary
   },
   "hljs-doctag": {
-    "color": "#219161"
+    "color": secondary
   },
   "hljs-selector-id": {
-    "color": "#19469d"
+    "color": primary
   },
   "hljs-selector-class": {
-    "color": "#19469d"
+    "color": primary
   },
   "hljs-section": {
-    "color": "#19469d"
+    "color": primary
   },
   "hljs-type": {
-    "color": "#19469d"
+    "color": primary
   },
   "hljs-params": {
-    "color": "#00f"
+    "color": primary
   },
   "hljs-title": {
-    "color": "#458",
+    "color": onSurface,
     "fontWeight": "bold"
   },
   "hljs-tag": {
-    "color": "#000080",
+    "color": primary,
     "fontWeight": "normal"
   },
   "hljs-name": {
-    "color": "#000080",
+    "color": primary,
     "fontWeight": "normal"
   },
   "hljs-attribute": {
-    "color": "#000080",
+    "color": primary,
     "fontWeight": "normal"
   },
   "hljs-variable": {
-    "color": "#008080"
+    "color": tertiary
   },
   "hljs-template-variable": {
-    "color": "#008080"
+    "color": tertiary
   },
   "hljs-regexp": {
-    "color": "#b68"
+    "color": secondary
   },
   "hljs-link": {
-    "color": "#b68"
+    "color": secondary
   },
   "hljs-symbol": {
-    "color": "#990073"
+    "color": error
   },
   "hljs-bullet": {
-    "color": "#990073"
+    "color": error
   },
   "hljs-built_in": {
-    "color": "#0086b3"
+    "color": tertiary
   },
   "hljs-builtin-name": {
-    "color": "#0086b3"
+    "color": tertiary
   },
   "hljs-meta": {
-    "color": "#999",
+    "color": onSurfaceVariant,
     "fontWeight": "bold"
   },
   "hljs-deletion": {
-    "background": "#fdd"
+    "background": errorContainer
   },
   "hljs-addition": {
-    "background": "#dfd"
+    "background": primaryContainer
   },
   "hljs-emphasis": {
     "fontStyle": "italic"

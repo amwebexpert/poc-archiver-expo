@@ -1,83 +1,93 @@
+import { DARK_COLORS_SCHEME } from '~/theme/dark-colors-scheme';
+
+const {
+  surface,
+  onSurface,
+  primary,
+  tertiary,
+  onSurfaceVariant
+} = DARK_COLORS_SCHEME;
+
 export default {
   "hljs": {
     "display": "block",
     "overflowX": "auto",
     "padding": "0.5em",
-    "background": "black",
-    "color": "#ddd"
+    "background": surface,
+    "color": onSurface
   },
   "hljs-keyword": {
-    "color": "white",
+    "color": primary,
     "fontWeight": "bold"
   },
   "hljs-selector-tag": {
-    "color": "white",
+    "color": primary,
     "fontWeight": "bold"
   },
   "hljs-literal": {
-    "color": "white",
+    "color": primary,
     "fontWeight": "bold"
   },
   "hljs-section": {
-    "color": "white",
+    "color": primary,
     "fontWeight": "bold"
   },
   "hljs-link": {
-    "color": "white"
+    "color": primary
   },
   "hljs-subst": {
-    "color": "#ddd"
+    "color": onSurface
   },
   "hljs-string": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-title": {
-    "color": "#d88",
+    "color": tertiary,
     "fontWeight": "bold"
   },
   "hljs-name": {
-    "color": "#d88",
+    "color": tertiary,
     "fontWeight": "bold"
   },
   "hljs-type": {
-    "color": "#d88",
+    "color": tertiary,
     "fontWeight": "bold"
   },
   "hljs-attribute": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-symbol": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-bullet": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-built_in": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-addition": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-variable": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-template-tag": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-template-variable": {
-    "color": "#d88"
+    "color": tertiary
   },
   "hljs-comment": {
-    "color": "#777"
+    "color": onSurfaceVariant
   },
   "hljs-quote": {
-    "color": "#777"
+    "color": onSurfaceVariant
   },
   "hljs-deletion": {
-    "color": "#777"
+    "color": onSurfaceVariant
   },
   "hljs-meta": {
-    "color": "#777"
+    "color": onSurfaceVariant
   },
   "hljs-doctag": {
     "fontWeight": "bold"
