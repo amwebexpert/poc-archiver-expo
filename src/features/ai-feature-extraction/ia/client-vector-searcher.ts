@@ -1,33 +1,27 @@
 // @see https://github.com/hans00/react-native-transformers-example/blob/main/DEVELOPMENT.md
 // import { pipeline } from '@xenova/transformers';
-import {
-  pipeline,
-  type FeatureExtractionPipeline,
-  type Tensor,
-} from "@fugood/transformers";
-import { ProgressCallback } from "~/features/ai-commons/transformer.types";
-import { storage, StorageKey } from "~/utils/storage";
-import { loadAllRules } from "../coding-guideline/coding-guideline.utils";
-import type {
-  ComputedEmbeddingsStats,
-  EmbeddingVector,
-  GuidelineNode,
-  Rule,
-} from "../models";
+import { pipeline, type FeatureExtractionPipeline, type Tensor } from '@fugood/transformers';
+import { ProgressCallback } from '~/features/ai-commons/transformer.types';
+import { storage, StorageKey } from '~/utils/storage';
+import { loadAllRules } from '../coding-guideline/coding-guideline.utils';
+import type { ComputedEmbeddingsStats, EmbeddingVector, GuidelineNode, Rule } from '../models';
 import {
   cosineSimilarity,
   loadRuleEmbeddings,
   storeRuleEmbeddings,
-} from "./client-vector-searcher.utils";
+} from './client-vector-searcher.utils';
 
 const EMBEDDING_CONFIG = {
-  pooling: "mean", // Better than 'cls' for semantic search
+  pooling: 'mean', // Better than 'cls' for semantic search
   normalize: true, // Consistent normalization for all embeddings
   quantize: false, // Preserve maximum precision
 } as const;
 
-const canUseOfflineMode = (): boolean =>
-  storage.getBoolean(StorageKey.FEATURE_EXTRACTION_MODEL_AVAILABILITY) ?? false;
+const canUseOfflineMode = (): boolean => {
+  const canUseOfflineMode = storage.getBoolean(StorageKey.FEATURE_EXTRACTION_MODEL_AVAILABILITY) ?? false;
+  console.info('🚀 → canUseOfflineMode', { canUseOfflineMode });
+  return canUseOfflineMode;
+};
 
 export const updateCanUseOfflineMode = (value = true): void =>
   storage.set(StorageKey.FEATURE_EXTRACTION_MODEL_AVAILABILITY, value);
