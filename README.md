@@ -1,5 +1,75 @@
 # poc-archiver-expo
 
+## 📱 POC Archiver Expo - React Native Proof of Concepts Collection
+
+**POC Archiver Expo** is a comprehensive mobile application built with **React Native** and **Expo SDK** that serves as a sandbox for testing and demonstrating various advanced features. This application is designed as an experimentation laboratory for learning and validating technical concepts.
+
+### 🚀 Key Features
+
+#### 🤖 **Artificial Intelligence & Machine Learning**
+- **Text Translation**: Offline multilingual translation using Transformer.js
+- **Sentiment Analysis**: Text classification and emotional analysis
+- **Object Detection**: Image object recognition with ONNX models
+- **Feature Extraction**: Semantic search in code documents
+
+#### 📄 **Document Management**
+- **PDF Text Extraction**: Using PDF.js in WebView to extract textual content
+- **Content Display**: Document rendering with syntax highlighting
+
+#### 🎨 **Advanced User Interface**
+- **Adaptive Theme**: Light/dark mode support with MobX
+- **Material Design**: Interface using react-native-paper
+- **Smooth Animations**: Using react-native-reanimated
+
+#### 🔧 **Technical Features**
+- **State Management**: MobX for global state management
+- **Network Queries**: Tanstack Query for data management
+- **OTA Updates**: Over-the-air update system with Expo Updates
+
+#### 🧪 **Experiments & POCs**
+- **API Routes**: Expo API routes demonstration
+- **Integrated WebView**: Web content integration in the app
+- **Custom Selectors**: Advanced selection components
+- **Toast Notifications**: Notification system with sonner-native
+- **License Management**: Automatic display of dependency licenses
+
+### 🏗 Technical Architecture
+
+- **Framework**: React Native with Expo SDK
+- **Navigation**: Expo Router with typed routes
+- **Global State**: MobX with react-lite
+- **UI Components**: React Native Paper + custom components
+- **ML/AI**: Transformer.js, ONNX Runtime, @fugood/transformers
+- **Storage**: MMKV for sensitive data
+- **Validation**: Zod for runtime validation
+- **Internationalization**: Multi-language support with i18next
+
+### 🎯 Use Cases
+
+This application is ideal for:
+- **Developers** wanting to explore AI capabilities in React Native
+- **Teams** seeking to validate technical concepts before production
+- **Learners** wanting to understand advanced technology integration
+- **Architects** testing mobile development patterns
+
+### 🔬 Development Environment
+
+The app uses a modern development environment with:
+- **Strict TypeScript** for type safety
+- **ESLint + Prettier** for code quality
+- **Expo Development Builds** for native features
+- **EAS Build** for cloud compilation
+- **Hot reloading** for rapid development
+
+### 📱 Multi-Platform Support
+
+- ✅ **iOS** (iPhone & iPad)
+- ✅ **Android** (phones & tablets)
+
+This POC collection demonstrates the advanced capabilities of React Native and Expo, providing a solid foundation for exploration and innovation in modern mobile development.
+
+---
+
 Expo SDK Proof of concepts collection
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/amwebexpert/poc-archiver-expo) ![GitHub Release Date](https://img.shields.io/github/release-date/amwebexpert/poc-archiver-expo) ![GitHub last commit](https://img.shields.io/github/last-commit/amwebexpert/poc-archiver-expo) ![GitHub](https://img.shields.io/github/license/amwebexpert/poc-archiver-expo) ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/amwebexpert/etoolbox/react) ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/amwebexpert/etoolbox/typescript)
