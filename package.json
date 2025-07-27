@@ -89,6 +89,7 @@
     "react-native-reanimated": "~3.16.7",
     "react-native-safe-area-context": "5.2.0",
     "react-native-screens": "~4.4.0",
+    "react-native-signature-canvas": "^5.0.1",
     "react-native-skia-offscreencanvas": "^0.1.1",
     "react-native-svg": "15.8.0",
     "react-native-syntax-highlighter": "^2.1.0",

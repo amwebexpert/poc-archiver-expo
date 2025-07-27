@@ -7495,6 +7495,11 @@ react-native-screens@~4.4.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-signature-canvas@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-5.0.1.tgz#8afe000725b5fb5aa2c046a88692008620827eb0"
+  integrity sha512-gszCqoSf7pAwRdlg/CLBoqytersQAoHDgxZ8eS7v+vFseUcoBONYWZtlKv9GNdXX9T9Sv8eEqihtgHXwz6ehEA==
+
 react-native-skia-offscreencanvas@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-skia-offscreencanvas/-/react-native-skia-offscreencanvas-0.1.1.tgz#abd795a8be55deb93db33696b7ea9f7bc22e646e"
