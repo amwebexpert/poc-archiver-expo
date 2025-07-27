@@ -47,7 +47,7 @@ export const markdownDarkTheme = {
     fontFamily: 'monospace',
   },
   fence: {
-    backgroundColor: colors.surfaceVariant,
+    backgroundColor: colors.surface,
     color: colors.onSurfaceVariant,
     padding: 8,
     borderRadius: 6,
