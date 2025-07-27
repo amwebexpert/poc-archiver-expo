@@ -32,7 +32,7 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
           value={queryText}
           onChangeText={setQueryText}
           style={styles.searchInput}
-          disabled={isSearching || isLoading}
+          disabled={isSearching}
           onSubmitEditing={onSemanticSearch}
           returnKeyType="search"
           multiline={false}
@@ -41,7 +41,7 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
               <TextInput.Icon
                 icon="close"
                 onPress={() => setQueryText('')}
-                disabled={isSearching || isLoading}
+                disabled={isSearching}
               />
             ) : undefined
           }
@@ -50,20 +50,20 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
           icon="magnify"
           mode="contained"
           onPress={onSemanticSearch}
-          disabled={isSearching || isLoading}
-          loading={isSearching || isLoading}
+          disabled={isSearching}
+          loading={isSearching}
         />
       </View>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        {results.length > 0 && (
+      {results.length > 0 && (
+        <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.resultsContainer}>
             {results.map((rule) => (
               <RuleDisplay key={rule.href} rule={rule} />
             ))}
           </View>
-        )}
-      </ScrollView>
+        </ScrollView>
+      )}
 
       {isLoading && (
         <ModalSpinner
@@ -93,9 +93,7 @@ const useStyles = () => {
       marginHorizontal: theme.spacing(2),
       marginVertical: theme.spacing(2),
     },
-    resultsContainer: {
-      gap: theme.spacing(0.5),
-    },
+    resultsContainer: {},
     searchInput: {
       flex: 1,
       marginRight: theme.spacing(1),

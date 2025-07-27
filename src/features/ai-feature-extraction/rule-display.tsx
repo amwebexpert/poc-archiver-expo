@@ -48,6 +48,7 @@ const useStyles = () => {
     },
     expandedContent: {
       paddingBottom: theme.spacing(2),
+      paddingHorizontal: theme.spacing(2),
     },
   });
 };
