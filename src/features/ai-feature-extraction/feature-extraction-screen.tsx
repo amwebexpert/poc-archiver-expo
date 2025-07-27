@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { IconButton, TextInput } from 'react-native-paper';
 
 import { observer } from 'mobx-react-lite';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
@@ -19,9 +19,11 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
   const { isLoading, setIsLoading, filesProgress, progressHandler } = useModelLoading();
   const { results, isSearching, search } = useSemanticSearch(progressHandler);
 
-  const [queryText, setQueryText] = useState('multiple ternary operators usage');
+  const [queryText, setQueryText] = useState('multiple args usage');
 
   const onSemanticSearch = () => search({ queryText, maxResults: MAX_RESULTS });
+
+  useEffect(() => onSemanticSearch(), []);
 
   return (
     <SafeContainer style={styles.root}>
