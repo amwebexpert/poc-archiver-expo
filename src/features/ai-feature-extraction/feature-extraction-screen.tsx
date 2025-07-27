@@ -48,6 +48,7 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
         />
         <IconButton
           icon="magnify"
+          mode="contained"
           onPress={onSemanticSearch}
           disabled={isSearching || isLoading}
           loading={isSearching || isLoading}
