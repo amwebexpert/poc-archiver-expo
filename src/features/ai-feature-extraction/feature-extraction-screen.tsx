@@ -1,9 +1,10 @@
 import { StyleSheet, View } from 'react-native';
-import { Button, IconButton, List, TextInput } from 'react-native-paper';
+import { Button, IconButton, TextInput } from 'react-native-paper';
 
 import { observer } from 'mobx-react-lite';
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import Animated, { FadeOut, StretchInX } from 'react-native-reanimated';
 import { SafeContainer } from '~/components/layout/safe-container';
 import { ModalSpinner } from '~/components/spinner/modal-spinner';
 import { ThemedMarkdown } from '~/components/themed-markdown/themed-markdown';
@@ -20,8 +21,19 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
   const { results, isSearching, search } = useSemanticSearch(progressHandler);
 
   const [queryText, setQueryText] = useState('multiple ternary operators usage');
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const onSemanticSearch = () => search({ queryText, maxResults: MAX_RESULTS });
+
+  const toggleExpanded = (href: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(href)) {
+      newExpanded.delete(href);
+    } else {
+      newExpanded.add(href);
+    }
+    setExpandedItems(newExpanded);
+  };
 
   return (
     <SafeContainer style={styles.root}>
@@ -57,13 +69,30 @@ const FeatureExtractionScreen: FunctionComponent = observer(() => {
 
       <ScrollView contentContainerStyle={styles.container}>
         {results.length > 0 && (
-          <List.Section title={`${results.length} items`}>
+          <View style={styles.resultsContainer}>
             {results.map((rule) => (
-              <List.Accordion key={rule.href} title={rule.title}>
-                <ThemedMarkdown markdownContent={rule.content} />
-              </List.Accordion>
+              <View key={rule.href} style={styles.resultItem}>
+                <Button
+                  mode="text"
+                  onPress={() => toggleExpanded(rule.href)}
+                  icon={expandedItems.has(rule.href) ? 'chevron-up' : 'chevron-down'}
+                  contentStyle={styles.buttonContent}
+                  labelStyle={styles.buttonLabel}
+                >
+                  {rule.title}
+                </Button>
+                {expandedItems.has(rule.href) && (
+                  <Animated.View
+                    style={styles.expandedContent}
+                    entering={StretchInX}
+                    exiting={FadeOut}
+                  >
+                    <ThemedMarkdown markdownContent={rule.content} />
+                  </Animated.View>
+                )}
+              </View>
             ))}
-          </List.Section>
+          </View>
         )}
       </ScrollView>
 
@@ -95,8 +124,25 @@ const useStyles = () => {
       marginHorizontal: theme.spacing(2),
       marginVertical: theme.spacing(2),
     },
-    accordionContent: {
+    resultsContainer: {
+      gap: theme.spacing(0.5),
+    },
+    resultItem: {
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: theme.colors.outline,
+    },
+    buttonContent: {
+      justifyContent: 'flex-start',
+      paddingHorizontal: 0,
+    },
+    buttonLabel: {
+      textAlign: 'left',
+      fontSize: 16,
+    },
+    expandedContent: {
       paddingHorizontal: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
+      backgroundColor: theme.colors.surfaceVariant,
     },
     searchInput: {
       flex: 1,
