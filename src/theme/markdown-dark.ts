@@ -1,4 +1,5 @@
 import { DARK_COLORS_SCHEME as colors } from './dark-colors-scheme';
+import { getMonospaceFont } from '~/utils/platform.utils';
 
 export const markdownDarkTheme = {
   body: {
@@ -44,14 +45,14 @@ export const markdownDarkTheme = {
     color: colors.onSurfaceVariant,
     padding: 4,
     borderRadius: 4,
-    fontFamily: 'monospace',
+    fontFamily: getMonospaceFont(),
   },
   fence: {
     backgroundColor: colors.surface,
     color: colors.onSurfaceVariant,
     padding: 8,
     borderRadius: 6,
-    fontFamily: 'monospace',
+    fontFamily: getMonospaceFont(),
   },
   list_item: {
     color: colors.onBackground,
