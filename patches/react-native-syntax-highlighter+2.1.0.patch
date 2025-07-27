@@ -1,0 +1,35 @@
+diff --git a/node_modules/react-native-syntax-highlighter/dist/index.js b/node_modules/react-native-syntax-highlighter/dist/index.js
+index 9040688..3a083bb 100644
+--- a/node_modules/react-native-syntax-highlighter/dist/index.js
++++ b/node_modules/react-native-syntax-highlighter/dist/index.js
+@@ -213,11 +213,6 @@ function NativeSyntaxHighlighter(_ref10) {
+   );
+ }
+ 
+-NativeSyntaxHighlighter.defaultProps = {
+-  fontFamily: _reactNative.Platform.OS === 'ios' ? 'Menlo-Regular' : 'monospace',
+-  fontSize: 12,
+-  PreTag: _reactNative.ScrollView,
+-  CodeTag: _reactNative.ScrollView
+-};
++// defaultProps removed to avoid React warning
+ 
+ exports.default = NativeSyntaxHighlighter;
+\ No newline at end of file
+diff --git a/node_modules/react-native-syntax-highlighter/src/index.js b/node_modules/react-native-syntax-highlighter/src/index.js
+index 11e5c5b..a1a070a 100644
+--- a/node_modules/react-native-syntax-highlighter/src/index.js
++++ b/node_modules/react-native-syntax-highlighter/src/index.js
+@@ -174,11 +174,6 @@ function NativeSyntaxHighlighter({
+   );
+ }
+ 
+-NativeSyntaxHighlighter.defaultProps = {
+-  fontFamily: Platform.OS === 'ios' ? 'Menlo-Regular' : 'monospace',
+-  fontSize: 12,
+-  PreTag: ScrollView,
+-  CodeTag: ScrollView
+-};
++// defaultProps removed to avoid React warning
+ 
+ export default NativeSyntaxHighlighter;

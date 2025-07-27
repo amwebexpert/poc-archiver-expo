@@ -65,6 +65,12 @@
         "licenseUrl": "https://github.com/Shopify/react-native-skia/raw/master/LICENSE.md",
         "parents": "poc-archiver-expo"
     },
+    "@tanstack/react-query@5.83.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/TanStack/query",
+        "licenseUrl": "https://github.com/TanStack/query/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "@uidotdev/usehooks@2.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/uidotdev/usehooks",
@@ -75,6 +81,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/devongovett/browserify-zlib",
         "licenseUrl": "https://github.com/devongovett/browserify-zlib/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
+    "compute-cosine-similarity@1.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/compute-io/cosine-similarity",
+        "licenseUrl": "http://www.opensource.org/licenses/MIT",
         "parents": "poc-archiver-expo"
     },
     "date-fns@4.1.0": {
@@ -239,6 +251,12 @@
         "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-markdown-display@7.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/iamacup/react-native-markdown-display",
+        "licenseUrl": "https://github.com/iamacup/react-native-markdown-display/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-mmkv@3.2.0": {
         "licenses": "(MIT AND BSD-3-Clause)",
         "repository": "https://github.com/mrousavy/react-native-mmkv",
@@ -285,6 +303,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/react-native-community/react-native-svg",
         "licenseUrl": "https://github.com/react-native-community/react-native-svg/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
+    "react-native-syntax-highlighter@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/conorhastings/react-native-syntax-highlighter",
+        "licenseUrl": "https://github.com/conorhastings/react-native-syntax-highlighter",
         "parents": "poc-archiver-expo"
     },
     "react-native-webview@13.12.5": {
