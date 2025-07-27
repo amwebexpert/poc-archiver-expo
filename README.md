@@ -2,7 +2,7 @@
 
 ## 📱 POC Archiver Expo - React Native Proof of Concepts Collection
 
-**POC Archiver Expo** is a comprehensive mobile application built with **React Native** and **Expo SDK** that serves as a sandbox for testing and demonstrating various advanced features. This application is designed as an experimentation laboratory for learning and validating technical concepts.
+**POC Archiver Expo** is a comprehensive mobile application built with **React Native** and **Expo SDK** that serves as a sandbox for testing and demonstrating various advanced features.
 
 ### 🚀 Key Features
 
@@ -31,7 +31,6 @@
 - **Integrated WebView**: Web content integration in the app
 - **Custom Selectors**: Advanced selection components
 - **Toast Notifications**: Notification system with sonner-native
-- **License Management**: Automatic display of dependency licenses
 
 ### 🏗 Technical Architecture
 
@@ -42,7 +41,6 @@
 - **ML/AI**: Transformer.js, ONNX Runtime, @fugood/transformers
 - **Storage**: MMKV for sensitive data
 - **Validation**: Zod for runtime validation
-- **Internationalization**: Multi-language support with i18next
 
 ### 🎯 Use Cases
 
@@ -50,16 +48,6 @@ This application is ideal for:
 - **Developers** wanting to explore AI capabilities in React Native
 - **Teams** seeking to validate technical concepts before production
 - **Learners** wanting to understand advanced technology integration
-- **Architects** testing mobile development patterns
-
-### 🔬 Development Environment
-
-The app uses a modern development environment with:
-- **Strict TypeScript** for type safety
-- **ESLint + Prettier** for code quality
-- **Expo Development Builds** for native features
-- **EAS Build** for cloud compilation
-- **Hot reloading** for rapid development
 
 ### 📱 Multi-Platform Support
 
