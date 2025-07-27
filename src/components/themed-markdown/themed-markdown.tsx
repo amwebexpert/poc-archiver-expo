@@ -1,19 +1,31 @@
 import React, { type FunctionComponent } from 'react';
 
-import { observer } from 'mobx-react-lite';
-import Markdown from 'react-native-markdown-display';
+import Markdown, { ASTNode, MarkdownProps } from 'react-native-markdown-display';
+import { SyntaxColoring } from '~/features/ai-feature-extraction/coding-guideline/syntax/syntax-coloring';
 import { settingsStore } from '~/features/settings/settings.store';
 import { markdownDarkTheme } from '~/theme/markdown-dark';
 
-interface ThemedMarkdownProps {
+interface ThemedMarkdownProps extends MarkdownProps {
   markdownContent: string;
+  language: string;
 }
 
-export const ThemedMarkdown: FunctionComponent<ThemedMarkdownProps> = observer(
-  ({ markdownContent }) => {
-    const { isDarkMode } = settingsStore;
-    const markdownStyle = isDarkMode ? markdownDarkTheme : undefined;
+export const ThemedMarkdown: FunctionComponent<ThemedMarkdownProps> = ({
+  markdownContent,
+  language,
+  ...props
+}) => {
+  const markdownStyle = settingsStore.isDarkMode ? markdownDarkTheme : undefined;
 
-    return <Markdown style={markdownStyle}>{markdownContent}</Markdown>;
-  }
-);
+  const customRules = {
+    fence: (node: ASTNode) => {
+      return <SyntaxColoring key={node.key} language={language} code={node.content ?? ''} />;
+    },
+  };
+
+  return (
+    <Markdown style={markdownStyle} rules={customRules} {...props}>
+      {markdownContent}
+    </Markdown>
+  );
+};

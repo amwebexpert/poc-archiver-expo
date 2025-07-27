@@ -305,6 +305,12 @@
         "licenseUrl": "https://github.com/react-native-community/react-native-svg/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
+    "react-native-syntax-highlighter@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/conorhastings/react-native-syntax-highlighter",
+        "licenseUrl": "https://github.com/conorhastings/react-native-syntax-highlighter",
+        "parents": "poc-archiver-expo"
+    },
     "react-native-webview@13.12.5": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-webview/react-native-webview",

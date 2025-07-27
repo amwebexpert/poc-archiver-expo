@@ -28,7 +28,7 @@ const RuleDisplay: FunctionComponent<RuleDisplayProps> = ({ rule }) => {
 
       {isExpanded && (
         <Animated.View style={styles.expandedContent} entering={StretchInX} exiting={FadeOut}>
-          <ThemedMarkdown markdownContent={rule.content} />
+          <ThemedMarkdown markdownContent={rule.content} language="typescript" />
         </Animated.View>
       )}
     </View>
