@@ -215,6 +215,12 @@
         "licenseUrl": "https://github.com/Microsoft/onnxruntime",
         "parents": "poc-archiver-expo"
     },
+    "parse-svg-path@0.1.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/jkroso/parse-svg-path",
+        "licenseUrl": "https://github.com/jkroso/parse-svg-path/raw/master/License",
+        "parents": "poc-archiver-expo"
+    },
     "react-dom@18.3.1": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react",
@@ -333,6 +339,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react",
         "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
+    "simplify-js@1.2.4": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/mourner/simplify-js",
+        "licenseUrl": "https://github.com/mourner/simplify-js/raw/master/LICENSE",
         "parents": "poc-archiver-expo"
     },
     "sonner-native@0.17.0": {
