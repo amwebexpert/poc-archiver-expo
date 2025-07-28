@@ -1,4 +1,10 @@
 {
+    "@amwebexpert/react-native-sign-here@1.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/amwebexpert/react-native-sign-here",
+        "licenseUrl": "https://github.com/amwebexpert/react-native-sign-here/raw/master/LICENSE",
+        "parents": "poc-archiver-expo"
+    },
     "@craftzdog/react-native-buffer@6.0.5": {
         "licenses": "MIT",
         "repository": "https://github.com/craftzdog/react-native-buffer",

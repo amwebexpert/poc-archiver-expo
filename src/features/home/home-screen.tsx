@@ -43,6 +43,8 @@ const HomeScreen = () => {
               icon="book-information-variant">
               Licences…
             </Button>
+
+
           </View>
         </View>
       </View>
