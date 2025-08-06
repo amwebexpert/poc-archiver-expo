@@ -38,6 +38,7 @@
     "postinstall": "patch-package && npm-license-crawler -onlyDirectDependencies -json assets/licenses.json"
   },
   "dependencies": {
+    "@amwebexpert/react-native-sign-here": "^1.3.0",
     "@craftzdog/react-native-buffer": "^6.0.5",
     "@expo/vector-icons": "^14.0.4",
     "@fugood/react-native-audio-pcm-stream": "^1.1.4",

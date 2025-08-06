@@ -22,10 +22,10 @@ const DrawerLayout: FunctionComponent = () => {
       />
 
       <Drawer.Screen
-        name="other-experiments"
+        name="(experiments)"
         options={{
-          headerTitle: 'other experiments',
-          drawerLabel: 'Other POCs',
+          headerTitle: 'Experiments',
+          drawerLabel: 'Experiments',
           drawerIcon: ({ size, color }) => <Fontisto name="laboratory" size={size} color={color} />,
           headerLeft: () => <HeaderBackButton />,
         }}

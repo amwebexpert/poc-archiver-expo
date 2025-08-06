@@ -62,7 +62,7 @@ const useStyles = () => {
 
   return StyleSheet.create({
     container: {
-      gap: theme.spacing(1),
+      gap: theme.spacing(0.5),
       paddingVertical: theme.spacing(1),
     },
   });

@@ -2,4 +2,4 @@ import OtherExperimentsScreen from '~/features/experiments/other-experiments-scr
 
 export default function OtherExperiments() {
   return <OtherExperimentsScreen />;
-}
+} 

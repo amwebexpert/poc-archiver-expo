@@ -14,8 +14,8 @@ export const SafeContainer: FunctionComponent<SafeContainerProps> = ({ children,
   }
 
   return (
-    <SafeAreaView style={[styles.container, style]}>
-      <Animated.View style={styles.container} entering={FadeInUp.duration(500)}>
+    <SafeAreaView style={styles.container}>
+      <Animated.View style={[styles.container, style]} entering={FadeInUp.duration(500)}>
         {children}
       </Animated.View>
     </SafeAreaView>
